@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>⚔ Pixel Quest</title>
+<title>⚔ Pixel Quest ONLINE</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -108,6 +108,93 @@ body{
   box-shadow:inset 0 1px 0 rgba(255,200,80,.18),2px 2px 0 var(--wood1);
   padding:4px 9px;font-size:5px;color:var(--tx2);white-space:nowrap;}
 .wmt span{color:var(--tx);}
+
+/* ══ ONLINE PLAYER CHAT OVERLAY ══ */
+#online-hud{
+  position:absolute;bottom:6px;left:6px;z-index:50;
+  display:flex;flex-direction:column;gap:4px;pointer-events:none;
+}
+.player-tag{
+  background:rgba(10,5,2,.95);
+  border:2px solid var(--wood3);
+  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),2px 2px 0 var(--wood1);
+  padding:3px 8px;
+  font-size:5px;
+  color:#ffd060;
+  white-space:nowrap;
+  max-width:220px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  animation:fadeIn .2s;
+}
+.player-tag .name{color:#80ff80;}
+.player-tag .msg{color:#ffd060;font-style:italic;margin-left:4px;}
+@keyframes fadeIn{0%{opacity:0;transform:translateX(-10px)}100%{opacity:1;transform:translateX(0)}}
+
+/* ══ CHAT SYSTEM ══ */
+#chat-container{
+  position:absolute;bottom:6px;right:6px;width:260px;z-index:40;
+  display:flex;flex-direction:column;gap:4px;pointer-events:none;
+}
+#chat-messages{
+  background:rgba(8,4,1,.95);
+  border:3px solid var(--wood3);
+  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),0 0 18px rgba(200,140,30,.28),3px 3px 0 var(--wood1);
+  padding:8px;
+  max-height:120px;
+  overflow-y:auto;
+  pointer-events:auto;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  scroll-behavior:smooth;
+}
+.chat-message{
+  font-size:5px;
+  line-height:1.8;
+  word-break:break-word;
+  border-bottom:1px solid rgba(200,150,50,.15);
+  padding-bottom:3px;
+}
+.chat-message:last-child{border-bottom:none;}
+.chat-name{color:#80ff80;margin-right:4px;}
+.chat-text{color:#e8c880;}
+.chat-system{color:#ffa060;font-style:italic;}
+#chat-input-area{
+  display:flex;gap:3px;pointer-events:auto;
+}
+#chat-input{
+  flex:1;
+  background:rgba(20,8,2,.95);
+  border:3px solid var(--wood3);
+  box-shadow:inset 0 1px 0 rgba(255,200,80,.15),inset 0 -2px 0 rgba(0,0,0,.6);
+  padding:6px 8px;
+  font-size:5px;
+  color:#e8c880;
+  outline:none;
+}
+#chat-input::placeholder{color:#705030;}
+#chat-send{
+  background:linear-gradient(180deg,#5a3010,#3a1c06);
+  border:3px solid var(--wood3);
+  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),2px 2px 0 var(--wood1);
+  padding:6px 10px;
+  font-size:5px;
+  color:#ffd060;
+  cursor:pointer;
+  pointer-events:auto;
+}
+#chat-send:active{transform:scale(.94);}
+#chat-online-count{
+  position:absolute;top:-8px;right:-8px;
+  background:#4060c0;
+  border:2px solid #80a0ff;
+  border-radius:10px;
+  padding:2px 6px;
+  font-size:4px;
+  color:#fff;
+  pointer-events:none;
+}
 
 /* ══ NPC DIALOG ══ */
 #npcbox{
@@ -517,15 +604,28 @@ body{
     </div>
   </div>
 
+  <!-- ONLINE PLAYER TAGS (floating above players) -->
+  <div id="online-hud"></div>
+
+  <!-- CHAT SYSTEM -->
+  <div id="chat-container">
+    <div id="chat-messages"></div>
+    <div id="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Digite mensagem..." maxlength="50" autocomplete="off">
+      <button id="chat-send" onclick="sendChatMessage()">ENVIAR</button>
+    </div>
+    <div id="chat-online-count">0</div>
+  </div>
+
   <div class="scr" id="tscr">
     <div id="starbg" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
     <div style="position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(180deg,transparent,rgba(20,60,10,.8));pointer-events:none;"></div>
-    <h1>⚔ PIXEL QUEST</h1>
-    <h2>As Aventuras de Um Guerreiro Destemido!</h2>
-    <h3>20 fases · GLOBAL RANKINGS · jogabilidade infinita</h3>
+    <h1>⚔ PIXEL QUEST ONLINE</h1>
+    <h2>Jogue com amigos no mesmo navegador!</h2>
+    <h3>20 fases · GLOBAL RANKINGS · chat em tempo real</h3>
     <div id="nf">
       <label>Escreva Seu Nome:</label>
-      <input id="ni" type="text" maxlength="14" placeholder="KNIGHT" spellcheck="false" autocomplete="off" inputmode="text">
+      <input id="ni" type="text" maxlength="14" placeholder="KNIGHT" spellcheck="false" autocomplete="off" inputmode="text" value="PLAYER">
     </div>
     <button class="bb bl" onclick="startGame()">⚔ EMBARK</button>
     <button class="bb" onclick="toggleRank()" style="font-size:6px;margin-top:3px;">🏆 RANKINGS</button>
@@ -568,6 +668,332 @@ body{
   </div>
 </div>
 <script>
+// ═══════════════════════════════════════════════════════════════════════════════════
+// ══ ONLINE MULTIPLAYER SYSTEM CORRIGIDO (comunicação via localStorage + storage event) ═
+// ═══════════════════════════════════════════════════════════════════════════════════
+const ONLINE_PLAYERS_KEY = 'pixelquest_online_players_v2';
+const CHAT_MESSAGES_KEY = 'pixelquest_chat_messages_v2';
+const CHAT_LAST_INDEX_KEY = 'pixelquest_chat_last_index';
+const BROADCAST_INTERVAL = 300; // ms - mais rápido para melhor resposta
+const PLAYER_TIMEOUT = 3000; // ms without update = offline
+
+let onlinePlayers = []; // { id, name, x, y, scene, level, hp, maxHp, lastSeen, msg? }
+let chatMessages = [];
+let myPlayerId = null;
+let myLastMessageIndex = 0;
+
+// Inicializar sistema online
+function initOnlineSystem(playerName) {
+  myPlayerId = 'player_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  
+  // Carregar mensagens existentes
+  loadChatMessages();
+  
+  // Registrar listener para eventos de storage (detectar mudanças de outras abas)
+  window.addEventListener('storage', handleStorageChange);
+  
+  // Broadcast inicial
+  broadcastMyPosition();
+  
+  // Iniciar broadcast periódico
+  setInterval(broadcastMyPosition, BROADCAST_INTERVAL);
+  
+  // Verificar jogadores online periodicamente
+  setInterval(updateOnlinePlayers, BROADCAST_INTERVAL);
+  
+  // Enviar mensagem de entrada
+  addSystemMessage(`👋 ${playerName} entrou no mundo!`);
+  
+  // Limpar jogadores antigos na inicialização
+  cleanupOldPlayers();
+}
+
+// Limpar jogadores que ficaram offline
+function cleanupOldPlayers() {
+  try {
+    const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
+    if (stored) {
+      let players = JSON.parse(stored);
+      const now = Date.now();
+      players = players.filter(p => now - p.lastSeen < PLAYER_TIMEOUT);
+      localStorage.setItem(ONLINE_PLAYERS_KEY, JSON.stringify(players));
+    }
+  } catch(e) {}
+}
+
+// Lidar com mudanças no localStorage (de outras abas)
+function handleStorageChange(e) {
+  if (e.key === ONLINE_PLAYERS_KEY) {
+    // Atualizar lista de jogadores
+    updateOnlinePlayers();
+  } else if (e.key === CHAT_MESSAGES_KEY) {
+    // Atualizar mensagens do chat
+    loadChatMessages();
+  } else if (e.key === CHAT_LAST_INDEX_KEY) {
+    // Verificar novas mensagens
+    checkForNewMessages();
+  }
+}
+
+// Verificar se há novas mensagens
+function checkForNewMessages() {
+  try {
+    const lastIndex = parseInt(localStorage.getItem(CHAT_LAST_INDEX_KEY) || '0');
+    if (lastIndex > myLastMessageIndex) {
+      loadChatMessages();
+    }
+  } catch(e) {}
+}
+
+// Broadcast da posição do jogador atual
+function broadcastMyPosition() {
+  if (!G || !G.pl || !myPlayerId) return;
+  
+  const playerData = {
+    id: myPlayerId,
+    name: G.pl.name,
+    x: G.wm ? G.wm.x : (G.pl ? G.pl.x : 0),
+    y: G.wm ? G.wm.y : (G.pl ? G.pl.y : 0),
+    scene: G.scene || 'unknown',
+    level: G.pl.level,
+    hp: G.pl.hp,
+    maxHp: G.pl.maxHp,
+    lastSeen: Date.now()
+  };
+  
+  try {
+    // Obter jogadores atuais
+    let players = [];
+    const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
+    if (stored) {
+      players = JSON.parse(stored);
+      // Remover jogadores antigos
+      const now = Date.now();
+      players = players.filter(p => now - p.lastSeen < PLAYER_TIMEOUT);
+      // Remover minha entrada antiga
+      players = players.filter(p => p.id !== myPlayerId);
+    }
+    
+    // Adicionar eu mesmo
+    players.push(playerData);
+    
+    // Salvar
+    localStorage.setItem(ONLINE_PLAYERS_KEY, JSON.stringify(players));
+    
+    // Atualizar contador
+    document.getElementById('chat-online-count').textContent = players.length;
+    
+  } catch(e) {
+    console.log('Erro no broadcast:', e);
+  }
+}
+
+// Atualizar lista de jogadores online
+function updateOnlinePlayers() {
+  try {
+    const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
+    if (!stored) {
+      onlinePlayers = [];
+      document.getElementById('chat-online-count').textContent = '0';
+      renderPlayerTags();
+      return;
+    }
+    
+    let players = JSON.parse(stored);
+    const now = Date.now();
+    
+    // Filtrar jogadores antigos e eu mesmo
+    players = players.filter(p => {
+      if (p.id === myPlayerId) return false;
+      return now - p.lastSeen < PLAYER_TIMEOUT;
+    });
+    
+    onlinePlayers = players;
+    document.getElementById('chat-online-count').textContent = players.length;
+    
+    // Renderizar tags dos jogadores
+    renderPlayerTags();
+    
+  } catch(e) {
+    console.log('Erro ao atualizar jogadores:', e);
+  }
+}
+
+// Renderizar tags flutuantes dos jogadores
+function renderPlayerTags() {
+  const container = document.getElementById('online-hud');
+  if (!container) return;
+  
+  if (!onlinePlayers || onlinePlayers.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  
+  const currentScene = G ? G.scene : null;
+  const visiblePlayers = onlinePlayers.filter(p => p.scene === currentScene);
+  
+  if (visiblePlayers.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  
+  let html = '';
+  visiblePlayers.forEach(p => {
+    let screenX = p.x;
+    let screenY = p.y - 35;
+    
+    if (screenX < 0 || screenX > 700 || screenY < 0 || screenY > 420) return;
+    
+    const msgHtml = p.msg ? `<span class="msg">"${p.msg}"</span>` : '';
+    html += `<div class="player-tag" style="position:absolute;left:${screenX}px;top:${screenY}px;transform:translate(-50%,-100%);">
+      <span class="name">${p.name}</span> LV${p.level} ❤${p.hp}/${p.maxHp} ${msgHtml}
+    </div>`;
+  });
+  
+  container.innerHTML = html;
+}
+
+// Carregar mensagens do chat
+function loadChatMessages() {
+  try {
+    const stored = localStorage.getItem(CHAT_MESSAGES_KEY);
+    if (stored) {
+      chatMessages = JSON.parse(stored);
+      // Manter apenas últimas 50
+      if (chatMessages.length > 50) {
+        chatMessages = chatMessages.slice(-50);
+      }
+      
+      // Atualizar último índice
+      if (chatMessages.length > 0) {
+        myLastMessageIndex = chatMessages[chatMessages.length - 1].index || 0;
+      }
+    } else {
+      chatMessages = [];
+      myLastMessageIndex = 0;
+    }
+    renderChatMessages();
+  } catch(e) {
+    chatMessages = [];
+  }
+}
+
+// Salvar mensagens do chat
+function saveChatMessages() {
+  try {
+    // Garantir que cada mensagem tenha um índice único
+    chatMessages = chatMessages.map((msg, idx) => {
+      msg.index = idx;
+      return msg;
+    });
+    
+    // Manter apenas últimas 50
+    if (chatMessages.length > 50) {
+      chatMessages = chatMessages.slice(-50);
+    }
+    
+    localStorage.setItem(CHAT_MESSAGES_KEY, JSON.stringify(chatMessages));
+    
+    // Atualizar último índice
+    if (chatMessages.length > 0) {
+      myLastMessageIndex = chatMessages[chatMessages.length - 1].index;
+      localStorage.setItem(CHAT_LAST_INDEX_KEY, myLastMessageIndex.toString());
+    }
+  } catch(e) {}
+}
+
+// Adicionar mensagem do sistema
+function addSystemMessage(text) {
+  chatMessages.push({
+    id: 'sys_' + Date.now() + '_' + Math.random(),
+    name: 'SISTEMA',
+    text: text,
+    timestamp: Date.now(),
+    system: true
+  });
+  saveChatMessages();
+  renderChatMessages();
+}
+
+// Enviar mensagem no chat
+function sendChatMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text || !G || !G.pl) return;
+  
+  // Criar mensagem
+  const message = {
+    id: myPlayerId + '_' + Date.now(),
+    name: G.pl.name,
+    text: text,
+    timestamp: Date.now()
+  };
+  
+  chatMessages.push(message);
+  saveChatMessages();
+  renderChatMessages();
+  
+  // Adicionar mensagem temporária ao meu perfil
+  const myPlayer = onlinePlayers.find(p => p.id === myPlayerId);
+  if (myPlayer) {
+    myPlayer.msg = text;
+    setTimeout(() => {
+      const p = onlinePlayers.find(p => p.id === myPlayerId);
+      if (p) p.msg = null;
+    }, 4000);
+  }
+  
+  // Limpar input
+  input.value = '';
+  
+  // Broadcast imediato para incluir mensagem
+  broadcastMyPosition();
+}
+
+// Renderizar mensagens do chat
+function renderChatMessages() {
+  const container = document.getElementById('chat-messages');
+  if (!container) return;
+  
+  let html = '';
+  chatMessages.slice(-20).forEach(msg => {
+    if (msg.system) {
+      html += `<div class="chat-message"><span class="chat-system">${msg.text}</span></div>`;
+    } else {
+      html += `<div class="chat-message"><span class="chat-name">${msg.name}:</span> <span class="chat-text">${msg.text}</span></div>`;
+    }
+  });
+  
+  container.innerHTML = html;
+  container.scrollTop = container.scrollHeight;
+}
+
+// Limpar ao sair
+function shutdownOnlineSystem() {
+  // Remover jogador da lista
+  if (myPlayerId) {
+    try {
+      const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
+      if (stored) {
+        let players = JSON.parse(stored);
+        players = players.filter(p => p.id !== myPlayerId);
+        localStorage.setItem(ONLINE_PLAYERS_KEY, JSON.stringify(players));
+      }
+    } catch(e) {}
+  }
+  
+  // Remover listener
+  window.removeEventListener('storage', handleStorageChange);
+  
+  if (G && G.pl) {
+    addSystemMessage(`👋 ${G.pl.name} saiu do mundo.`);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════════
+// ══ ORIGINAL GAME CODE (preservado, com pequenas modificações) ════════════════════
+// ═══════════════════════════════════════════════════════════════════════════════════
+
 const cv=document.getElementById('gc'),ctx=cv.getContext('2d');
 const mmc=document.getElementById('mmc'),mmx=mmc.getContext('2d');
 ctx.imageSmoothingEnabled=false;mmx.imageSmoothingEnabled=false;
@@ -792,6 +1218,10 @@ function startGame(){
   const nm=document.getElementById('ni').value.trim().toUpperCase()||'KNIGHT';
   document.getElementById('tscr').style.display='none';
   document.getElementById('mm').style.display='block';
+  
+  // Initialize online system
+  initOnlineSystem(nm);
+  
   G={
     scene:'worldmap',stage:null,stageIdx:null,
     enemies:[],particles:[],texts:[],
@@ -828,6 +1258,7 @@ function startGame(){
 }
 
 function restartGame(){
+  shutdownOnlineSystem();
   document.getElementById('ovl').style.display='none';
   document.getElementById('tscr').style.display='flex';
   cancelAnimationFrame(RAF);G=null;
@@ -1236,6 +1667,9 @@ function playerDeath(){
   document.getElementById('fst').textContent=`Stage ${G.stageIdx+1}/20  •  LV${G.pl.level}  •  🪙${G.pl.coins}\nKills: ${G.totalKills}  •  Cleared: ${G.stagesCleared.length}`;
   document.getElementById('ovls').textContent='Score saved. Continue or start fresh.';
   document.getElementById('ovl').style.display='flex';
+  
+  // Notify online
+  addSystemMessage(`💀 ${G.pl.name} caiu em batalha...`);
 }
 function victory(){
   if(!G)return;G.scene='win';
@@ -1244,6 +1678,9 @@ function victory(){
   document.getElementById('fst').textContent=`All 20 Stages Cleared!\nLV${G.pl.level}  •  🪙${G.pl.coins}  •  ${G.totalKills} Kills`;
   document.getElementById('ovls').textContent='The Ember Realm is saved!';
   document.getElementById('ovl').style.display='flex';
+  
+  // Notify online
+  addSystemMessage(`🏆 ${G.pl.name} completou todas as fases!`);
 }
 
 // ── SHOP UI ───────────────────────────────────────────
@@ -1281,6 +1718,11 @@ function buyItem(it){
   G.pl.coins-=it.price;it.fn();
   if(!it.stack)G.pl.purchased.add(it.id);
   showMsg('✅ '+it.name);updateHUD();renderShop();
+  
+  // Notify online for special purchases
+  if(it.price >= 100) {
+    addSystemMessage(`🛒 ${G.pl.name} comprou ${it.name}!`);
+  }
 }
 
 // ── RANK UI ───────────────────────────────────────────
@@ -1310,6 +1752,12 @@ function loop(ts){
   else if(G&&G.scene==='worldmap')updateWorldMap(dt);
   render();
   if(G&&G.scene==='battle')drawMinimap();
+  
+  // Update online player tags in render
+  if(G) {
+    renderPlayerTags();
+  }
+  
   RAF=requestAnimationFrame(loop);
 }
 
@@ -3745,11 +4193,80 @@ function renderWorldMap(t){
     }
   }
 
+  // ── ONLINE PLAYERS ON WORLD MAP ───────────────────
+  if (onlinePlayers) {
+    onlinePlayers.forEach(p => {
+      if (p.scene === 'worldmap' && p.id !== myPlayerId) {
+        // Draw other players
+        drawOnlinePlayer(p.x, p.y, p.name, p.level, p.msg, t);
+      }
+    });
+  }
+
   // ── SCANLINES & VIGNETTE ─────────────────────────
   const vg=ctx.createRadialGradient(CW/2,CH/2,CW*.2,CW/2,CH/2,CW*.75);
   vg.addColorStop(0,'transparent');vg.addColorStop(1,'rgba(0,0,0,.5)');
   ctx.fillStyle=vg;ctx.fillRect(0,0,CW,CH);
   drawScanlines();
+}
+
+// Draw other online players on world map
+function drawOnlinePlayer(x, y, name, level, msg, t) {
+  const bob = Math.sin(t * 2) * 2;
+  ctx.save();
+  ctx.translate(~~x, ~~(y + bob));
+  
+  // Shadow
+  ctx.fillStyle = 'rgba(0,0,0,.3)';
+  ctx.beginPath(); ctx.ellipse(0, 10, 8, 3, 0, 0, Math.PI * 2); ctx.fill();
+  
+  // Simple player sprite (ghostly/transparent to distinguish)
+  ctx.globalAlpha = 0.8;
+  
+  // Body
+  ctx.fillStyle = '#5a5a8a';
+  ctx.fillRect(-6, -2, 12, 14);
+  
+  // Head
+  ctx.fillStyle = '#6a6a9a';
+  ctx.beginPath(); ctx.arc(0, -6, 6, 0, Math.PI * 2); ctx.fill();
+  
+  // Eyes (glowing)
+  ctx.fillStyle = '#80ffff';
+  ctx.fillRect(-3, -8, 2, 2);
+  ctx.fillRect(1, -8, 2, 2);
+  
+  // Cape/effect
+  ctx.fillStyle = 'rgba(100,100,200,0.3)';
+  ctx.fillRect(-8, -2, 4, 14);
+  ctx.fillRect(4, -2, 4, 14);
+  
+  // Name tag
+  ctx.font = '3px "Press Start 2P"';
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#000';
+  ctx.fillText(name, 1, -18);
+  ctx.fillStyle = '#80a0ff';
+  ctx.fillText(name, 0, -19);
+  
+  // Level
+  ctx.font = '3px "Press Start 2P"';
+  ctx.fillStyle = '#ffd700';
+  ctx.fillText('LV' + level, 0, -28);
+  
+  // Message bubble if they have one
+  if (msg) {
+    ctx.fillStyle = 'rgba(10,5,2,.95)';
+    ctx.fillRect(-30, -42, 60, 12);
+    ctx.strokeStyle = '#c8902a';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(-30, -42, 60, 12);
+    ctx.font = '3px "Press Start 2P"';
+    ctx.fillStyle = '#ffd060';
+    ctx.fillText('"' + msg.slice(0, 10) + '"', 0, -34);
+  }
+  
+  ctx.restore();
 }
 
 function drawWMPortal(x,y,s,cleared,open,isNear,accent,t){
@@ -3905,77 +4422,29 @@ function drawWMPlayer(x,y,facing,anim,moving,t){
   // Walking leg animation
   const legSwing=moving?Math.sin(anim*8)*5:0;
 
-// --- ESTADO INICIAL (Definir fora da função de desenho) ---
-let plumeX = 0, plumeY = 0; // Para o efeito de atraso (lerp)
-let particles = []; // Array de objetos {x, y, life, size}
-
-function drawKnight(ctx, x, y, facX, facY, isMoving) {
-  const time = Date.now() * 0.005;
-  const bobbing = Math.sin(time) * 2; // Efeito de respiração/balanço
-  
-  // 1. LÓGICA DE RASTRO DA PLUMA (LERP)
-  // A pluma tenta alcançar a cabeça, mas com um atraso de 0.1 (suavidade)ZZZZZZ
-  plumeX += (facX * 2 - plumeX) * 0.1;
-  plumeY += (facY * 2 - 9 - plumeY) * 0.1;
-
-  ctx.save();
-  ctx.translate(x, y);
-
-  // 2. PARTÍCULAS DA ESPADA (Efeito Mágico)
-  if (Math.random() > 0.7) { // Gera partícula aleatoriamente
-    particles.push({
-      relX: 10 + (Math.random() - 0.5) * 4,
-      relY: (-8 + facY * 4) + (Math.random() * 10),
-      life: 1.0,
-      vY: -0.2 - Math.random() * 0.5
-    });
+  // Body (top-down knight, slightly angled)
+  ctx.fillStyle='#5a6878';ctx.fillRect(-7,-3,14,14); // armor body
+  ctx.fillStyle='#8898a8';ctx.fillRect(-6,-3,12,7); // chest top
+  ctx.fillStyle='#b0c0d0';ctx.fillRect(-6,-3,12,3); // chest shine
+  // Shield (left side bump)
+  ctx.fillStyle='#1848a0';ctx.fillRect(-11,-1,6,10);
+  ctx.fillStyle='#2868d0';ctx.fillRect(-11,-1,6,4);
+  ctx.fillStyle='#d8b820';ctx.fillRect(-11,3,6,1);
+  // Sword (right side, pointing in facing direction)
+  ctx.fillStyle='#c0ccd8';ctx.fillRect(8,-8+facY*4,3,12-Math.abs(facY)*4);
+  ctx.fillStyle='#c8932a';ctx.fillRect(6,-4+facY*4,8,2);
+  // Head (top view - circle)
+  ctx.fillStyle='#7888a0';ctx.beginPath();ctx.arc(facX*2,facY*2-3,6.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#b0c0d0';ctx.beginPath();ctx.arc(facX*2-1,facY*2-4,4,0,Math.PI*2);ctx.fill();
+  // Visor/eyes
+  ctx.fillStyle='#40d0f0';ctx.fillRect(facX*2-2,facY*2-2,2,2);ctx.fillRect(facX*2+1,facY*2-2,2,2);
+  // Plume (top-down - colored dots above head)
+  for(let i=0;i<4;i++){
+    const pa=.8-i*.15,pc=i<2?'#50c040':'#28882a';
+    ctx.fillStyle=pc;ctx.globalAlpha=pa;
+    ctx.fillRect(facX*2-1+i*.5,facY*2-9-i*2,2,3);
   }
-
-  // Desenhar e atualizar partículas
-  particles.forEach((p, i) => {
-    ctx.fillStyle = `rgba(255, 255, 255, ${p.life * 0.5})`;
-    ctx.fillRect(p.relX, p.relY, 2, 2);
-    p.relY += p.vY;
-    p.life -= 0.02;
-    if (p.life <= 0) particles.splice(i, 1);
-  });
-
-  // 3. CORPO (Levemente afetado pelo movimento)
-  ctx.fillStyle = '#5a6878';
-  ctx.fillRect(-7, -3 + (isMoving ? bobbing : 0), 14, 14);
-
-  // 4. ESPADA
-  ctx.fillStyle = '#c0ccd8';
-  ctx.fillRect(8, -8 + facY * 4, 3, 12);
-  ctx.fillStyle = '#c8932a'; // Guarda
-  ctx.fillRect(6, -4 + facY * 4, 8, 2);
-
-  // 5. CABEÇA (Com o Math.sin para respiração)
-  const headX = facX * 2;
-  const headY = facY * 2 - 3 + bobbing;
-  
-  ctx.fillStyle = '#7888a0';
-  ctx.beginPath(); ctx.arc(headX, headY, 6.5, 0, Math.PI * 2); ctx.fill();
-  
-  // Olhos Brilhantes
-  ctx.fillStyle = '#40d0f0';
-  ctx.shadowBlur = 5; ctx.shadowColor = '#40d0f0';
-  ctx.fillRect(headX - 2.5, headY + 1, 2, 2);
-  ctx.fillRect(headX + 0.5, headY + 1, 2, 2);
-  ctx.shadowBlur = 0;
-
-  // 6. PLUMA COM ATRASO (Efeito de vento/movimento)
-  for(let i = 0; i < 4; i++) {
-    const alpha = 0.8 - i * 0.2;
-    ctx.fillStyle = i < 2 ? '#50c040' : '#28882a';
-    ctx.globalAlpha = alpha;
-    // Usa plumeX/plumeY para o efeito de rastro
-    ctx.fillRect(plumeX - 1 + (i * 1.5), plumeY - (i * 2), 3, 4);
-  }
-  ctx.globalAlpha = 1;
-
-  ctx.restore();
-}
+  ctx.globalAlpha=1;
 
   // Player name tag
   ctx.font='4px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='top';
@@ -4054,7 +4523,7 @@ function wmInteract(){
       '🧙',
       'Saudações, aventureiro!\nEncontrou tesouros nas masmorras?\nPosso oferecer itens valiosos\npara sua jornada!',
       [
-        {label:'SIM, DEIXE-ME VER O QUE TENS',cls:'yes',fn:()=>{closeWMDialog();toggleShop();}},
+        {label:'SIM, ENTRAR',cls:'yes',fn:()=>{closeWMDialog();toggleShop();}},
         {label:'NÃO, OBRIGADO',cls:'no',fn:closeWMDialog},
       ]
     );
@@ -4180,9 +4649,23 @@ document.addEventListener('keydown',e=>{
   if(e.key==='m'||e.key==='M'){e.preventDefault();toggleMap();}
   if(e.key==='r'||e.key==='R'){e.preventDefault();toggleRank();}
   if(e.key==='Tab'){e.preventDefault();nextStage();}
+  
+  // Chat with Enter key
+  if (e.key === 'Enter' && document.activeElement !== document.getElementById('chat-input')) {
+    e.preventDefault();
+    document.getElementById('chat-input').focus();
+  }
 });
 document.addEventListener('keyup',e=>{if(G)delete G.keys[e.key];});
 document.getElementById('ni').addEventListener('keydown',e=>{if(e.code==='Enter')startGame();});
+
+// Chat send with Enter in input
+document.getElementById('chat-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    sendChatMessage();
+  }
+});
 
 // ── WORLDMAP CANVAS TAP (mobile) ─────────────────────
 document.getElementById('gc').addEventListener('click',e=>{
@@ -4207,6 +4690,11 @@ document.getElementById('gc').addEventListener('click',e=>{
     c.appendChild(s);
   }
 })();
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+  shutdownOnlineSystem();
+});
 
 // ── BOOT ──────────────────────────────────────────────
 layout();
