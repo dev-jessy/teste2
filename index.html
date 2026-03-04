@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>⚔ Pixel Quest ONLINE</title>
+<title>⚔ Pixel Quest</title>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -98,149 +98,6 @@ body{
 #mm{position:absolute;top:4px;left:50%;transform:translateX(-50%);pointer-events:none;z-index:5;display:none;}
 #mmc{border:3px solid var(--wood3);box-shadow:2px 2px 0 var(--wood1);}
 
-/* ══ WORLD MAP HUD ══ */
-#wmhud{
-  position:absolute;top:0;left:0;right:0;pointer-events:none;z-index:6;
-  display:none;justify-content:space-between;align-items:flex-start;
-  padding:5px 7px;gap:6px;
-}
-.wmt{background:rgba(18,8,2,.92);border:2px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.18),2px 2px 0 var(--wood1);
-  padding:4px 9px;font-size:5px;color:var(--tx2);white-space:nowrap;}
-.wmt span{color:var(--tx);}
-
-/* ══ ONLINE PLAYER CHAT OVERLAY ══ */
-#online-hud{
-  position:absolute;bottom:6px;left:6px;z-index:50;
-  display:flex;flex-direction:column;gap:4px;pointer-events:none;
-}
-.player-tag{
-  background:rgba(10,5,2,.95);
-  border:2px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),2px 2px 0 var(--wood1);
-  padding:3px 8px;
-  font-size:5px;
-  color:#ffd060;
-  white-space:nowrap;
-  max-width:220px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  animation:fadeIn .2s;
-}
-.player-tag .name{color:#80ff80;}
-.player-tag .msg{color:#ffd060;font-style:italic;margin-left:4px;}
-@keyframes fadeIn{0%{opacity:0;transform:translateX(-10px)}100%{opacity:1;transform:translateX(0)}}
-
-/* ══ CHAT SYSTEM ══ */
-#chat-container{
-  position:absolute;bottom:6px;right:6px;width:260px;z-index:40;
-  display:flex;flex-direction:column;gap:4px;pointer-events:none;
-}
-#chat-messages{
-  background:rgba(8,4,1,.95);
-  border:3px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),0 0 18px rgba(200,140,30,.28),3px 3px 0 var(--wood1);
-  padding:8px;
-  max-height:120px;
-  overflow-y:auto;
-  pointer-events:auto;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-  scroll-behavior:smooth;
-}
-.chat-message{
-  font-size:5px;
-  line-height:1.8;
-  word-break:break-word;
-  border-bottom:1px solid rgba(200,150,50,.15);
-  padding-bottom:3px;
-}
-.chat-message:last-child{border-bottom:none;}
-.chat-name{color:#80ff80;margin-right:4px;}
-.chat-text{color:#e8c880;}
-.chat-system{color:#ffa060;font-style:italic;}
-#chat-input-area{
-  display:flex;gap:3px;pointer-events:auto;
-}
-#chat-input{
-  flex:1;
-  background:rgba(20,8,2,.95);
-  border:3px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.15),inset 0 -2px 0 rgba(0,0,0,.6);
-  padding:6px 8px;
-  font-size:5px;
-  color:#e8c880;
-  outline:none;
-}
-#chat-input::placeholder{color:#705030;}
-#chat-send{
-  background:linear-gradient(180deg,#5a3010,#3a1c06);
-  border:3px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),2px 2px 0 var(--wood1);
-  padding:6px 10px;
-  font-size:5px;
-  color:#ffd060;
-  cursor:pointer;
-  pointer-events:auto;
-}
-#chat-send:active{transform:scale(.94);}
-#chat-online-count{
-  position:absolute;top:-8px;right:-8px;
-  background:#4060c0;
-  border:2px solid #80a0ff;
-  border-radius:10px;
-  padding:2px 6px;
-  font-size:4px;
-  color:#fff;
-  pointer-events:none;
-}
-
-/* ══ NPC DIALOG ══ */
-#npcbox{
-  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
-  background:rgba(14,6,2,.97);
-  border:3px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.25),0 0 22px rgba(200,140,30,.22),3px 3px 0 var(--wood1);
-  padding:10px 16px 12px;pointer-events:auto;z-index:15;
-  min-width:290px;max-width:490px;display:none;
-}
-.npc-name{font-size:7px;color:var(--wood4);margin-bottom:6px;
-  border-bottom:1px solid var(--wood1);padding-bottom:5px;letter-spacing:.05em;}
-.npc-face{font-size:22px;float:left;margin:0 10px 4px 0;}
-.npc-text{font-size:5px;color:#e8c880;line-height:2.1;margin-bottom:11px;white-space:pre-line;overflow:hidden;}
-.npc-opts{display:flex;gap:10px;justify-content:center;clear:both;}
-.npc-btn{font-family:'Press Start 2P',monospace;font-size:5px;color:var(--tx);
-  background:linear-gradient(180deg,#5a3010,#3a1c06);
-  border:2px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.18),2px 2px 0 var(--wood1);
-  padding:5px 16px;cursor:pointer;}
-.npc-btn:hover{background:linear-gradient(180deg,#8a5020,#5a3010);border-color:var(--wood4);}
-.npc-btn.yes{border-color:#40a040;color:#a0ffa0;}
-.npc-btn.yes:hover{background:linear-gradient(180deg,#1a4010,#0a2008);border-color:#60e060;}
-.npc-btn.no{border-color:#a04040;color:#ffa0a0;}
-.npc-btn.no:hover{background:linear-gradient(180deg,#401010,#200808);border-color:#e06060;}
-
-/* ══ TUTORIAL BOX ══ */
-#tutbox{
-  position:absolute;left:50%;bottom:76px;transform:translateX(-50%);
-  background:rgba(8,4,1,.96);
-  border:3px solid var(--wood3);
-  box-shadow:inset 0 1px 0 rgba(255,200,80,.2),0 0 18px rgba(200,140,30,.28),3px 3px 0 var(--wood1);
-  padding:9px 16px 10px;pointer-events:auto;z-index:14;
-  max-width:460px;min-width:260px;display:none;text-align:center;
-}
-.tut-title{font-size:7px;color:#ffd060;margin-bottom:6px;}
-.tut-text{font-size:5px;color:#e8c880;line-height:2.1;white-space:pre-line;margin-bottom:9px;}
-.tut-btns{display:flex;gap:8px;justify-content:center;align-items:center;}
-.tut-next{font-family:'Press Start 2P',monospace;font-size:5px;color:var(--tx);
-  background:linear-gradient(180deg,#4a6020,#2a3a10);
-  border:2px solid #7ab030;padding:5px 14px;cursor:pointer;
-  box-shadow:2px 2px 0 #1a2408;}
-.tut-next:hover{background:linear-gradient(180deg,#6a8030,#4a6018);}
-.tut-skip{font-size:4px;color:#705040;cursor:pointer;text-decoration:underline;background:none;border:none;font-family:'Press Start 2P',monospace;}
-
-
 /* msg */
 #msg{
   position:absolute;left:50%;transform:translateX(-50%);bottom:4px;
@@ -327,7 +184,123 @@ body{
 .pb.y{border-color:#c0a020;}.pb.y:hover{border-color:#ffff40;}
 #pcctrl{font-size:4px;color:#907040;line-height:1.9;text-align:right;}
 
-/* ══ MOBILE CONTROL PAD ══ */
+/* ══ AUTH FORMS ══ */
+#auth-tabs{display:flex;gap:6px;margin-bottom:10px;}
+.auth-tab{
+  font-family:'Press Start 2P',monospace;font-size:6px;
+  padding:5px 14px;cursor:pointer;
+  background:linear-gradient(180deg,#3a1c06,#1a0c02);
+  border:2px solid var(--wood1);color:#7a5020;
+}
+.auth-tab.active{
+  background:linear-gradient(180deg,#7a4010,#4a2006);
+  border-color:var(--wood3);color:var(--tx);
+  box-shadow:0 0 8px rgba(255,160,0,.2);
+}
+.auth-form{display:flex;flex-direction:column;align-items:center;gap:7px;width:100%;}
+.auth-row{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:clamp(220px,65vw,300px);}
+.auth-lbl{font-size:5px;color:var(--tx2);}
+.auth-inp{
+  font-family:'Press Start 2P',monospace;font-size:clamp(8px,2.5vw,11px);
+  color:var(--tx);width:100%;
+  background:linear-gradient(180deg,#2a1604,#1a0c02);
+  border:3px solid var(--wood3);
+  box-shadow:inset 0 2px 0 rgba(0,0,0,.6),2px 2px 0 var(--wood1);
+  outline:none;padding:6px 10px;
+}
+.auth-inp::placeholder{color:#5a3010;}
+.auth-err{font-size:5px;color:#ff6060;min-height:10px;text-align:center;}
+.auth-hint{font-size:4px;color:#5a3810;margin-top:2px;}
+
+/* ══ SKIN SHOP ══ */
+#skinscr{background:linear-gradient(180deg,#0a1220,#060c16);padding:8px 6px;}
+#skinscr h2{font-size:clamp(7px,2.5vw,10px);color:var(--tx);margin-bottom:4px;}
+#skin-gold{font-size:5px;color:#ffd700;margin-bottom:6px;text-align:center;}
+#skin-preview{
+  border:3px solid var(--wood3);background:#080c18;
+  box-shadow:inset 0 0 20px rgba(0,0,0,.8),0 0 12px rgba(255,200,60,.12);
+  display:block;margin:0 auto;
+}
+#skingrid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(80px,22vw,110px),1fr));
+  gap:5px;width:100%;max-height:52vh;overflow-y:auto;padding:2px;
+}
+.sk-card{
+  background:linear-gradient(180deg,#1a1008,#0e0a04);
+  border:2px solid var(--wood1);
+  padding:6px 4px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  transition:border-color .15s;position:relative;
+}
+.sk-card:hover,.sk-card.selected{border-color:var(--wood3);box-shadow:0 0 10px rgba(255,180,0,.2);}
+.sk-card.equipped{border-color:#40e060 !important;box-shadow:0 0 10px rgba(40,200,60,.2) !important;}
+.sk-card.locked{opacity:.6;}
+.sk-preview{width:56px;height:64px;display:block;}
+.sk-name{font-size:4px;color:var(--tx2);text-align:center;line-height:1.6;}
+.sk-price{font-size:4px;color:#ffd700;}
+.sk-equip-badge{position:absolute;top:2px;right:2px;font-size:9px;}
+.sk-new-badge{position:absolute;top:2px;left:2px;font-size:4px;color:#fff;background:#c02020;padding:1px 3px;}
+
+/* ══ TUTORIAL OVERLAY ══ */
+#tut{
+  position:absolute;inset:0;z-index:50;
+  display:flex;align-items:flex-end;justify-content:center;
+  padding:0 12px 16px;pointer-events:none;
+}
+#tutbox{
+  background:rgba(18,8,2,.96);
+  border:3px solid var(--wood3);
+  box-shadow:inset 0 1px 0 rgba(255,200,80,.25),0 0 24px rgba(255,180,0,.18),2px 2px 0 var(--wood1);
+  padding:10px 14px;max-width:480px;width:100%;
+  display:flex;flex-direction:column;gap:6px;pointer-events:auto;
+}
+#tuticon{font-size:20px;text-align:center;}
+#tuttext{font-size:6px;color:var(--tx);line-height:2;text-align:center;white-space:pre-wrap;}
+#tutstep{font-size:5px;color:#7a5020;text-align:right;}
+#tutbtns{display:flex;gap:6px;justify-content:center;margin-top:4px;}
+#tutbtns button{
+  font-family:'Press Start 2P',monospace;font-size:5px;
+  background:linear-gradient(180deg,#6a3810,#3a1c06);
+  border:2px solid var(--wood3);color:var(--tx);
+  padding:5px 12px;cursor:pointer;
+}
+#tutbtns button:hover{background:linear-gradient(180deg,#9a5820,#6a3010);border-color:var(--wood4);}
+
+/* ══ NPC DIALOG ══ */
+#owdlg{
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:16px;z-index:45;
+  background:rgba(14,6,1,.97);
+  border:3px solid var(--wood3);
+  box-shadow:inset 0 1px 0 rgba(255,200,80,.25),0 0 20px rgba(255,160,0,.2),2px 2px 0 var(--wood1);
+  padding:10px 16px;min-width:260px;max-width:420px;
+  display:none;flex-direction:column;gap:6px;text-align:center;
+}
+#owdlg .dlg-npc{font-size:14px;margin-bottom:2px;}
+#owdlg .dlg-name{font-size:5px;color:var(--tx2);margin-bottom:4px;}
+#owdlg .dlg-text{font-size:6px;color:var(--tx);line-height:1.9;white-space:pre-wrap;}
+#owdlg .dlg-btns{display:flex;gap:8px;justify-content:center;margin-top:6px;}
+#owdlg .dlg-btns button{
+  font-family:'Press Start 2P',monospace;font-size:6px;
+  padding:6px 18px;cursor:pointer;
+  background:linear-gradient(180deg,#6a3810,#3a1c06);
+  border:2px solid var(--wood3);color:var(--tx);min-width:60px;
+}
+#owdlg .dlg-btns .yes{border-color:#40c040;color:#80ff80;}
+#owdlg .dlg-btns .yes:hover{background:linear-gradient(180deg,#204020,#102010);}
+#owdlg .dlg-btns .no{border-color:#c04040;color:#ff8080;}
+#owdlg .dlg-btns .no:hover{background:linear-gradient(180deg,#3a0a0a,#200808);}
+#owdlg .dlg-btns button:hover{box-shadow:0 0 8px rgba(255,180,0,.3);}
+
+/* ══ INTERACT PROMPT ══ */
+#owprompt{
+  position:absolute;font-size:5px;
+  background:rgba(10,5,0,.85);border:2px solid var(--wood3);
+  color:var(--tx);padding:3px 8px;
+  z-index:40;display:none;pointer-events:none;
+  white-space:nowrap;
+}
+
 #mpad{
   flex-shrink:0;width:100%;
   background:linear-gradient(180deg,#2a1406,#1a0c02);
@@ -511,14 +484,14 @@ body{
   <div id="msg"></div>
 
   <!-- STAGE CLEAR -->
-  <div id="sc"><h2>⚔ STAGE CLEAR! ⚔</h2><p id="scr"></p></div>
+  <div id="sc"><h2>⚔ STAGE COMPLETO! ⚔</h2><p id="scr"></p></div>
 
   <!-- STAGE INFO STRIP -->
   <div id="strip">
     <div class="sl" id="stnm">—</div>
     <div class="sr" id="stsb">—</div>
     <div class="sr" id="stwv">—</div>
-    <button id="nextbtn" onclick="nextStage()">▶NEXT</button>
+    <button id="nextbtn" onclick="nextStage()">▶PRÓXIMO</button>
   </div>
 
   <!-- PC BOTTOM BAR -->
@@ -529,14 +502,15 @@ body{
       <div class="psl" onclick="pslClick(2)">💣<span class="c" id="bic"></span></div>
     </div>
     <div class="pbv">
-      <button class="pb r" onclick="plAtk()">⚔ATK[Z]</button>
-      <button class="pb g" onclick="usePot()">🧪POT[X]</button>
+      <button class="pb r" onclick="plAtk()">⚔ATQ[Z]</button>
+      <button class="pb g" onclick="usePot()">🧪POÇ[X]</button>
       <button class="pb r" onclick="useBomb()">💣BOM[B]</button>
       <button class="pb b" onclick="toggleShop()">🏪[E]</button>
-      <button class="pb b" onclick="openMap()">🗺[M]</button>
+      <button class="pb b" onclick="toggleSkinShop()">✨SKINS[S]</button>
+      <button class="pb b" onclick="toggleMap()">🗺[M]</button>
       <button class="pb y" onclick="toggleRank()">🏆[R]</button>
     </div>
-    <div id="pcctrl">WASD/Arrows:Move<br>Z:Atk X:Pot B:Bomb<br>E:Shop M:Map R:Rank</div>
+    <div id="pcctrl">WASD/Setas:Mover<br>Z:Atq X:Poç B:Bomb<br>E:Loja M:Mapa R:Rank</div>
   </div>
 
   <!-- MOBILE PAD -->
@@ -558,13 +532,14 @@ body{
     <!-- Action buttons (center) -->
     <div id="abns">
       <div class="ar">
-        <button class="mb r" ontouchstart="plAtk()" onclick="plAtk()">⚔<br>ATK</button>
-        <button class="mb g" ontouchstart="usePot()" onclick="usePot()">🧪<br>POT</button>
+        <button class="mb r" ontouchstart="G&&G.scene==='overworld'?owInteract():plAtk()" onclick="G&&G.scene==='overworld'?owInteract():plAtk()">⚔<br>ATQ/FALAR</button>
+        <button class="mb g" ontouchstart="usePot()" onclick="usePot()">🧪<br>POÇ</button>
         <button class="mb r" ontouchstart="useBomb()" onclick="useBomb()">💣<br>BOM</button>
       </div>
       <div class="ar">
-        <button class="mb b" ontouchstart="toggleShop()" onclick="toggleShop()">🏪<br>SHOP</button>
-        <button class="mb b" ontouchstart="toggleMap()" onclick="toggleMap()">🗺<br>MAP</button>
+        <button class="mb b" ontouchstart="toggleShop()" onclick="toggleShop()">🏪<br>LOJA</button>
+        <button class="mb b" ontouchstart="toggleSkinShop()" onclick="toggleSkinShop()">✨<br>SKINS</button>
+        <button class="mb b" ontouchstart="toggleMap()" onclick="toggleMap()">🗺<br>MAPA</button>
         <button class="mb y" ontouchstart="toggleRank()" onclick="toggleRank()">🏆<br>RANK</button>
       </div>
     </div>
@@ -577,66 +552,103 @@ body{
     </div>
   </div>
 
-  <!-- WORLD MAP HUD (shown only in worldmap scene) -->
-  <div id="wmhud">
-    <div class="wmt">👤 <span id="wm-name">KNIGHT</span> &nbsp;LV<span id="wm-lv">1</span> &nbsp;❤<span id="wm-hp">50</span></div>
-    <div class="wmt" style="text-align:center;flex:1;">🗺 MAPA DO MUNDO <span style="color:rgba(150,200,255,.7);font-size:3px;letter-spacing:.03em;">&nbsp;·&nbsp; WASD=MOVER &nbsp; Z/ENTER=INTERAGIR &nbsp; ESC=FECHAR DIÁLOGO</span></div>
-    <div class="wmt">🪙<span id="wm-gold">0</span> &nbsp;<button class="npc-btn" style="font-size:4px;padding:2px 6px;" onclick="toggleRank()">🏆</button></div>
-  </div>
-
-  <!-- NPC DIALOG BOX -->
-  <div id="npcbox">
-    <div class="npc-name" id="npc-name">NPC</div>
-    <div id="npc-body">
-      <span class="npc-face" id="npc-face">🧙</span>
-      <div class="npc-text" id="npc-text">...</div>
-    </div>
-    <div class="npc-opts" id="npc-opts"></div>
-  </div>
-
-  <!-- TUTORIAL BOX -->
-  <div id="tutbox">
-    <div class="tut-title" id="tut-title">💡 TUTORIAL</div>
-    <div class="tut-text" id="tut-text">...</div>
-    <div class="tut-btns">
-      <button class="tut-next" onclick="advanceTutorial()">▶ PRÓXIMO</button>
-      <button class="tut-skip" onclick="skipTutorial()">Pular tutorial</button>
-    </div>
-  </div>
-
-  <!-- ONLINE PLAYER TAGS (floating above players) -->
-  <div id="online-hud"></div>
-
-  <!-- CHAT SYSTEM -->
-  <div id="chat-container">
-    <div id="chat-messages"></div>
-    <div id="chat-input-area">
-      <input type="text" id="chat-input" placeholder="Digite mensagem..." maxlength="50" autocomplete="off">
-      <button id="chat-send" onclick="sendChatMessage()">ENVIAR</button>
-    </div>
-    <div id="chat-online-count">0</div>
-  </div>
-
+  <!-- TELA DE LOGIN / REGISTRO -->
   <div class="scr" id="tscr">
     <div id="starbg" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
     <div style="position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(180deg,transparent,rgba(20,60,10,.8));pointer-events:none;"></div>
-    <h1>⚔ PIXEL QUEST ONLINE</h1>
-    <h2>Jogue com amigos no mesmo navegador!</h2>
-    <h3>20 fases · GLOBAL RANKINGS · chat em tempo real</h3>
-    <div id="nf">
-      <label>Escreva Seu Nome:</label>
-      <input id="ni" type="text" maxlength="14" placeholder="KNIGHT" spellcheck="false" autocomplete="off" inputmode="text" value="PLAYER">
+
+    <h1>⚔ PIXEL QUEST</h1>
+    <h2>Crônicas do Reino das Brasas</h2>
+
+    <div id="auth-tabs">
+      <button id="tab-login" class="auth-tab active" onclick="switchTab('login')">⚔ ENTRAR</button>
+      <button id="tab-reg"   class="auth-tab"        onclick="switchTab('reg')">✦ CADASTRAR</button>
     </div>
-    <button class="bb bl" onclick="startGame()">⚔ EMBARK</button>
-    <button class="bb" onclick="toggleRank()" style="font-size:6px;margin-top:3px;">🏆 RANKINGS</button>
+
+    <!-- FORMULÁRIO LOGIN -->
+    <div id="form-login" class="auth-form">
+      <div class="auth-row">
+        <label class="auth-lbl">USUÁRIO OU E-MAIL</label>
+        <input id="l-user" class="auth-inp" type="text" maxlength="40" placeholder="SEU_NOME ou email@..." autocomplete="username" spellcheck="false">
+      </div>
+      <div class="auth-row">
+        <label class="auth-lbl">SENHA</label>
+        <input id="l-pass" class="auth-inp" type="password" maxlength="32" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <div id="l-err" class="auth-err"></div>
+      <button class="bb bl" onclick="doLogin()">▶ ENTRAR</button>
+      <div id="l-hint" class="auth-hint">Novo aqui? Clique em CADASTRAR ↑</div>
+    </div>
+
+    <!-- FORMULÁRIO REGISTRO -->
+    <div id="form-reg" class="auth-form" style="display:none;">
+      <div class="auth-row">
+        <label class="auth-lbl">NOME DE USUÁRIO</label>
+        <input id="r-user" class="auth-inp" type="text" maxlength="14" placeholder="GUERREIRO" autocomplete="username" spellcheck="false">
+      </div>
+      <div class="auth-row">
+        <label class="auth-lbl">E-MAIL (opcional)</label>
+        <input id="r-email" class="auth-inp" type="email" maxlength="60" placeholder="seu@email.com (opcional)" autocomplete="email">
+      </div>
+      <div class="auth-row">
+        <label class="auth-lbl">SENHA (mín. 4 chars)</label>
+        <input id="r-pass" class="auth-inp" type="password" maxlength="32" placeholder="Crie uma senha" autocomplete="new-password">
+      </div>
+      <div class="auth-row">
+        <label class="auth-lbl">CONFIRMAR SENHA</label>
+        <input id="r-conf" class="auth-inp" type="password" maxlength="32" placeholder="Repita a senha" autocomplete="new-password">
+      </div>
+      <div id="r-err" class="auth-err"></div>
+      <button class="bb bl" onclick="doRegister()">✦ CRIAR CONTA</button>
+    </div>
+
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:center;">
+      <button class="bb" style="font-size:5px;padding:6px 14px;border-color:#607050;" onclick="jogarVisitante()">👤 JOGAR SEM CONTA</button>
+      <button class="bb" style="font-size:5px;padding:6px 14px;opacity:.65;" onclick="toggleRank()">🏆 RANKING</button>
+    </div>
+    <div style="font-size:4px;color:#5a4020;margin-top:6px;text-align:center;">Visitantes não têm progresso salvo</div>
+  </div>
+
+  <!-- SKIN SHOP SCREEN -->
+  <div class="scr" id="skinscr" style="display:none; overflow-y:auto;">
+    <h2>✨ LOJA DE SKINS</h2>
+    <div id="skin-gold">🪙 <span id="skingo">0</span> &nbsp;|&nbsp; <span id="skin-owned-count">0</span> skins possuídas</div>
+    <canvas id="skin-preview" width="120" height="140"></canvas>
+    <div id="skin-name-lbl" style="font-size:6px;color:var(--tx2);margin:4px 0 8px;text-align:center;"></div>
+    <div id="skingrid"></div>
+    <button class="bb" style="font-size:6px;padding:6px 14px;margin-top:8px;" onclick="closeSkinShop()">✖ FECHAR</button>
+  </div>
+
+  <!-- OVERWORLD DIALOG -->
+  <div id="owdlg">
+    <div class="dlg-npc" id="dlgnpc"></div>
+    <div class="dlg-name" id="dlgname"></div>
+    <div class="dlg-text" id="dlgtext"></div>
+    <div class="dlg-btns" id="dlgbtns"></div>
+  </div>
+
+  <!-- INTERACT PROMPT -->
+  <div id="owprompt">Z / TOQUE = FALAR</div>
+
+  <!-- TUTORIAL -->
+  <div id="tut" style="display:none;">
+    <div id="tutbox">
+      <div id="tuticon"></div>
+      <div id="tuttext"></div>
+      <div id="tutstep"></div>
+      <div id="tutbtns">
+        <button onclick="tutNext()">PRÓXIMO ▶</button>
+        <button onclick="tutSkip()" style="font-size:4px;opacity:.6;">PULAR</button>
+      </div>
+    </div>
   </div>
 
   <div class="scr" id="mscr">
-    <h2>🗺 Mapa Mundial</h2>
+    <h2>🗺 MAPA MUNDIAL</h2>
     <canvas id="mapcv" width="580" height="300" onclick="mapClick(event)"></canvas>
-    <div id="mlbl">Clique Na Fase Para Jogar</div>
+    <div id="mlbl">Toque numa fase para viajar</div>
     <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;justify-content:center;">
-      <button class="bb" style="font-size:6px;padding:6px 16px;" onclick="toggleMap()">✖ CLOSE</button>
+      <button class="bb" style="font-size:6px;padding:6px 16px;" onclick="toggleMap()">✖ FECHAR</button>
     </div>
   </div>
 
@@ -644,16 +656,16 @@ body{
     <h2>⚗ MERCADOR</h2>
     <div id="sgold">🪙 <span id="sgo">0</span></div>
     <div id="shgrid"></div>
-    <button class="bb" style="font-size:6px;padding:6px 14px;" onclick="toggleShop()">✖ CLOSE</button>
+    <button class="bb" style="font-size:6px;padding:6px 14px;" onclick="toggleShop()">✖ FECHAR</button>
   </div>
 
   <div class="scr" id="rkscr">
-    <h2>🏆 RANKINGS</h2>
-    <div id="rksub">MAIS OURO COLETADO</div>
+    <h2>🏆 RANKING</h2>
+    <div id="rksub">Mais ouro coletado</div>
     <div id="rklist"></div>
     <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;">
-      <button class="bb" style="font-size:6px;padding:6px 14px;" onclick="toggleRank()">✖ CLOSE</button>
-      <button class="bb" style="font-size:6px;padding:6px 14px;" onclick="clearMyScore()">🗑 CLEAR</button>
+      <button class="bb" style="font-size:6px;padding:6px 14px;" onclick="toggleRank()">✖ FECHAR</button>
+      <button class="bb" style="font-size:6px;padding:6px 14px;" onclick="clearMyScore()">🗑 EXCLUIR</button>
     </div>
   </div>
 
@@ -662,342 +674,16 @@ body{
     <div id="fst"></div>
     <p id="ovls"></p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-      <button class="bb" onclick="continueRun()">▶ CONTINUE</button>
+      <button class="bb" onclick="continueRun()">▶ CONTINUAR</button>
       <button class="bb" onclick="restartGame()" style="font-size:6px;">↺ NOVO JOGO</button>
     </div>
   </div>
 </div>
 <script>
-// ═══════════════════════════════════════════════════════════════════════════════════
-// ══ ONLINE MULTIPLAYER SYSTEM CORRIGIDO (comunicação via localStorage + storage event) ═
-// ═══════════════════════════════════════════════════════════════════════════════════
-const ONLINE_PLAYERS_KEY = 'pixelquest_online_players_v2';
-const CHAT_MESSAGES_KEY = 'pixelquest_chat_messages_v2';
-const CHAT_LAST_INDEX_KEY = 'pixelquest_chat_last_index';
-const BROADCAST_INTERVAL = 300; // ms - mais rápido para melhor resposta
-const PLAYER_TIMEOUT = 3000; // ms without update = offline
-
-let onlinePlayers = []; // { id, name, x, y, scene, level, hp, maxHp, lastSeen, msg? }
-let chatMessages = [];
-let myPlayerId = null;
-let myLastMessageIndex = 0;
-
-// Inicializar sistema online
-function initOnlineSystem(playerName) {
-  myPlayerId = 'player_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-  
-  // Carregar mensagens existentes
-  loadChatMessages();
-  
-  // Registrar listener para eventos de storage (detectar mudanças de outras abas)
-  window.addEventListener('storage', handleStorageChange);
-  
-  // Broadcast inicial
-  broadcastMyPosition();
-  
-  // Iniciar broadcast periódico
-  setInterval(broadcastMyPosition, BROADCAST_INTERVAL);
-  
-  // Verificar jogadores online periodicamente
-  setInterval(updateOnlinePlayers, BROADCAST_INTERVAL);
-  
-  // Enviar mensagem de entrada
-  addSystemMessage(`👋 ${playerName} entrou no mundo!`);
-  
-  // Limpar jogadores antigos na inicialização
-  cleanupOldPlayers();
-}
-
-// Limpar jogadores que ficaram offline
-function cleanupOldPlayers() {
-  try {
-    const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
-    if (stored) {
-      let players = JSON.parse(stored);
-      const now = Date.now();
-      players = players.filter(p => now - p.lastSeen < PLAYER_TIMEOUT);
-      localStorage.setItem(ONLINE_PLAYERS_KEY, JSON.stringify(players));
-    }
-  } catch(e) {}
-}
-
-// Lidar com mudanças no localStorage (de outras abas)
-function handleStorageChange(e) {
-  if (e.key === ONLINE_PLAYERS_KEY) {
-    // Atualizar lista de jogadores
-    updateOnlinePlayers();
-  } else if (e.key === CHAT_MESSAGES_KEY) {
-    // Atualizar mensagens do chat
-    loadChatMessages();
-  } else if (e.key === CHAT_LAST_INDEX_KEY) {
-    // Verificar novas mensagens
-    checkForNewMessages();
-  }
-}
-
-// Verificar se há novas mensagens
-function checkForNewMessages() {
-  try {
-    const lastIndex = parseInt(localStorage.getItem(CHAT_LAST_INDEX_KEY) || '0');
-    if (lastIndex > myLastMessageIndex) {
-      loadChatMessages();
-    }
-  } catch(e) {}
-}
-
-// Broadcast da posição do jogador atual
-function broadcastMyPosition() {
-  if (!G || !G.pl || !myPlayerId) return;
-  
-  const playerData = {
-    id: myPlayerId,
-    name: G.pl.name,
-    x: G.wm ? G.wm.x : (G.pl ? G.pl.x : 0),
-    y: G.wm ? G.wm.y : (G.pl ? G.pl.y : 0),
-    scene: G.scene || 'unknown',
-    level: G.pl.level,
-    hp: G.pl.hp,
-    maxHp: G.pl.maxHp,
-    lastSeen: Date.now()
-  };
-  
-  try {
-    // Obter jogadores atuais
-    let players = [];
-    const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
-    if (stored) {
-      players = JSON.parse(stored);
-      // Remover jogadores antigos
-      const now = Date.now();
-      players = players.filter(p => now - p.lastSeen < PLAYER_TIMEOUT);
-      // Remover minha entrada antiga
-      players = players.filter(p => p.id !== myPlayerId);
-    }
-    
-    // Adicionar eu mesmo
-    players.push(playerData);
-    
-    // Salvar
-    localStorage.setItem(ONLINE_PLAYERS_KEY, JSON.stringify(players));
-    
-    // Atualizar contador
-    document.getElementById('chat-online-count').textContent = players.length;
-    
-  } catch(e) {
-    console.log('Erro no broadcast:', e);
-  }
-}
-
-// Atualizar lista de jogadores online
-function updateOnlinePlayers() {
-  try {
-    const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
-    if (!stored) {
-      onlinePlayers = [];
-      document.getElementById('chat-online-count').textContent = '0';
-      renderPlayerTags();
-      return;
-    }
-    
-    let players = JSON.parse(stored);
-    const now = Date.now();
-    
-    // Filtrar jogadores antigos e eu mesmo
-    players = players.filter(p => {
-      if (p.id === myPlayerId) return false;
-      return now - p.lastSeen < PLAYER_TIMEOUT;
-    });
-    
-    onlinePlayers = players;
-    document.getElementById('chat-online-count').textContent = players.length;
-    
-    // Renderizar tags dos jogadores
-    renderPlayerTags();
-    
-  } catch(e) {
-    console.log('Erro ao atualizar jogadores:', e);
-  }
-}
-
-// Renderizar tags flutuantes dos jogadores
-function renderPlayerTags() {
-  const container = document.getElementById('online-hud');
-  if (!container) return;
-  
-  if (!onlinePlayers || onlinePlayers.length === 0) {
-    container.innerHTML = '';
-    return;
-  }
-  
-  const currentScene = G ? G.scene : null;
-  const visiblePlayers = onlinePlayers.filter(p => p.scene === currentScene);
-  
-  if (visiblePlayers.length === 0) {
-    container.innerHTML = '';
-    return;
-  }
-  
-  let html = '';
-  visiblePlayers.forEach(p => {
-    let screenX = p.x;
-    let screenY = p.y - 35;
-    
-    if (screenX < 0 || screenX > 700 || screenY < 0 || screenY > 420) return;
-    
-    const msgHtml = p.msg ? `<span class="msg">"${p.msg}"</span>` : '';
-    html += `<div class="player-tag" style="position:absolute;left:${screenX}px;top:${screenY}px;transform:translate(-50%,-100%);">
-      <span class="name">${p.name}</span> LV${p.level} ❤${p.hp}/${p.maxHp} ${msgHtml}
-    </div>`;
-  });
-  
-  container.innerHTML = html;
-}
-
-// Carregar mensagens do chat
-function loadChatMessages() {
-  try {
-    const stored = localStorage.getItem(CHAT_MESSAGES_KEY);
-    if (stored) {
-      chatMessages = JSON.parse(stored);
-      // Manter apenas últimas 50
-      if (chatMessages.length > 50) {
-        chatMessages = chatMessages.slice(-50);
-      }
-      
-      // Atualizar último índice
-      if (chatMessages.length > 0) {
-        myLastMessageIndex = chatMessages[chatMessages.length - 1].index || 0;
-      }
-    } else {
-      chatMessages = [];
-      myLastMessageIndex = 0;
-    }
-    renderChatMessages();
-  } catch(e) {
-    chatMessages = [];
-  }
-}
-
-// Salvar mensagens do chat
-function saveChatMessages() {
-  try {
-    // Garantir que cada mensagem tenha um índice único
-    chatMessages = chatMessages.map((msg, idx) => {
-      msg.index = idx;
-      return msg;
-    });
-    
-    // Manter apenas últimas 50
-    if (chatMessages.length > 50) {
-      chatMessages = chatMessages.slice(-50);
-    }
-    
-    localStorage.setItem(CHAT_MESSAGES_KEY, JSON.stringify(chatMessages));
-    
-    // Atualizar último índice
-    if (chatMessages.length > 0) {
-      myLastMessageIndex = chatMessages[chatMessages.length - 1].index;
-      localStorage.setItem(CHAT_LAST_INDEX_KEY, myLastMessageIndex.toString());
-    }
-  } catch(e) {}
-}
-
-// Adicionar mensagem do sistema
-function addSystemMessage(text) {
-  chatMessages.push({
-    id: 'sys_' + Date.now() + '_' + Math.random(),
-    name: 'SISTEMA',
-    text: text,
-    timestamp: Date.now(),
-    system: true
-  });
-  saveChatMessages();
-  renderChatMessages();
-}
-
-// Enviar mensagem no chat
-function sendChatMessage() {
-  const input = document.getElementById('chat-input');
-  const text = input.value.trim();
-  if (!text || !G || !G.pl) return;
-  
-  // Criar mensagem
-  const message = {
-    id: myPlayerId + '_' + Date.now(),
-    name: G.pl.name,
-    text: text,
-    timestamp: Date.now()
-  };
-  
-  chatMessages.push(message);
-  saveChatMessages();
-  renderChatMessages();
-  
-  // Adicionar mensagem temporária ao meu perfil
-  const myPlayer = onlinePlayers.find(p => p.id === myPlayerId);
-  if (myPlayer) {
-    myPlayer.msg = text;
-    setTimeout(() => {
-      const p = onlinePlayers.find(p => p.id === myPlayerId);
-      if (p) p.msg = null;
-    }, 4000);
-  }
-  
-  // Limpar input
-  input.value = '';
-  
-  // Broadcast imediato para incluir mensagem
-  broadcastMyPosition();
-}
-
-// Renderizar mensagens do chat
-function renderChatMessages() {
-  const container = document.getElementById('chat-messages');
-  if (!container) return;
-  
-  let html = '';
-  chatMessages.slice(-20).forEach(msg => {
-    if (msg.system) {
-      html += `<div class="chat-message"><span class="chat-system">${msg.text}</span></div>`;
-    } else {
-      html += `<div class="chat-message"><span class="chat-name">${msg.name}:</span> <span class="chat-text">${msg.text}</span></div>`;
-    }
-  });
-  
-  container.innerHTML = html;
-  container.scrollTop = container.scrollHeight;
-}
-
-// Limpar ao sair
-function shutdownOnlineSystem() {
-  // Remover jogador da lista
-  if (myPlayerId) {
-    try {
-      const stored = localStorage.getItem(ONLINE_PLAYERS_KEY);
-      if (stored) {
-        let players = JSON.parse(stored);
-        players = players.filter(p => p.id !== myPlayerId);
-        localStorage.setItem(ONLINE_PLAYERS_KEY, JSON.stringify(players));
-      }
-    } catch(e) {}
-  }
-  
-  // Remover listener
-  window.removeEventListener('storage', handleStorageChange);
-  
-  if (G && G.pl) {
-    addSystemMessage(`👋 ${G.pl.name} saiu do mundo.`);
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════════════
-// ══ ORIGINAL GAME CODE (preservado, com pequenas modificações) ════════════════════
-// ═══════════════════════════════════════════════════════════════════════════════════
-
 const cv=document.getElementById('gc'),ctx=cv.getContext('2d');
 const mmc=document.getElementById('mmc'),mmx=mmc.getContext('2d');
 ctx.imageSmoothingEnabled=false;mmx.imageSmoothingEnabled=false;
-let G=null,RAF=null,lastT=0,msgT=null;
+let G=null,RAF=null,lastT=0,msgT=null,tutStep=-1;
 const CW=700,CH=420;
 
 // ── RESPONSIVE LAYOUT ─────────────────────────────────
@@ -1100,104 +786,543 @@ const _COL=[40,145,250,355,460];
 
 // ── STAGES ────────────────────────────────────────────
 const STAGES=[
-  {id:0, name:'Ember Flats',    act:'ACT I',   bg:'lava',      sky:['#a04010','#601808'],gr:'#8a3808',ac:'#ff8030',mx:_COL[0],my:_R1Y,conn:[1],enemies:['imp','sprite'],boss:'demon',waves:2,maxE:3,loot:{coins:[8,18]}},
-  {id:1, name:'Lava Chasms',    act:'ACT I',   bg:'lava2',     sky:['#b85010','#702010'],gr:'#9a4010',ac:'#ffa040',mx:_COL[1],my:_R1Y,conn:[0,2],enemies:['imp','demon'],boss:'lavaking',waves:2,maxE:4,loot:{coins:[12,22]}},
-  {id:2, name:'Ashfall Ruins',  act:'ACT I',   bg:'ruins',     sky:['#904030','#581a18'],gr:'#6a2c18',ac:'#f07040',mx:_COL[2],my:_R1Y,conn:[1,3],enemies:['sprite','ashgolem'],boss:'ruinwarden',waves:3,maxE:4,loot:{coins:[14,26]}},
-  {id:3, name:'The Smelter',    act:'ACT I',   bg:'forge',     sky:['#c06020','#783010'],gr:'#8a3c10',ac:'#ffcc40',mx:_COL[3],my:_R1Y,conn:[2,4],enemies:['imp','ashgolem','forge'],boss:'forgelord',waves:3,maxE:5,loot:{coins:[18,32]}},
-  {id:4, name:'Twilight Grove', act:'ACT II',  bg:'forest',    sky:['#4a90d8','#80c8f8'],gr:'#3a8820',ac:'#50e870',mx:_COL[4],my:_R1Y,conn:[3,5],enemies:['wolf','hexbat'],boss:'forestwitch',waves:2,maxE:3,loot:{coins:[14,24]}},
-  {id:5, name:'Mushroom Depths',act:'ACT II',  bg:'mushroom',  sky:['#2050a0','#4080c8'],gr:'#206018',ac:'#70ff90',mx:_COL[4],my:_R2Y,conn:[4,6],enemies:['spider','hexbat','wolf'],boss:'sporemind',waves:3,maxE:4,loot:{coins:[16,28]}},
-  {id:6, name:'Wraithwood',     act:'ACT II',  bg:'forest2',   sky:['#2a6890','#4898b8'],gr:'#207018',ac:'#40d860',mx:_COL[3],my:_R2Y,conn:[5,7],enemies:['wraith','necro','wolf'],boss:'lichknight',waves:3,maxE:4,loot:{coins:[20,34]}},
-  {id:7, name:'Black Canopy',   act:'ACT II',  bg:'darkforest',sky:['#1a3a50','#2a5870'],gr:'#1a4c18',ac:'#20c860',mx:_COL[2],my:_R2Y,conn:[6,8],enemies:['necro','wraith','spider'],boss:'shadowdruid',waves:3,maxE:5,loot:{coins:[24,40]}},
-  {id:8, name:'Frost Shore',    act:'ACT III', bg:'ice',       sky:['#6090c8','#a0c8e8'],gr:'#8ab8d0',ac:'#60d8ff',mx:_COL[1],my:_R2Y,conn:[7,9],enemies:['golem','icearcher'],boss:'frostgiant',waves:3,maxE:4,loot:{coins:[20,36]}},
-  {id:9, name:'Blizzard Pass',  act:'ACT III', bg:'blizzard',  sky:['#5080b8','#90b8d8'],gr:'#78a8c8',ac:'#90e0ff',mx:_COL[0],my:_R2Y,conn:[8,10],enemies:['wraith','golem','icelich'],boss:'icelich',waves:3,maxE:5,loot:{coins:[24,42]}},
-  {id:10,name:'Glacial Spires', act:'ACT III', bg:'glacier',   sky:['#4070a8','#80b0d0'],gr:'#6898b8',ac:'#a0e8ff',mx:_COL[0],my:_R3Y,conn:[9,11],enemies:['icelicher','golem','icedrake'],boss:'crystalqueen',waves:4,maxE:5,loot:{coins:[28,48]}},
-  {id:11,name:'Frozen Throne',  act:'ACT III', bg:'throne',    sky:['#3060a0','#6090c0'],gr:'#5880a8',ac:'#c0e8ff',mx:_COL[1],my:_R3Y,conn:[10,12],enemies:['icelich','icedrake','golem'],boss:'winterking',waves:4,maxE:5,loot:{coins:[32,54]}},
-  {id:12,name:'Mire Entrance',  act:'ACT IV',  bg:'swamp',     sky:['#386828','#5a9040'],gr:'#284a18',ac:'#90e840',mx:_COL[2],my:_R3Y,conn:[11,13],enemies:['troll','bog'],boss:'boghag',waves:3,maxE:4,loot:{coins:[26,44]}},
-  {id:13,name:'Venom Pools',    act:'ACT IV',  bg:'swamp2',    sky:['#304e20','#507838'],gr:'#203c10',ac:'#b0f850',mx:_COL[3],my:_R3Y,conn:[12,14],enemies:['troll','vbat','bog'],boss:'venomqueen',waves:3,maxE:5,loot:{coins:[30,50]}},
-  {id:14,name:'Putrid Depths',  act:'ACT IV',  bg:'swamp3',    sky:['#284018','#40602a'],gr:'#183008',ac:'#80e050',mx:_COL[4],my:_R3Y,conn:[13,15],enemies:['vbat','bog','troll'],boss:'plagueguard',waves:4,maxE:5,loot:{coins:[34,56]}},
-  {id:15,name:'The Rot Core',   act:'ACT IV',  bg:'swamp4',    sky:['#1c2e10','#30481e'],gr:'#102006',ac:'#60cc30',mx:_COL[4],my:_R4Y,conn:[14,16],enemies:['troll','vbat','bog'],boss:'rotlord',waves:4,maxE:6,loot:{coins:[38,62]}},
-  {id:16,name:'Storm Approach', act:'ACT V',   bg:'sky',       sky:['#5840b8','#8070d8'],gr:'#3828a0',ac:'#d090ff',mx:_COL[3],my:_R4Y,conn:[15,17],enemies:['drake','stormkin'],boss:'stormdrake',waves:3,maxE:4,loot:{coins:[40,66]}},
-  {id:17,name:'Cloud Ramparts', act:'ACT V',   bg:'sky2',      sky:['#6850c8','#9880e0'],gr:'#4830b0',ac:'#e0a8ff',mx:_COL[2],my:_R4Y,conn:[16,18],enemies:['drake','stormkin','thunderel'],boss:'cloudgiant',waves:4,maxE:5,loot:{coins:[44,72]}},
-  {id:18,name:'Apex Spire',     act:'ACT V',   bg:'sky3',      sky:['#7860d8','#a090e8'],gr:'#5840c0',ac:'#ffc0ff',mx:_COL[1],my:_R4Y,conn:[17,19],enemies:['thunderel','drake','stormkin'],boss:'skyemperor',waves:4,maxE:6,loot:{coins:[50,80]}},
-  {id:19,name:'ETERNAL ABYSS',  act:'FINAL',   bg:'abyss',     sky:['#380008','#200004'],gr:'#2c0004',ac:'#ff2040',mx:_COL[0],my:_R4Y,conn:[18],enemies:['shade','voidknight'],boss:'chaosdragon',waves:5,maxE:6,loot:{coins:[80,150]}},
+  {id:0, name:'Planícies de Brasa', act:'ATO I',   bg:'lava',      sky:['#a04010','#601808'],gr:'#8a3808',ac:'#ff8030',mx:_COL[0],my:_R1Y,conn:[1],enemies:['imp','sprite'],boss:'demon',waves:2,maxE:3,loot:{coins:[8,18]}},
+  {id:1, name:'Abismos de Lava',    act:'ATO I',   bg:'lava2',     sky:['#b85010','#702010'],gr:'#9a4010',ac:'#ffa040',mx:_COL[1],my:_R1Y,conn:[0,2],enemies:['imp','demon'],boss:'lavaking',waves:2,maxE:4,loot:{coins:[12,22]}},
+  {id:2, name:'Ruínas de Cinzas',   act:'ATO I',   bg:'ruins',     sky:['#904030','#581a18'],gr:'#6a2c18',ac:'#f07040',mx:_COL[2],my:_R1Y,conn:[1,3],enemies:['sprite','ashgolem'],boss:'ruinwarden',waves:3,maxE:4,loot:{coins:[14,26]}},
+  {id:3, name:'A Fornalha',         act:'ATO I',   bg:'forge',     sky:['#c06020','#783010'],gr:'#8a3c10',ac:'#ffcc40',mx:_COL[3],my:_R1Y,conn:[2,4],enemies:['imp','ashgolem','forge'],boss:'forgelord',waves:3,maxE:5,loot:{coins:[18,32]}},
+  {id:4, name:'Bosque Crepuscular', act:'ATO II',  bg:'forest',    sky:['#4a90d8','#80c8f8'],gr:'#3a8820',ac:'#50e870',mx:_COL[4],my:_R1Y,conn:[3,5],enemies:['wolf','hexbat'],boss:'forestwitch',waves:2,maxE:3,loot:{coins:[14,24]}},
+  {id:5, name:'Cavernas de Cogumelo',act:'ATO II',bg:'mushroom',  sky:['#2050a0','#4080c8'],gr:'#206018',ac:'#70ff90',mx:_COL[4],my:_R2Y,conn:[4,6],enemies:['spider','hexbat','wolf'],boss:'sporemind',waves:3,maxE:4,loot:{coins:[16,28]}},
+  {id:6, name:'Floresta Espectral', act:'ATO II',  bg:'forest2',   sky:['#2a6890','#4898b8'],gr:'#207018',ac:'#40d860',mx:_COL[3],my:_R2Y,conn:[5,7],enemies:['wraith','necro','wolf'],boss:'lichknight',waves:3,maxE:4,loot:{coins:[20,34]}},
+  {id:7, name:'Dossel Sombrio',     act:'ATO II',  bg:'darkforest',sky:['#1a3a50','#2a5870'],gr:'#1a4c18',ac:'#20c860',mx:_COL[2],my:_R2Y,conn:[6,8],enemies:['necro','wraith','spider'],boss:'shadowdruid',waves:3,maxE:5,loot:{coins:[24,40]}},
+  {id:8, name:'Costa Gelada',       act:'ATO III', bg:'ice',       sky:['#6090c8','#a0c8e8'],gr:'#8ab8d0',ac:'#60d8ff',mx:_COL[1],my:_R2Y,conn:[7,9],enemies:['golem','icearcher'],boss:'frostgiant',waves:3,maxE:4,loot:{coins:[20,36]}},
+  {id:9, name:'Passagem do Blizzard',act:'ATO III',bg:'blizzard',  sky:['#5080b8','#90b8d8'],gr:'#78a8c8',ac:'#90e0ff',mx:_COL[0],my:_R2Y,conn:[8,10],enemies:['wraith','golem','icelich'],boss:'icelich',waves:3,maxE:5,loot:{coins:[24,42]}},
+  {id:10,name:'Torres de Gelo',     act:'ATO III', bg:'glacier',   sky:['#4070a8','#80b0d0'],gr:'#6898b8',ac:'#a0e8ff',mx:_COL[0],my:_R3Y,conn:[9,11],enemies:['icelicher','golem','icedrake'],boss:'crystalqueen',waves:4,maxE:5,loot:{coins:[28,48]}},
+  {id:11,name:'Trono Congelado',    act:'ATO III', bg:'throne',    sky:['#3060a0','#6090c0'],gr:'#5880a8',ac:'#c0e8ff',mx:_COL[1],my:_R3Y,conn:[10,12],enemies:['icelich','icedrake','golem'],boss:'winterking',waves:4,maxE:5,loot:{coins:[32,54]}},
+  {id:12,name:'Entrada do Pântano', act:'ATO IV',  bg:'swamp',     sky:['#386828','#5a9040'],gr:'#284a18',ac:'#90e840',mx:_COL[2],my:_R3Y,conn:[11,13],enemies:['troll','bog'],boss:'boghag',waves:3,maxE:4,loot:{coins:[26,44]}},
+  {id:13,name:'Lagos de Veneno',    act:'ATO IV',  bg:'swamp2',    sky:['#304e20','#507838'],gr:'#203c10',ac:'#b0f850',mx:_COL[3],my:_R3Y,conn:[12,14],enemies:['troll','vbat','bog'],boss:'venomqueen',waves:3,maxE:5,loot:{coins:[30,50]}},
+  {id:14,name:'Profundezas Pútridas',act:'ATO IV', bg:'swamp3',    sky:['#284018','#40602a'],gr:'#183008',ac:'#80e050',mx:_COL[4],my:_R3Y,conn:[13,15],enemies:['vbat','bog','troll'],boss:'plagueguard',waves:4,maxE:5,loot:{coins:[34,56]}},
+  {id:15,name:'O Núcleo da Podridão',act:'ATO IV', bg:'swamp4',    sky:['#1c2e10','#30481e'],gr:'#102006',ac:'#60cc30',mx:_COL[4],my:_R4Y,conn:[14,16],enemies:['troll','vbat','bog'],boss:'rotlord',waves:4,maxE:6,loot:{coins:[38,62]}},
+  {id:16,name:'Aproximação da Tempestade',act:'ATO V',bg:'sky',   sky:['#5840b8','#8070d8'],gr:'#3828a0',ac:'#d090ff',mx:_COL[3],my:_R4Y,conn:[15,17],enemies:['drake','stormkin'],boss:'stormdrake',waves:3,maxE:4,loot:{coins:[40,66]}},
+  {id:17,name:'Muralhas das Nuvens', act:'ATO V',  bg:'sky2',      sky:['#6850c8','#9880e0'],gr:'#4830b0',ac:'#e0a8ff',mx:_COL[2],my:_R4Y,conn:[16,18],enemies:['drake','stormkin','thunderel'],boss:'cloudgiant',waves:4,maxE:5,loot:{coins:[44,72]}},
+  {id:18,name:'Pico Supremo',        act:'ATO V',  bg:'sky3',      sky:['#7860d8','#a090e8'],gr:'#5840c0',ac:'#ffc0ff',mx:_COL[1],my:_R4Y,conn:[17,19],enemies:['thunderel','drake','stormkin'],boss:'skyemperor',waves:4,maxE:6,loot:{coins:[50,80]}},
+  {id:19,name:'ABISMO ETERNO',       act:'FINAL',  bg:'abyss',     sky:['#380008','#200004'],gr:'#2c0004',ac:'#ff2040',mx:_COL[0],my:_R4Y,conn:[18],enemies:['shade','voidknight'],boss:'chaosdragon',waves:5,maxE:6,loot:{coins:[80,150]}},
 ];
 
 // ── ENEMIES ───────────────────────────────────────────
 const ET={
-  imp:{name:'Lava Imp',hp:18,atk:6,def:1,xp:8,coins:12,color:'#c03010',sz:26,sp:'imp'},
-  sprite:{name:'Fire Sprite',hp:14,atk:8,def:0,xp:6,coins:8,color:'#ff6010',sz:20,sp:'sprite'},
-  demon:{name:'Fire Demon',hp:45,atk:13,def:3,xp:20,coins:32,color:'#8b1a00',sz:38,sp:'demon',boss:true},
-  lavaking:{name:'Lava King',hp:70,atk:16,def:5,xp:32,coins:55,color:'#cc2200',sz:46,sp:'lavaking',boss:true},
-  ashgolem:{name:'Ash Golem',hp:28,atk:9,def:4,xp:12,coins:16,color:'#5a3020',sz:32,sp:'golem2'},
-  forge:{name:'Forge Guard',hp:22,atk:10,def:2,xp:10,coins:14,color:'#804010',sz:28,sp:'forge'},
-  ruinwarden:{name:'Ruin Warden',hp:60,atk:14,def:6,xp:28,coins:48,color:'#703010',sz:44,sp:'ruinwarden',boss:true},
-  forgelord:{name:'Forge Lord',hp:80,atk:18,def:6,xp:36,coins:65,color:'#aa5000',sz:50,sp:'forgelord',boss:true},
-  wolf:{name:'Shadow Wolf',hp:22,atk:8,def:2,xp:10,coins:15,color:'#2a0a4a',sz:30,sp:'wolf'},
-  hexbat:{name:'Hex Bat',hp:16,atk:9,def:1,xp:8,coins:10,color:'#3a0a1a',sz:20,sp:'bat'},
-  spider:{name:'Hex Spider',hp:18,atk:10,def:1,xp:9,coins:12,color:'#1a0a30',sz:22,sp:'spider'},
-  forestwitch:{name:'Forest Witch',hp:55,atk:14,def:4,xp:26,coins:46,color:'#2a1040',sz:42,sp:'forestwitch',boss:true},
-  sporemind:{name:'Spore Mind',hp:72,atk:16,def:4,xp:34,coins:58,color:'#104030',sz:48,sp:'sporemind',boss:true},
-  wraith:{name:'Wraith',hp:24,atk:11,def:2,xp:11,coins:14,color:'#60a0c0',sz:28,sp:'wraith'},
-  necro:{name:'Necromancer',hp:30,atk:13,def:3,xp:14,coins:20,color:'#4a0a6a',sz:32,sp:'necro'},
-  lichknight:{name:'Lich Knight',hp:80,atk:18,def:5,xp:38,coins:65,color:'#3a0860',sz:50,sp:'lichknight',boss:true},
-  shadowdruid:{name:'Shadow Druid',hp:90,atk:20,def:6,xp:44,coins:75,color:'#060c20',sz:52,sp:'shadowdruid',boss:true},
-  golem:{name:'Frost Golem',hp:36,atk:10,def:6,xp:15,coins:20,color:'#3060a0',sz:34,sp:'golem'},
-  icedrake:{name:'Ice Drake',hp:30,atk:13,def:3,xp:14,coins:19,color:'#4080c0',sz:30,sp:'icedrake'},
-  icelicher:{name:'Ice Licher',hp:26,atk:12,def:2,xp:13,coins:18,color:'#2050a0',sz:26,sp:'icelicher'},
-  icelich:{name:'Ice Lich',hp:28,atk:14,def:2,xp:14,coins:19,color:'#1040a0',sz:28,sp:'icelicher'},
-  icearcher:{name:'Frost Archer',hp:20,atk:11,def:1,xp:10,coins:14,color:'#3070b0',sz:24,sp:'iceArcher'},
-  frostgiant:{name:'Frost Giant',hp:90,atk:18,def:7,xp:40,coins:70,color:'#2050a0',sz:54,sp:'frostgiant',boss:true},
-  crystalqueen:{name:'Crystal Queen',hp:100,atk:20,def:7,xp:48,coins:82,color:'#4090d0',sz:54,sp:'crystalqueen',boss:true},
-  winterking:{name:'Winter King',hp:120,atk:24,def:8,xp:58,coins:100,color:'#1030a0',sz:58,sp:'winterking',boss:true},
-  troll:{name:'Bog Troll',hp:34,atk:11,def:5,xp:14,coins:19,color:'#2a4010',sz:34,sp:'troll'},
-  bog:{name:'Bog Wisp',hp:18,atk:10,def:1,xp:9,coins:12,color:'#204010',sz:22,sp:'bogwisp'},
-  vbat:{name:'Venom Bat',hp:20,atk:11,def:1,xp:10,coins:13,color:'#304008',sz:22,sp:'bat'},
-  boghag:{name:'Bog Hag',hp:80,atk:16,def:5,xp:38,coins:66,color:'#1a3008',sz:48,sp:'boghag',boss:true},
-  venomqueen:{name:'Venom Queen',hp:100,atk:20,def:5,xp:48,coins:85,color:'#204010',sz:54,sp:'venomqueen',boss:true},
-  plagueguard:{name:'Plague Guard',hp:110,atk:22,def:6,xp:55,coins:95,color:'#184008',sz:56,sp:'plagueguard',boss:true},
-  rotlord:{name:'Rot Lord',hp:130,atk:26,def:7,xp:65,coins:115,color:'#0a2004',sz:60,sp:'rotlord',boss:true},
-  drake:{name:'Storm Drake',hp:44,atk:14,def:4,xp:20,coins:30,color:'#5028a0',sz:38,sp:'drake'},
-  stormkin:{name:'Storm Kin',hp:28,atk:13,def:2,xp:12,coins:18,color:'#3020a0',sz:26,sp:'stormkin'},
-  thunderel:{name:'Thunder Elf',hp:24,atk:14,def:2,xp:13,coins:19,color:'#4040c0',sz:26,sp:'thunderelf'},
-  stormdrake:{name:'Storm Drake Boss',hp:100,atk:20,def:6,xp:50,coins:90,color:'#4010c0',sz:56,sp:'drake',boss:true},
-  cloudgiant:{name:'Cloud Giant',hp:130,atk:24,def:7,xp:62,coins:110,color:'#5030a0',sz:60,sp:'cloudgiant',boss:true},
-  skyemperor:{name:'Sky Emperor',hp:160,atk:28,def:9,xp:78,coins:140,color:'#2008a0',sz:64,sp:'skyemperor',boss:true},
-  shade:{name:'Void Shade',hp:50,atk:16,def:4,xp:28,coins:42,color:'#200030',sz:32,sp:'shade'},
-  voidknight:{name:'Void Knight',hp:60,atk:18,def:5,xp:34,coins:52,color:'#300050',sz:36,sp:'voidknight'},
-  chaosdragon:{name:'CHAOS DRAGON',hp:250,atk:36,def:12,xp:200,coins:400,color:'#800000',sz:70,sp:'dragon',boss:true},
+  imp:{name:'Imp de Lava',hp:18,atk:6,def:1,xp:8,coins:12,color:'#c03010',sz:26,sp:'imp'},
+  sprite:{name:'Espírito do Fogo',hp:14,atk:8,def:0,xp:6,coins:8,color:'#ff6010',sz:20,sp:'sprite'},
+  demon:{name:'Demônio do Fogo',hp:45,atk:13,def:3,xp:20,coins:32,color:'#8b1a00',sz:38,sp:'demon',boss:true},
+  lavaking:{name:'Rei da Lava',hp:70,atk:16,def:5,xp:32,coins:55,color:'#cc2200',sz:46,sp:'lavaking',boss:true},
+  ashgolem:{name:'Golem de Cinzas',hp:28,atk:9,def:4,xp:12,coins:16,color:'#5a3020',sz:32,sp:'golem2'},
+  forge:{name:'Guardião da Forja',hp:22,atk:10,def:2,xp:10,coins:14,color:'#804010',sz:28,sp:'forge'},
+  ruinwarden:{name:'Guardião das Ruínas',hp:60,atk:14,def:6,xp:28,coins:48,color:'#703010',sz:44,sp:'ruinwarden',boss:true},
+  forgelord:{name:'Senhor da Forja',hp:80,atk:18,def:6,xp:36,coins:65,color:'#aa5000',sz:50,sp:'forgelord',boss:true},
+  wolf:{name:'Lobo das Sombras',hp:22,atk:8,def:2,xp:10,coins:15,color:'#2a0a4a',sz:30,sp:'wolf'},
+  hexbat:{name:'Morcego Amaldiçoado',hp:16,atk:9,def:1,xp:8,coins:10,color:'#3a0a1a',sz:20,sp:'bat'},
+  spider:{name:'Aranha Sombria',hp:18,atk:10,def:1,xp:9,coins:12,color:'#1a0a30',sz:22,sp:'spider'},
+  forestwitch:{name:'Bruxa da Floresta',hp:55,atk:14,def:4,xp:26,coins:46,color:'#2a1040',sz:42,sp:'forestwitch',boss:true},
+  sporemind:{name:'Mente de Esporos',hp:72,atk:16,def:4,xp:34,coins:58,color:'#104030',sz:48,sp:'sporemind',boss:true},
+  wraith:{name:'Espectro',hp:24,atk:11,def:2,xp:11,coins:14,color:'#60a0c0',sz:28,sp:'wraith'},
+  necro:{name:'Necromante',hp:30,atk:13,def:3,xp:14,coins:20,color:'#4a0a6a',sz:32,sp:'necro'},
+  lichknight:{name:'Cavaleiro Liche',hp:80,atk:18,def:5,xp:38,coins:65,color:'#3a0860',sz:50,sp:'lichknight',boss:true},
+  shadowdruid:{name:'Druida das Sombras',hp:90,atk:20,def:6,xp:44,coins:75,color:'#060c20',sz:52,sp:'shadowdruid',boss:true},
+  golem:{name:'Golem de Gelo',hp:36,atk:10,def:6,xp:15,coins:20,color:'#3060a0',sz:34,sp:'golem'},
+  icedrake:{name:'Dragonete de Gelo',hp:30,atk:13,def:3,xp:14,coins:19,color:'#4080c0',sz:30,sp:'icedrake'},
+  icelicher:{name:'Liche Glacial',hp:26,atk:12,def:2,xp:13,coins:18,color:'#2050a0',sz:26,sp:'icelicher'},
+  icelich:{name:'Liche do Gelo',hp:28,atk:14,def:2,xp:14,coins:19,color:'#1040a0',sz:28,sp:'icelicher'},
+  icearcher:{name:'Arqueiro Glacial',hp:20,atk:11,def:1,xp:10,coins:14,color:'#3070b0',sz:24,sp:'iceArcher'},
+  frostgiant:{name:'Gigante Glacial',hp:90,atk:18,def:7,xp:40,coins:70,color:'#2050a0',sz:54,sp:'frostgiant',boss:true},
+  crystalqueen:{name:'Rainha de Cristal',hp:100,atk:20,def:7,xp:48,coins:82,color:'#4090d0',sz:54,sp:'crystalqueen',boss:true},
+  winterking:{name:'Rei do Inverno',hp:120,atk:24,def:8,xp:58,coins:100,color:'#1030a0',sz:58,sp:'winterking',boss:true},
+  troll:{name:'Troll do Pântano',hp:34,atk:11,def:5,xp:14,coins:19,color:'#2a4010',sz:34,sp:'troll'},
+  bog:{name:'Fantasma do Brejo',hp:18,atk:10,def:1,xp:9,coins:12,color:'#204010',sz:22,sp:'bogwisp'},
+  vbat:{name:'Morcego Venenoso',hp:20,atk:11,def:1,xp:10,coins:13,color:'#304008',sz:22,sp:'bat'},
+  boghag:{name:'Megera do Pântano',hp:80,atk:16,def:5,xp:38,coins:66,color:'#1a3008',sz:48,sp:'boghag',boss:true},
+  venomqueen:{name:'Rainha Venenosa',hp:100,atk:20,def:5,xp:48,coins:85,color:'#204010',sz:54,sp:'venomqueen',boss:true},
+  plagueguard:{name:'Guardião da Praga',hp:110,atk:22,def:6,xp:55,coins:95,color:'#184008',sz:56,sp:'plagueguard',boss:true},
+  rotlord:{name:'Senhor da Podridão',hp:130,atk:26,def:7,xp:65,coins:115,color:'#0a2004',sz:60,sp:'rotlord',boss:true},
+  drake:{name:'Dragonete da Tempestade',hp:44,atk:14,def:4,xp:20,coins:30,color:'#5028a0',sz:38,sp:'drake'},
+  stormkin:{name:'Filho da Tempestade',hp:28,atk:13,def:2,xp:12,coins:18,color:'#3020a0',sz:26,sp:'stormkin'},
+  thunderel:{name:'Elfo do Trovão',hp:24,atk:14,def:2,xp:13,coins:19,color:'#4040c0',sz:26,sp:'thunderelf'},
+  stormdrake:{name:'Dragonete da Tormenta',hp:100,atk:20,def:6,xp:50,coins:90,color:'#4010c0',sz:56,sp:'drake',boss:true},
+  cloudgiant:{name:'Gigante das Nuvens',hp:130,atk:24,def:7,xp:62,coins:110,color:'#5030a0',sz:60,sp:'cloudgiant',boss:true},
+  skyemperor:{name:'Imperador do Céu',hp:160,atk:28,def:9,xp:78,coins:140,color:'#2008a0',sz:64,sp:'skyemperor',boss:true},
+  shade:{name:'Sombra do Vazio',hp:50,atk:16,def:4,xp:28,coins:42,color:'#200030',sz:32,sp:'shade'},
+  voidknight:{name:'Cavaleiro do Vazio',hp:60,atk:18,def:5,xp:34,coins:52,color:'#300050',sz:36,sp:'voidknight'},
+  chaosdragon:{name:'DRAGÃO DO CAOS',hp:250,atk:36,def:12,xp:200,coins:400,color:'#800000',sz:70,sp:'dragon',boss:true},
 };
 
 // ── SHOP ──────────────────────────────────────────────
 const SHOP=[
-  {id:'pot3', name:'Potions x3',      desc:'Restore 40% HP',        price:30, icon:'🧪',stack:true,fn:()=>{G.pl.pots+=3;}},
-  {id:'pot5', name:'Potions x5',      desc:'Restore 40% HP',        price:45, icon:'🧪',stack:true,fn:()=>{G.pl.pots+=5;}},
-  {id:'bom2', name:'Bombs x2',        desc:'50 dmg all enemies',    price:35, icon:'💣',stack:true,fn:()=>{G.pl.bombs+=2;}},
-  {id:'bom4', name:'Bombs x4',        desc:'50 dmg all enemies',    price:60, icon:'💣',stack:true,fn:()=>{G.pl.bombs+=4;}},
-  {id:'elx',  name:'Grand Elixir',    desc:'Fully restore HP',      price:90, icon:'✨',stack:true,fn:()=>{G.pl.hp=G.pl.maxHp;}},
-  {id:'mgp',  name:'Mega Potion',     desc:'Restore 70% HP',        price:65, icon:'💊',stack:true,fn:()=>{G.pl.hp=Math.min(G.pl.maxHp,G.pl.hp+~~(G.pl.maxHp*.7));}},
-  {id:'phx',  name:'Phoenix Feather', desc:'Auto-revive once',      price:120,icon:'🔥',stack:true,fn:()=>{G.pl.revive=true;}},
-  {id:'tom',  name:'Tome of Power',   desc:'+50 XP instantly',      price:40, icon:'📖',stack:true,fn:()=>{gainXP(50);}},
-  {id:'sw1',  name:'Iron Sword',      desc:'+4 ATK',                price:55, icon:'⚔️',fn:()=>{G.pl.atk+=4;}},
-  {id:'sw2',  name:'Steel Blade',     desc:'+8 ATK',                price:110,icon:'🗡️',fn:()=>{G.pl.atk+=8;}},
-  {id:'sw3',  name:'Magic Blade',     desc:'+12 ATK + AOE hits',    price:200,icon:'🌟',fn:()=>{G.pl.atk+=12;G.pl.aoe=true;}},
-  {id:'swr',  name:'Soul Reaper',     desc:'+6 ATK +20% lifesteal', price:280,icon:'💀',fn:()=>{G.pl.atk+=6;G.pl.lifesteal=.2;}},
-  {id:'sh1',  name:'Iron Shield',     desc:'+6 DEF',                price:90, icon:'🛡️',fn:()=>{G.pl.def+=6;}},
-  {id:'sh2',  name:'Rune Shield',     desc:'+10 DEF +reflect 2dmg', price:175,icon:'🔮',fn:()=>{G.pl.def+=10;G.pl.reflect=2;}},
-  {id:'lr',   name:'Life Ring',       desc:'+20 Max HP',            price:55, icon:'💍',fn:()=>{G.pl.maxHp+=20;G.pl.hp+=20;}},
-  {id:'rr',   name:'Regen Ring',      desc:'+30 MaxHP + regen',     price:110,icon:'💎',fn:()=>{G.pl.maxHp+=30;G.pl.hp+=30;G.pl.regen=true;}},
-  {id:'bt1',  name:'Swiftboots',      desc:'+25% speed',            price:50, icon:'👟',fn:()=>{G.pl.spd=Math.min(G.pl.spd*1.25,240);}},
-  {id:'bt2',  name:'Wind Treads',     desc:'+50% speed',            price:100,icon:'💨',fn:()=>{G.pl.spd=Math.min(G.pl.spd*1.5,280);}},
-  {id:'cm1',  name:'Chain Mail',      desc:'+5 DEF -10 SPD',        price:80, icon:'🪖',fn:()=>{G.pl.def+=5;G.pl.spd=Math.max(70,G.pl.spd-10);}},
-  {id:'ar2',  name:'Dragon Armor',    desc:'+8 DEF +10 MaxHP',      price:180,icon:'🐲',fn:()=>{G.pl.def+=8;G.pl.maxHp+=10;G.pl.hp+=10;}},
-  {id:'dam',  name:'Death Amulet',    desc:'Survive killing blow',  price:130,icon:'☠️',fn:()=>{G.pl.amulet=true;}},
-  {id:'bch',  name:'Battle Charm',    desc:'+20% damage dealt',     price:150,icon:'🏅',fn:()=>{G.pl.atkMult=(G.pl.atkMult||1)*1.2;}},
-  {id:'arc',  name:'Arcane Scroll',   desc:'Double XP 3 stages',    price:95, icon:'📜',fn:()=>{G.pl.xpMult=2;G.pl.xpMultStages=3;}},
-  {id:'cmp',  name:'Hero Compass',    desc:'Reveal all map names',  price:70, icon:'🧭',fn:()=>{G.pl.compass=true;}},
-  {id:'stc',  name:'Stamina Crystal', desc:'+50 Max Stamina',       price:85, icon:'⚡',fn:()=>{G.pl.maxStamina+=50;G.pl.stamina=G.pl.maxStamina;}},
+  {id:'pot3', name:'Poções x3',        desc:'Restaura 40% de vida',     price:30, icon:'🧪',stack:true,fn:()=>{G.pl.pots+=3;}},
+  {id:'pot5', name:'Poções x5',        desc:'Restaura 40% de vida',     price:45, icon:'🧪',stack:true,fn:()=>{G.pl.pots+=5;}},
+  {id:'bom2', name:'Bombas x2',        desc:'50 de dano a todos',       price:35, icon:'💣',stack:true,fn:()=>{G.pl.bombs+=2;}},
+  {id:'bom4', name:'Bombas x4',        desc:'50 de dano a todos',       price:60, icon:'💣',stack:true,fn:()=>{G.pl.bombs+=4;}},
+  {id:'elx',  name:'Grande Elixir',    desc:'Restaura toda a vida',     price:90, icon:'✨',stack:true,fn:()=>{G.pl.hp=G.pl.maxHp;}},
+  {id:'mgp',  name:'Mega Poção',       desc:'Restaura 70% de vida',     price:65, icon:'💊',stack:true,fn:()=>{G.pl.hp=Math.min(G.pl.maxHp,G.pl.hp+~~(G.pl.maxHp*.7));}},
+  {id:'phx',  name:'Pena de Fênix',    desc:'Auto-revive uma vez',      price:120,icon:'🔥',stack:true,fn:()=>{G.pl.revive=true;}},
+  {id:'tom',  name:'Tomo do Poder',    desc:'+50 XP imediato',          price:40, icon:'📖',stack:true,fn:()=>{gainXP(50);}},
+  {id:'sw1',  name:'Espada de Ferro',  desc:'+4 ATQ',                   price:55, icon:'⚔️',fn:()=>{G.pl.atk+=4;}},
+  {id:'sw2',  name:'Lâmina de Aço',    desc:'+8 ATQ',                   price:110,icon:'🗡️',fn:()=>{G.pl.atk+=8;}},
+  {id:'sw3',  name:'Lâmina Mágica',    desc:'+12 ATQ + acerta todos',   price:200,icon:'🌟',fn:()=>{G.pl.atk+=12;G.pl.aoe=true;}},
+  {id:'swr',  name:'Ceifador de Alma', desc:'+6 ATQ +20% roubo de vida',price:280,icon:'💀',fn:()=>{G.pl.atk+=6;G.pl.lifesteal=.2;}},
+  {id:'sh1',  name:'Escudo de Ferro',  desc:'+6 DEF',                   price:90, icon:'🛡️',fn:()=>{G.pl.def+=6;}},
+  {id:'sh2',  name:'Escudo Rúnico',    desc:'+10 DEF +reflete 2 dano',  price:175,icon:'🔮',fn:()=>{G.pl.def+=10;G.pl.reflect=2;}},
+  {id:'lr',   name:'Anel da Vida',     desc:'+20 Vida máxima',          price:55, icon:'💍',fn:()=>{G.pl.maxHp+=20;G.pl.hp+=20;}},
+  {id:'rr',   name:'Anel de Regen',    desc:'+30 Vida máx. + regenerar',price:110,icon:'💎',fn:()=>{G.pl.maxHp+=30;G.pl.hp+=30;G.pl.regen=true;}},
+  {id:'bt1',  name:'Botas Ágeis',      desc:'+25% velocidade',          price:50, icon:'👟',fn:()=>{G.pl.spd=Math.min(G.pl.spd*1.25,240);}},
+  {id:'bt2',  name:'Botas do Vento',   desc:'+50% velocidade',          price:100,icon:'💨',fn:()=>{G.pl.spd=Math.min(G.pl.spd*1.5,280);}},
+  {id:'cm1',  name:'Cota de Malha',    desc:'+5 DEF -10 VEL',           price:80, icon:'🪖',fn:()=>{G.pl.def+=5;G.pl.spd=Math.max(70,G.pl.spd-10);}},
+  {id:'ar2',  name:'Armadura do Dragão',desc:'+8 DEF +10 Vida máx.',    price:180,icon:'🐲',fn:()=>{G.pl.def+=8;G.pl.maxHp+=10;G.pl.hp+=10;}},
+  {id:'dam',  name:'Amuleto da Morte', desc:'Sobrevive golpe fatal',    price:130,icon:'☠️',fn:()=>{G.pl.amulet=true;}},
+  {id:'bch',  name:'Amuleto de Batalha',desc:'+20% dano causado',       price:150,icon:'🏅',fn:()=>{G.pl.atkMult=(G.pl.atkMult||1)*1.2;}},
+  {id:'arc',  name:'Pergaminho Arcano',desc:'Dobrar XP por 3 fases',    price:95, icon:'📜',fn:()=>{G.pl.xpMult=2;G.pl.xpMultStages=3;}},
+  {id:'cmp',  name:'Bússola do Herói', desc:'Revelar nomes no mapa',    price:70, icon:'🧭',fn:()=>{G.pl.compass=true;}},
+  {id:'stc',  name:'Cristal de Stamina',desc:'+50 Stamina máxima',      price:85, icon:'⚡',fn:()=>{G.pl.maxStamina+=50;G.pl.stamina=G.pl.maxStamina;}},
 ];
 
-// ── RANKINGS ──────────────────────────────────────────
-const RK='pq5:lb';
+// ══════════════════════════════════════════════════════
+// ── SISTEMA DE AUTH — localStorage + storage backup ───
+// ══════════════════════════════════════════════════════
+const AUTH_LS = 'pq5_contas_v2';
+let currentUser = null;
+
+function simpleHash(str){
+  let h=5381;for(let i=0;i<str.length;i++)h=((h<<5)+h)^str.charCodeAt(i);
+  return(h>>>0).toString(16);
+}
+
+// Salva em localStorage (primário) E window.storage (backup)
+function salvarContas(db){
+  const str=JSON.stringify(db);
+  try{localStorage.setItem(AUTH_LS,str);}catch(e){}
+  try{window.storage.set('pq5-contas',str,false);}catch(e){}
+}
+
+// Carrega do localStorage (sync, confiável) com fallback para storage
+async function carregarContas(){
+  // Tenta localStorage primeiro
+  try{
+    const ls=localStorage.getItem(AUTH_LS);
+    if(ls){const d=JSON.parse(ls);if(d&&typeof d==='object')return d;}
+  }catch(e){}
+  // Fallback: window.storage assíncrono
+  try{
+    const r=await window.storage.get('pq5-contas',false);
+    if(r&&r.value){
+      const d=JSON.parse(r.value);
+      if(d&&typeof d==='object'){
+        // Sincroniza de volta ao localStorage
+        try{localStorage.setItem(AUTH_LS,JSON.stringify(d));}catch(e){}
+        return d;
+      }
+    }
+  }catch(e){}
+  return {};
+}
+
+function alternarAba(t){
+  document.getElementById('form-login').style.display=t==='login'?'flex':'none';
+  document.getElementById('form-reg').style.display=t==='reg'?'flex':'none';
+  document.getElementById('tab-login').classList.toggle('active',t==='login');
+  document.getElementById('tab-reg').classList.toggle('active',t==='reg');
+  document.getElementById('l-err').textContent='';
+  document.getElementById('r-err').textContent='';
+}
+// Alias
+function switchTab(t){alternarAba(t);}
+
+async function doLogin(){
+  const user=document.getElementById('l-user').value.trim().toUpperCase().replace(/\s+/g,'_');
+  const pass=document.getElementById('l-pass').value;
+  const err=document.getElementById('l-err');
+  if(!user){err.textContent='Digite seu usuário ou e-mail.';return;}
+  if(!pass){err.textContent='Digite sua senha.';return;}
+  err.textContent='Verificando...';
+  const db=await carregarContas();
+  // Busca por usuário OU e-mail
+  let chave=null;
+  if(db[user]){chave=user;}
+  else{// Procura pelo e-mail
+    for(const k in db){if(db[k].email&&db[k].email===user.toLowerCase()){chave=k;break;}}
+  }
+  if(!chave){err.textContent='❌ Conta não encontrada. Registre-se primeiro!';return;}
+  if(db[chave].passwordHash!==simpleHash(pass)){err.textContent='❌ Senha incorreta.';return;}
+  currentUser={...db[chave],username:chave};
+  err.textContent='';
+  iniciarJogoComUsuario();
+}
+
+async function doRegister(){
+  const user=document.getElementById('r-user').value.trim().toUpperCase().replace(/\s+/g,'_');
+  const email=document.getElementById('r-email').value.trim().toLowerCase();
+  const pass=document.getElementById('r-pass').value;
+  const conf=document.getElementById('r-conf').value;
+  const err=document.getElementById('r-err');
+  if(!user||user.length<2){err.textContent='❌ Usuário: mínimo 2 caracteres.';return;}
+  if(!/^[A-Z0-9_]+$/.test(user)){err.textContent='❌ Só letras, números e _.';return;}
+  if(email&&!/^[^@]+@[^@]+\.[^@]+$/.test(email)){err.textContent='❌ E-mail inválido.';return;}
+  if(pass.length<4){err.textContent='❌ Senha: mínimo 4 caracteres.';return;}
+  if(pass!==conf){err.textContent='❌ Senhas não coincidem.';return;}
+  err.textContent='Salvando...';
+  const db=await carregarContas();
+  if(db[user]){err.textContent='❌ Nome de usuário já existe!';return;}
+  // Verifica e-mail duplicado
+  if(email){for(const k in db){if(db[k].email===email){err.textContent='❌ E-mail já cadastrado!';return;}}}
+  db[user]={
+    passwordHash:simpleHash(pass),
+    email:email||'',
+    coins:0,level:1,
+    skins:['knight'],
+    equippedSkin:'knight',
+    stagesCleared:[],
+    totalKills:0,
+    criadoEm:Date.now(),
+  };
+  salvarContas(db);
+  currentUser={...db[user],username:user};
+  err.textContent='';
+  iniciarJogoComUsuario();
+}
+
+function jogarVisitante(){
+  const nome='VISITANTE_'+Math.floor(Math.random()*9000+1000);
+  currentUser={
+    username:nome,email:'',
+    passwordHash:'',
+    coins:0,level:1,
+    skins:['knight'],equippedSkin:'knight',
+    stagesCleared:[],totalKills:0,
+    visitante:true,
+  };
+  iniciarJogoComUsuario();
+}
+
+async function salvarProgressoUsuario(){
+  if(!currentUser||!G||currentUser.visitante)return;
+  const db=await carregarContas();
+  const u=currentUser.username;
+  if(!db[u])return;
+  db[u].coins=G.pl.coins;
+  db[u].level=G.pl.level;
+  db[u].stagesCleared=[...G.stagesCleared];
+  db[u].totalKills=G.totalKills;
+  db[u].skins=currentUser.skins||['knight'];
+  db[u].equippedSkin=currentUser.equippedSkin||'knight';
+  salvarContas(db);
+}
+
+// Compatibilidade
+async function saveUserProgress(){return salvarProgressoUsuario();}
+
+function iniciarJogoComUsuario(){
+  document.getElementById('tscr').style.display='none';
+  document.getElementById('mm').style.display='block';
+  const u=currentUser;
+  const lv=u.level||1;
+  G={
+    scene:'overworld',stage:null,stageIdx:null,
+    enemies:[],particles:[],texts:[],
+    bgA:0,keys:{},shakeT:0,slashT:0,slashX:350,slashY:250,slashF:1,flashT:0,flashCol:'#fff',
+    wave:0,maxWave:0,bossSpawned:false,
+    killCount:0,totalKills:u.totalKills||0,totalCoins:0,
+    stagesCleared:[...(u.stagesCleared||[])],
+    currentStageCleared:false,
+    ow:null,
+    pl:{
+      name:u.username.replace(/_/g,' '),
+      x:180,y:240,
+      hp:50+(lv-1)*12,maxHp:50+(lv-1)*12,
+      xp:0,xpNext:30,
+      atk:12+(lv-1)*2,def:4+(lv-1),spd:120,
+      level:lv,
+      coins:u.coins||0,pots:3,bombs:0,
+      stamina:100,maxStamina:100,
+      aoe:false,lifesteal:0,reflect:0,regen:false,
+      amulet:false,amuletUsed:false,revive:false,
+      atkMult:1,xpMult:1,xpMultStages:0,compass:false,
+      facing:1,moving:false,anim:0,invT:0,
+      purchased:new Set(),
+      skin:u.equippedSkin||'knight',
+    },
+  };
+  initOverworld();updateHUD();loop(0);
+  setTimeout(()=>tutStart(),500);
+}
+
+function startGame(){doLogin();}
+function startGameWithUser(){iniciarJogoComUsuario();}
+
+
+// ══════════════════════════════════════════════════════
+// ── SKIN SYSTEM ───────────────────────────────────────
+// ══════════════════════════════════════════════════════
+const SKINS=[
+  {id:'knight',  name:'Cavaleiro de Ferro',price:0,   rarity:'GRÁTIS',col:{armor:'#8898a8',trim:'#c8a030',cloak:'#3a8830',plume:'#c8a020',shield:'#1a6acc',blade:'#c8d0d8'}},
+  {id:'crimson', name:'Guarda Carmesim',   price:80,  rarity:'RARO',  col:{armor:'#a83020',trim:'#ffd700',cloak:'#6a0a10',plume:'#ff4040',shield:'#8a1010',blade:'#e8d0b0'}},
+  {id:'shadow',  name:'Caçador das Sombras',price:120,rarity:'ÉPICO', col:{armor:'#1a1828',trim:'#6040c0',cloak:'#0e0c18',plume:'#8060e0',shield:'#2a1060',blade:'#c0b8e8'}},
+  {id:'frost',   name:'Guardião Glacial',  price:100, rarity:'RARO',  col:{armor:'#4878b8',trim:'#a0e0ff',cloak:'#1a3868',plume:'#80d0ff',shield:'#1a4890',blade:'#d0f0ff'}},
+  {id:'golden',  name:'Campeão Dourado',   price:200, rarity:'LENDÁRIO',col:{armor:'#c8a020',trim:'#fff080',cloak:'#a87018',plume:'#ffe040',shield:'#806010',blade:'#ffffc0'}},
+  {id:'emerald', name:'Sábio Esmeralda',   price:150, rarity:'ÉPICO', col:{armor:'#208858',trim:'#60ffaa',cloak:'#104830',plume:'#40ff80',shield:'#104820',blade:'#b0ffd0'}},
+  {id:'obsidian',name:'Senhor Obsidiano',  price:180, rarity:'ÉPICO', col:{armor:'#1a1010',trim:'#e03020',cloak:'#100808',plume:'#ff2020',shield:'#180808',blade:'#ff8080'}},
+  {id:'azure',   name:'Paladino Azulado',  price:90,  rarity:'RARO',  col:{armor:'#2050a0',trim:'#80c0ff',cloak:'#102040',plume:'#60a8ff',shield:'#102860',blade:'#c0e8ff'}},
+  {id:'rose',    name:'Templária das Rosas',price:110,rarity:'RARO',  col:{armor:'#a04070',trim:'#ffaacc',cloak:'#601030',plume:'#ff60a0',shield:'#600828',blade:'#ffd0e0'}},
+  {id:'lava',    name:'Forjador de Lava',  price:160, rarity:'ÉPICO', col:{armor:'#602010',trim:'#ff8020',cloak:'#3a0c06',plume:'#ff6000',shield:'#380c04',blade:'#ffa040'}},
+  {id:'void',    name:'Ceifador do Vazio', price:250, rarity:'LENDÁRIO',col:{armor:'#080414',trim:'#d020ff',cloak:'#04020c',plume:'#a010e0',shield:'#060210',blade:'#e080ff'}},
+  {id:'divine',  name:'Arauto Divino',     price:300, rarity:'LENDÁRIO',col:{armor:'#e8e0b0',trim:'#ffffff',cloak:'#b8a050',plume:'#fff080',shield:'#c8b030',blade:'#ffffff'}},
+];
+const RARITY_COL={GRÁTIS:'#80a080',RARO:'#4080ff',ÉPICO:'#c060ff',LENDÁRIO:'#ffcc00'};
+
+let skinPreviewAnim=0;
+let skinShopOpen=false;
+let selectedSkinId=null;
+
+function toggleSkinShop(){
+  const s=document.getElementById('skinscr');
+  if(skinShopOpen){closeSkinShop();}
+  else{s.style.display='flex';skinShopOpen=true;renderSkinShop();skinPreviewLoop();}
+}
+function closeSkinShop(){
+  document.getElementById('skinscr').style.display='none';
+  skinShopOpen=false;
+}
+function renderSkinShop(){
+  if(!currentUser)return;
+  document.getElementById('skingo').textContent=G?G.pl.coins:(currentUser.coins||0);
+  const owned=currentUser.skins||['knight'];
+  document.getElementById('skin-owned-count').textContent=owned.length;
+  const equipped=currentUser.equippedSkin||'knight';
+  const grid=document.getElementById('skingrid');
+  grid.innerHTML='';
+  for(const sk of SKINS){
+    const isOwned=owned.includes(sk.id);
+    const isEquipped=equipped===sk.id;
+    const card=document.createElement('div');
+    card.className='sk-card'+(isEquipped?' equipped':!isOwned?' locked':'');
+    // Mini canvas preview
+    const prevcv=document.createElement('canvas');
+    prevcv.className='sk-preview';prevcv.width=56;prevcv.height=64;
+    drawSkinPreviewMini(prevcv,sk,0);
+    card.appendChild(prevcv);
+    // Name + rarity
+    const nm=document.createElement('div');nm.className='sk-name';
+    nm.innerHTML=`<span style="color:${RARITY_COL[sk.rarity]};font-size:3px;">[${sk.rarity}]</span><br>${sk.name}`;
+    card.appendChild(nm);
+    // Price / owned
+    const pr=document.createElement('div');pr.className='sk-price';
+    pr.textContent=isOwned?(isEquipped?'✅ EQUIPADA':'✔ POSSUÍDA'):`🪙 ${sk.price}`;
+    if(isOwned)pr.style.color=isEquipped?'#40e060':'#a0c080';
+    card.appendChild(pr);
+    if(isEquipped){const b=document.createElement('div');b.className='sk-equip-badge';b.textContent='★';card.appendChild(b);}
+    card.onclick=()=>onSkinClick(sk,card);
+    if(isOwned&&!isEquipped){
+      const eb=document.createElement('button');
+      eb.style.cssText='font-family:"Press Start 2P",monospace;font-size:4px;padding:3px 6px;margin-top:2px;background:linear-gradient(180deg,#204020,#102010);border:2px solid #40a040;color:#80ff80;cursor:pointer;width:100%;';
+      eb.textContent='EQUIPAR';
+      eb.onclick=(e)=>{e.stopPropagation();equipSkin(sk.id);};
+      card.appendChild(eb);
+    }
+    grid.appendChild(card);
+  }
+  updateSkinPreview(selectedSkinId||equipped);
+}
+
+function onSkinClick(sk,card){
+  selectedSkinId=sk.id;
+  updateSkinPreview(sk.id);
+  document.getElementById('skin-name-lbl').innerHTML=
+    `<span style="color:${RARITY_COL[sk.rarity]}">[${sk.rarity}]</span> ${sk.name}${sk.price===0?' · FREE':' · 🪙'+sk.price}`;
+  // Buy prompt if not owned
+  const owned=currentUser.skins||['knight'];
+  if(!owned.includes(sk.id)){
+    const coins=G?G.pl.coins:(currentUser.coins||0);
+    if(coins>=sk.price){
+      if(confirm(`Buy "${sk.name}" for 🪙${sk.price}?`)){buySkin(sk);}
+    } else {
+      showMsg(`Need 🪙${sk.price} — you have 🪙${coins}`);
+    }
+  }
+}
+
+function buySkin(sk){
+  if(!currentUser)return;
+  const coins=G?G.pl.coins:(currentUser.coins||0);
+  if(coins<sk.price){showMsg('Ouro insuficiente!');return;}
+  if(G)G.pl.coins-=sk.price;
+  currentUser.coins=(currentUser.coins||0)-sk.price;
+  if(!currentUser.skins)currentUser.skins=['knight'];
+  currentUser.skins.push(sk.id);
+  equipSkin(sk.id);
+  showMsg(`✨ ${sk.name} desbloqueada!`);
+  saveUserProgress();
+  renderSkinShop();
+}
+
+function equipSkin(id){
+  currentUser.equippedSkin=id;
+  if(G&&G.pl)G.pl.skin=id;
+  saveUserProgress();
+  renderSkinShop();
+  showMsg(`✨ ${SKINS.find(s=>s.id===id)?.name} equipada!`);
+}
+
+function getSkinColors(skinId){
+  const sk=SKINS.find(s=>s.id===(skinId||'knight'))||SKINS[0];
+  return sk.col;
+}
+
+function updateSkinPreview(id){
+  const cv=document.getElementById('skin-preview');
+  if(!cv)return;
+  const sk=SKINS.find(s=>s.id===id)||SKINS[0];
+  drawSkinPreviewFull(cv,sk,skinPreviewAnim);
+}
+
+function drawSkinPreviewMini(cv,sk,anim){
+  const c=cv.getContext('2d');c.imageSmoothingEnabled=false;
+  const W=56,H=64;c.clearRect(0,0,W,H);
+  // Background
+  const bg=c.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#0c1428');bg.addColorStop(1,'#060810');
+  c.fillStyle=bg;c.fillRect(0,0,W,H);
+  // Draw mini player at center
+  c.save();c.translate(28,46);c.scale(.55,.55);
+  drawPlayerWithSkin(c,sk.col,anim,1);
+  c.restore();
+}
+
+function drawSkinPreviewFull(cv,sk,anim){
+  const c=cv.getContext('2d');c.imageSmoothingEnabled=false;
+  const W=120,H=140;c.clearRect(0,0,W,H);
+  const bg=c.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#0e1830');bg.addColorStop(1,'#06080e');
+  c.fillStyle=bg;c.fillRect(0,0,W,H);
+  // Stars bg
+  for(let i=0;i<20;i++){
+    const sx=(i*37+11)%116,sy=(i*23+7)%60;
+    c.fillStyle=`rgba(180,180,255,${.15+Math.sin(anim*.8+i)*.1})`;
+    c.fillRect(sx,sy,1,1);
+  }
+  // Rarity glow
+  const rc=RARITY_COL[sk.rarity]||'#ffffff';
+  const rg=c.createRadialGradient(60,70,0,60,70,55);
+  rg.addColorStop(0,rc+'22');rg.addColorStop(1,'transparent');
+  c.fillStyle=rg;c.fillRect(0,0,W,H);
+  // Player
+  c.save();c.translate(60,100);
+  drawPlayerWithSkin(c,sk.col,anim,1);
+  c.restore();
+  // Skin name
+  c.font='5px "Press Start 2P"';c.textAlign='center';c.textBaseline='bottom';
+  c.fillStyle='rgba(0,0,0,.6)';c.fillText(sk.name,61,H-1);
+  c.fillStyle=rc;c.fillText(sk.name,60,H-2);
+}
+
+function drawPlayerWithSkin(c,col,anim,facing){
+  // Simplified but detailed player using skin colors
+  const bob=Math.sin(anim*2)*2;
+  const walk=anim*4;
+  const ls=Math.sin(walk)*5,rs=-Math.sin(walk)*5;
+  const breathe=Math.sin(anim*.8);
+  const pf=(x,y,w,h,fc)=>{c.fillStyle=fc;c.fillRect(x,y,w,h);};
+
+  // Shadow
+  c.fillStyle='rgba(0,0,0,.3)';c.beginPath();c.ellipse(0,32,14,4,0,0,Math.PI*2);c.fill();
+
+  // Legs
+  pf(2,15+rs,9,11,col.cloak);
+  pf(2,22+rs,10,8,col.armor);
+  pf(2,22+rs,10,3,shade2(col.armor,1.4));
+  pf(1,30+rs,12,5,shade2(col.armor,.6));
+  pf(-11,15+ls,9,11,shade2(col.cloak,1.2));
+  pf(-11,22+ls,10,8,shade2(col.armor,1.1));
+  pf(-11,22+ls,10,3,shade2(col.armor,1.5));
+  pf(-12,30+ls,12,5,shade2(col.armor,.65));
+  c.fillStyle=col.trim;pf(-12,21+ls,11,2,col.trim);pf(1,21+rs,11,2,col.trim);
+
+  // Torso
+  pf(-11,1+breathe,22,16,col.cloak);
+  pf(-10,0+breathe,20,15,shade2(col.armor,.8));
+  pf(-9,0+breathe,18,13,col.armor);
+  pf(-8,0+breathe,16,5,shade2(col.armor,1.4));
+  pf(-9,9+breathe,18,4,shade2(col.armor,.7));
+  // Emblem
+  c.fillStyle=col.trim;
+  pf(-1,1+breathe,2,11,col.trim);
+  pf(-4,5+breathe,8,2,col.trim);
+  // Belt
+  pf(-10,14+breathe,20,4,shade2(col.cloak,.5));
+  pf(-3,14+breathe,6,4,col.trim);
+  // Pauldrons
+  pf(-14,-2+breathe,5,7,shade2(col.armor,.8));
+  pf(-14,-2+breathe,4,3,col.armor);
+  pf(9,-2+breathe,5,7,shade2(col.armor,.8));
+  pf(9,-2+breathe,4,3,col.armor);
+  c.fillStyle=col.trim;
+  c.fillRect(-13,0+breathe,2,2);c.fillRect(-11,0+breathe,2,2);
+  c.fillRect(9,0+breathe,2,2);c.fillRect(11,0+breathe,2,2);
+
+  // Shield
+  pf(-26,-4+breathe,20,26,shade2(col.shield,.7));
+  pf(-25,-3+breathe,18,24,col.shield);
+  pf(-24,-3+breathe,16,10,shade2(col.shield,1.3));
+  c.fillStyle=col.trim;
+  pf(-19,-2+breathe,2,20,col.trim);
+  pf(-24,8+breathe,18,2,col.trim);
+  pf(-17,8+breathe,4,4,col.trim);
+
+  // Sword
+  pf(14,-5+breathe,8,4,col.trim);
+  pf(16,-22+breathe,4,18,shade2(col.blade,.8));
+  pf(17,-22+breathe,2,16,col.blade);
+  pf(16,-24+breathe,4,3,col.trim);
+  pf(17,-24+breathe,2,6,col.cloak);
+
+  // Head
+  pf(-12,-22+breathe,26,24,shade2(col.armor,.7));
+  pf(-11,-22+breathe,24,22,col.armor);
+  pf(-11,-22+breathe,24,7,shade2(col.armor,1.3));
+  // Visor
+  pf(-8,-14+breathe,16,6,shade2(col.armor,.3));
+  pf(-4,-14+breathe,8,6,'rgba(0,255,255,.25)');
+  // Plume
+  for(let pi=0;pi<9;pi++){
+    const ph=6+~~(Math.abs(pi-4)*1.5);
+    const pa=pi/8,pc=pi<3?shade2(col.plume,.8):pi<6?col.plume:shade2(col.plume,1.3);
+    c.fillStyle=pc;
+    c.fillRect(-9+pi*2,-32+breathe+~~(Math.sin(anim*3+pi*.4)*2),2,ph);
+  }
+  pf(-10,-34+breathe,20,4,shade2(col.plume,.5));
+  // Eyes
+  c.fillStyle='rgba(0,255,255,.5)';
+  c.fillRect(-6,-14+breathe,3,3);c.fillRect(3,-14+breathe,3,3);
+}
+
+// Lighter shade helper that works with hex strings
+function shade2(hex,f){
+  if(!hex||hex[0]!=='#')return hex||'#888';
+  const r=parseInt(hex.slice(1,3),16)||0;
+  const g=parseInt(hex.slice(3,5),16)||0;
+  const b=parseInt(hex.slice(5,7),16)||0;
+  const cl=v=>Math.max(0,Math.min(255,~~(v*f)));
+  return`#${cl(r).toString(16).padStart(2,'0')}${cl(g).toString(16).padStart(2,'0')}${cl(b).toString(16).padStart(2,'0')}`;
+}
+
+function skinPreviewLoop(){
+  if(!skinShopOpen)return;
+  skinPreviewAnim+=0.04;
+  updateSkinPreview(selectedSkinId||(currentUser?.equippedSkin||'knight'));
+  // Refresh mini previews every 30 frames
+  if(Math.floor(skinPreviewAnim*25)%30===0){
+    document.querySelectorAll('.sk-preview').forEach((cv,i)=>{
+      if(SKINS[i])drawSkinPreviewMini(cv,SKINS[i],skinPreviewAnim);
+    });
+  }
+  requestAnimationFrame(skinPreviewLoop);
+}
+
+
 async function loadRank(){try{const r=await window.storage.get(RK,true);return r?JSON.parse(r.value):[]}catch{return[];}}
 async function saveScore(e){
   let r=await loadRank();
@@ -1218,17 +1343,14 @@ function startGame(){
   const nm=document.getElementById('ni').value.trim().toUpperCase()||'KNIGHT';
   document.getElementById('tscr').style.display='none';
   document.getElementById('mm').style.display='block';
-  
-  // Initialize online system
-  initOnlineSystem(nm);
-  
   G={
-    scene:'worldmap',stage:null,stageIdx:null,
+    scene:'overworld',stage:null,stageIdx:null,
     enemies:[],particles:[],texts:[],
     bgA:0,keys:{},shakeT:0,slashT:0,slashX:350,slashY:250,slashF:1,flashT:0,flashCol:'#fff',
     wave:0,maxWave:0,bossSpawned:false,
     killCount:0,totalKills:0,totalCoins:0,
     stagesCleared:[],currentStageCleared:false,
+    ow:null,  // overworld state
     pl:{
       name:nm,x:180,y:240,
       hp:50,maxHp:50,xp:0,xpNext:30,
@@ -1241,24 +1363,15 @@ function startGame(){
       facing:1,moving:false,anim:0,invT:0,
       purchased:new Set(),
     },
-    // World map player
-    wm:{
-      x:80, y:110,   // start near stage 0 portal
-      vx:0, vy:0,
-      facing:'right',
-      anim:0, moving:false,
-      nearStage:null, nearNPC:null,
-    },
-    // Tutorial state
-    tut:{step:0, done:false, inBattle:false},
   };
-  openMap();updateHUD();updateWMHUD();loop(0);
-  // Show tutorial step 0 (world map intro)
-  showTutorial(0);
+  initOverworld();
+  updateHUD();
+  loop(0);
+  // Show tutorial after brief delay
+  setTimeout(()=>tutStart(),400);
 }
 
 function restartGame(){
-  shutdownOnlineSystem();
   document.getElementById('ovl').style.display='none';
   document.getElementById('tscr').style.display='flex';
   cancelAnimationFrame(RAF);G=null;
@@ -1273,7 +1386,7 @@ function continueRun(){
   G.killCount=0;G.currentStageCleared=false;
   document.getElementById('nextbtn').style.display='none';
   updateHUD();
-  if(G.stageIdx!==null)beginStage(G.stageIdx);else openMap();
+  returnToOverworld();
 }
 
 // ── MAP ───────────────────────────────────────────────
@@ -1284,55 +1397,37 @@ function isOpen(s){
   return G.stagesCleared.includes(s.id-1);
 }
 function openMap(){
-  // Hide all screen overlays
-  document.getElementById('mscr').style.display='none';
-  document.getElementById('shscr').style.display='none';
+  // Show old canvas map (for minimap-based map toggle)
+  document.getElementById('mscr').style.display='flex';
+  if(G){G.scene='map';drawWorldMap();}
+}
+function returnToOverworld(){
+  // ⚠️ LIMPAR teclas presas da batalha
+  if(G){G.keys={};}
+  // Fechar todos os overlays
+  document.getElementById('owdlg').style.display='none';
+  document.getElementById('sc').style.display='none';
+  document.getElementById('nextbtn').style.display='none';
   if(G){
-    G.scene='worldmap';
-    // Position wm player near last cleared stage (or start)
-    if(G.stageIdx!==null){
-      const wp=wmStagePos(G.stageIdx);
-      G.wm.x=wp.x-40; G.wm.y=wp.y+18;
+    G.scene='overworld';
+    G.enemies=[];
+    // Limpar estado de diálogo
+    if(G.ow){
+      G.ow.dialog=null;
+      // Reposicionar perto do último estágio
+      if(G.stageIdx!==null){
+        const s=STAGES[G.stageIdx];
+        G.ow.px=owX(s.mx)+35;
+        G.ow.py=owY(s.my)+30;
+      }
     }
-    // Show worldmap HUD, hide battle HUD
-    document.getElementById('wmhud').style.display='flex';
-    document.getElementById('hud').style.display='none';
-    document.getElementById('mm').style.display='none';
-    updateWMHUD();
-    // Tutorial: first worldmap visit
-    if(G.tut&&!G.tut.done&&G.tut.step===0){showTutorial(0);}
   }
 }
 function toggleMap(){
-  if(!G)return;
-  if(G.scene==='worldmap'){
-    // Go back to battle if there's an active stage
-    if(G.stageIdx!==null&&!G.currentStageCleared){
-      closeWMDialog();
-      G.scene='battle';
-      document.getElementById('wmhud').style.display='none';
-      document.getElementById('hud').style.display='flex';
-      document.getElementById('mm').style.display='block';
-      hideTutorial();
-    }
-  } else if(G.scene==='battle'){
-    openMap();
-    // Tutorial: tell player about merchant when returning to map
-    if(G.tut&&!G.tut.done&&G.tut.step===2)showTutorial(2);
-  } else if(G.scene==='map'){
-    openMap();
-  }
+  const s=document.getElementById('mscr');
+  if(s.style.display==='flex'){s.style.display='none';if(G)G.scene=G.scene==='map'?'overworld':'battle';}
+  else{s.style.display='flex';if(G)G.scene='map';drawWorldMap();}
 }
-// Compute world map position for a stage (scaled to current canvas)
-function wmStagePos(id){
-  const s=STAGES[id];
-  const sx=Math.round(s.mx*(CW-120)/480+60);
-  const sy=Math.round(s.my*(CH*0.72)/290+38);
-  return{x:sx,y:sy};
-}
-// Merchant position on world map
-function wmMerchantPos(){return{x:CW-64,y:Math.round(CH*.46)};}
-
 function drawWorldMap(){
   const mc=document.getElementById('mapcv');
   const cx=mc.getContext('2d');
@@ -1347,12 +1442,12 @@ function drawWorldMap(){
 
   // Biome-colored terrain bands
   const bands=[
-    {y:0,  h:55, col:'#2a0a04', col2:'#3a1008', label:'ACT I · VOLCANIC WASTES'},
-    {y:55, h:55, col:'#0a1c08', col2:'#102208', label:'ACT II · ANCIENT FOREST'},
-    {y:110,h:55, col:'#081828', col2:'#0a2030', label:'ACT III · FROZEN PEAKS'},
-    {y:165,h:55, col:'#0c1808', col2:'#10200c', label:'ACT IV · CURSED BOG'},
-    {y:220,h:45, col:'#0e0820', col2:'#140a28', label:'ACT V · SKY REALM'},
-    {y:265,h:35, col:'#1a0408', col2:'#220608', label:'FINAL · CHAOS ABYSS'},
+    {y:0,  h:55, col:'#2a0a04', col2:'#3a1008', label:'ATO I · TERRAS VULCÂNICAS'},
+    {y:55, h:55, col:'#0a1c08', col2:'#102208', label:'ATO II · FLORESTA ANTIGA'},
+    {y:110,h:55, col:'#081828', col2:'#0a2030', label:'ATO III · PICOS GELADOS'},
+    {y:165,h:55, col:'#0c1808', col2:'#10200c', label:'ATO IV · PÂNTANO MALDITO'},
+    {y:220,h:45, col:'#0e0820', col2:'#140a28', label:'ATO V · REINO DO CÉU'},
+    {y:265,h:35, col:'#1a0408', col2:'#220608', label:'FINAL · ABISMO DO CAOS'},
   ];
   bands.forEach(b=>{
     const bg=cx.createLinearGradient(0,b.y,W2,b.y+b.h);
@@ -1494,7 +1589,7 @@ function mapClick(e){
   for(const s of STAGES){
     const dx=mx-s.mx,dy=my-s.my;
     if(Math.sqrt(dx*dx+dy*dy)<16){
-      if(!isOpen(s)){document.getElementById('mlbl').textContent=s.id>0?`🔒 Clear S${s.id}: ${STAGES[s.id-1].name} first`:'🔒 Locked';return;}
+      if(!isOpen(s)){document.getElementById('mlbl').textContent=s.id>0?`🔒 Complete F${s.id}: ${STAGES[s.id-1].name} primeiro`:'🔒 Bloqueada';return;}
       document.getElementById('mscr').style.display='none';
       beginStage(s.id);return;
     }
@@ -1511,21 +1606,12 @@ function beginStage(id){
   document.getElementById('sc').style.display='none';
   document.getElementById('stnm').textContent=`S${id+1}: ${s.name}`;
   document.getElementById('stsb').textContent=s.act;
-  // Switch HUDs: battle on, worldmap off
-  document.getElementById('hud').style.display='flex';
-  document.getElementById('wmhud').style.display='none';
-  document.getElementById('mm').style.display='block';
-  closeWMDialog();hideTutorial();
   updateHUD();spawnWave();showMsg(`⚔ ${s.name}`);
-  // Tutorial: first battle
-  if(G.tut&&!G.tut.done&&!G.tut.inBattle){G.tut.inBattle=true;setTimeout(()=>showTutorial(1),1500);}
 }
 function nextStage(){
   if(!G||!G.stage)return;
   document.getElementById('nextbtn').style.display='none';
-  const nxt=G.stageIdx+1;
-  if(nxt<STAGES.length)beginStage(nxt);
-  else openMap();
+  returnToOverworld();
 }
 function spawnWave(){
   if(!G||!G.stage)return;
@@ -1537,7 +1623,7 @@ function spawnWave(){
     const bt=ET[s.boss];if(!bt)return;
     const hp=~~(bt.hp*(1+G.stageIdx*.08));
     const e=mkE(bt,true,480,210);e.hp=hp;e.maxHp=hp;
-    G.enemies.push(e);showMsg(`⚠ BOSS: ${bt.name}!`);
+    G.enemies.push(e);showMsg(`⚠ CHEFE: ${bt.name}!`);
   } else {
     const cnt=Math.min(G.wave+1,s.maxE);
     for(let i=0;i<cnt;i++){
@@ -1548,9 +1634,9 @@ function spawnWave(){
       e.hp=~~(e.hp*sc2);e.maxHp=e.hp;e.atk=~~(e.atk*sc2);
       G.enemies.push(e);
     }
-    showMsg(`Wave ${G.wave}/${G.maxWave-1} — ${cnt} enemies!`);
+    showMsg(`Onda ${G.wave}/${G.maxWave-1} — ${cnt} inimigos!`);
   }
-  document.getElementById('stwv').textContent=isBoss?'⚠ BOSS':`W${G.wave}/${G.maxWave}`;
+  document.getElementById('stwv').textContent=isBoss?'⚠ CHEFE':`O${G.wave}/${G.maxWave}`;
 }
 function mkE(t,isBoss,x,y){
   return{...JSON.parse(JSON.stringify(t)),x,y,alive:true,isBoss,anim:0,hurtT:0,deathA:1,
@@ -1561,7 +1647,7 @@ function mkE(t,isBoss,x,y){
 // ── COMBAT ────────────────────────────────────────────
 function plAtk(){
   if(!G||G.scene!=='battle')return;
-  if(G.pl.stamina<10){showMsg('⚡ No stamina!');return;}
+  if(G.pl.stamina<10){showMsg('⚡ Sem stamina!');return;}
   const alive=G.enemies.filter(e=>e.alive);if(!alive.length)return;
   G.pl.stamina=Math.max(0,G.pl.stamina-15);
   const tgts=G.pl.aoe?alive:[closest()].filter(Boolean);
@@ -1584,10 +1670,10 @@ function enAtk(e){
   if(!G||!e.alive||G.pl.invT>0)return;
   const dmg=Math.max(1,e.atk-G.pl.def+rng(-2,3));
   const fin=G.pl.reflect>0?Math.max(0,dmg-G.pl.reflect):dmg;
-  if(G.pl.reflect>0&&G.pl.reflect>=dmg){addFT('REFLECT!',G.pl.x,G.pl.y-50,'#80c0ff');e.hp=Math.max(0,e.hp-2);if(e.hp<=0){killEnemy(e);return;}}
+  if(G.pl.reflect>0&&G.pl.reflect>=dmg){addFT('REFLETIDO!',G.pl.x,G.pl.y-50,'#80c0ff');e.hp=Math.max(0,e.hp-2);if(e.hp<=0){killEnemy(e);return;}}
   if(G.pl.hp-fin<=0){
-    if(G.pl.revive&&!G.pl.amuletUsed){G.pl.hp=~~(G.pl.maxHp*.3);G.pl.amuletUsed=true;G.pl.revive=false;G.pl.invT=2;showMsg('🔥 Phoenix saved you!');updateHUD();return;}
-    if(G.pl.amulet&&!G.pl.amuletUsed){G.pl.hp=1;G.pl.amuletUsed=true;G.pl.invT=1.5;showMsg('☠️ Amulet saved you!');updateHUD();return;}
+    if(G.pl.revive&&!G.pl.amuletUsed){G.pl.hp=~~(G.pl.maxHp*.3);G.pl.amuletUsed=true;G.pl.revive=false;G.pl.invT=2;showMsg('🔥 A Fênix te salvou!');updateHUD();return;}
+    if(G.pl.amulet&&!G.pl.amuletUsed){G.pl.hp=1;G.pl.amuletUsed=true;G.pl.invT=1.5;showMsg('☠️ O Amuleto te salvou!');updateHUD();return;}
     G.pl.hp=0;updateHUD();setTimeout(playerDeath,500);return;
   }
   G.pl.hp=Math.max(0,G.pl.hp-fin);G.pl.invT=.35;
@@ -1595,19 +1681,19 @@ function enAtk(e){
 }
 function usePot(){
   if(!G)return;
-  if(G.pl.pots<=0){showMsg('No potions!');return;}
-  if(G.pl.hp>=G.pl.maxHp){showMsg('HP full!');return;}
+  if(G.pl.pots<=0){showMsg('Sem poções!');return;}
+  if(G.pl.hp>=G.pl.maxHp){showMsg('Vida cheia!');return;}
   const h=~~(G.pl.maxHp*.4);
   G.pl.hp=Math.min(G.pl.maxHp,G.pl.hp+h);G.pl.pots--;
   addFT('+'+h+'HP',G.pl.x,G.pl.y-40,'#40ff80');addPt(G.pl.x,G.pl.y,'#40ff80',8);
-  showMsg('🧪 +'+h+' HP');updateHUD();
+  showMsg('🧪 +'+h+' VIDA');updateHUD();
 }
 function useBomb(){
-  if(!G||!G.pl.bombs){showMsg('No bombs!');return;}
+  if(!G||!G.pl.bombs){showMsg('Sem bombas!');return;}
   G.pl.bombs--;
   const alive=G.enemies.filter(e=>e.alive);
   for(const e of alive){const d=Math.max(1,50-e.def);e.hp=Math.max(0,e.hp-d);addFT('-'+d,e.x,e.y-28,'#ff8020');addPt(e.x,e.y,'#ff6010',10);if(e.hp<=0)killEnemy(e);}
-  addPt(G.pl.x,G.pl.y-20,'#ff8020',20);showMsg('💣 BOOM! '+alive.length+' hit!');updateHUD();
+  addPt(G.pl.x,G.pl.y-20,'#ff8020',20);showMsg('💣 BOOM! '+alive.length+' atingidos!');updateHUD();
 }
 function killEnemy(e){
   if(!e.alive)return;
@@ -1632,10 +1718,10 @@ function killEnemy(e){
 function gainXP(a){
   if(!G)return;G.pl.xp+=a;
   while(G.pl.xp>=G.pl.xpNext){
-    G.pl.xp-=G.pl.xpNext;G.pl.level++;G.pl.xpNext=~~(G.pl.xpNext*1.1);
+    G.pl.xp-=G.pl.xpNext;G.pl.level++;G.pl.xpNext=~~(G.pl.xpNext*1.4);
     G.pl.maxHp+=12;G.pl.hp=Math.min(G.pl.maxHp,G.pl.hp+20);
-    G.pl.atk+=2;G.pl.def+=71;G.pl.stamina=G.pl.maxStamina;
-    addFT('LEVEL UP!',G.pl.x,G.pl.y-60,'#ffd700');showMsg('🎉 LV'+G.pl.level+'!');
+    G.pl.atk+=2;G.pl.def+=1;G.pl.stamina=G.pl.maxStamina;
+    addFT('SUBIU DE NÍVEL!',G.pl.x,G.pl.y-60,'#ffd700');showMsg('🎉 NV '+G.pl.level+'!');
   }
   updateHUD();
 }
@@ -1648,57 +1734,43 @@ function stageComplete(){
   if(G.pl.xpMultStages>0){G.pl.xpMultStages--;if(!G.pl.xpMultStages)G.pl.xpMult=1;}
   const bonus=rng(...G.stage.loot.coins)*2;
   G.pl.coins+=bonus;G.totalCoins+=bonus;
-  addFT('+'+bonus+'🪙 CLEAR!',350,190,'#ffd700');
+  addFT('+'+bonus+'🪙 COMPLETO!',350,190,'#ffd700');
   saveScore({name:G.pl.name,coins:G.pl.coins,level:G.pl.level,stage:G.stageIdx+1,kills:G.totalKills});
+  saveUserProgress();
   const nxt=G.stageIdx+1,hasN=nxt<STAGES.length;
-  document.getElementById('scr').textContent=`+${bonus} Gold  •  ${G.killCount} Kills${hasN?'  → S'+(nxt+1)+': '+STAGES[nxt].name:'  ★ ALL CLEAR ★'}`;
+  document.getElementById('scr').textContent=`+${bonus} Ouro  •  ${G.killCount} Abates${hasN?'  → F'+(nxt+1)+': '+STAGES[nxt].name:'  ★ TUDO COMPLETO ★'}`;
   document.getElementById('sc').style.display='flex';
   const nb=document.getElementById('nextbtn');nb.style.display='inline-block';
-  nb.textContent=hasN?`▶ S${nxt+1}`:'▶ MAP';
+  nb.textContent=hasN?`▶ F${nxt+1}`:'▶ MAPA';
   updateHUD();
-  // Tutorial step 2: after first clear, hint about worldmap M key
-  if(G.tut&&!G.tut.done&&G.stagesCleared.length===1){setTimeout(()=>{if(G&&G.scene==='battle')showTutorial(2);},3200);}
-  setTimeout(()=>{document.getElementById('sc').style.display='none';if(G.stageIdx===19)setTimeout(victory,500);},3000);
+  setTimeout(()=>{
+    document.getElementById('sc').style.display='none';
+    if(G&&G.stageIdx===19)setTimeout(victory,500);
+    else returnToOverworld();
+  },3200);
 }
 function playerDeath(){
   if(!G)return;G.scene='dead';
   saveScore({name:G.pl.name,coins:G.pl.coins,level:G.pl.level,stage:G.stageIdx+1,kills:G.totalKills});
-  document.getElementById('ovlt').innerHTML='<span style="color:#e02020">💀 YOU FELL</span>';
-  document.getElementById('fst').textContent=`Stage ${G.stageIdx+1}/20  •  LV${G.pl.level}  •  🪙${G.pl.coins}\nKills: ${G.totalKills}  •  Cleared: ${G.stagesCleared.length}`;
-  document.getElementById('ovls').textContent='Score saved. Continue or start fresh.';
+  document.getElementById('ovlt').innerHTML='<span style="color:#e02020">💀 VOCÊ CAIU</span>';
+  document.getElementById('fst').textContent=`Fase ${G.stageIdx+1}/20  •  NV${G.pl.level}  •  🪙${G.pl.coins}\nAbates: ${G.totalKills}  •  Completas: ${G.stagesCleared.length}`;
+  document.getElementById('ovls').textContent='Progresso salvo. Continue ou recomece.';
   document.getElementById('ovl').style.display='flex';
-  
-  // Notify online
-  addSystemMessage(`💀 ${G.pl.name} caiu em batalha...`);
 }
 function victory(){
   if(!G)return;G.scene='win';
   saveScore({name:G.pl.name,coins:G.pl.coins,level:G.pl.level,stage:20,kills:G.totalKills});
-  document.getElementById('ovlt').innerHTML='<span style="color:#ffd700">🏆 VICTORY!</span>';
-  document.getElementById('fst').textContent=`All 20 Stages Cleared!\nLV${G.pl.level}  •  🪙${G.pl.coins}  •  ${G.totalKills} Kills`;
-  document.getElementById('ovls').textContent='The Ember Realm is saved!';
+  document.getElementById('ovlt').innerHTML='<span style="color:#ffd700">🏆 VITÓRIA!</span>';
+  document.getElementById('fst').textContent=`Todas as 20 Fases Completas!\nNV${G.pl.level}  •  🪙${G.pl.coins}  •  ${G.totalKills} Abates`;
+  document.getElementById('ovls').textContent='O Reino das Brasas está salvo!';
   document.getElementById('ovl').style.display='flex';
-  
-  // Notify online
-  addSystemMessage(`🏆 ${G.pl.name} completou todas as fases!`);
 }
 
 // ── SHOP UI ───────────────────────────────────────────
 function toggleShop(){
   const s=document.getElementById('shscr');
-  if(s.style.display==='flex'){
-    s.style.display='none';
-    if(G&&G.scene==='shop'){
-      // Return to where we came from
-      if(G._shopFrom==='worldmap'){G.scene='worldmap';document.getElementById('wmhud').style.display='flex';}
-      else G.scene='battle';
-    }
-  } else {
-    s.style.display='flex';
-    G._shopFrom=G?G.scene:null;
-    if(G)G.scene='shop';
-    renderShop();
-  }
+  if(s.style.display==='flex'){s.style.display='none';if(G&&G.scene==='shop')G.scene='battle';}
+  else{s.style.display='flex';if(G)G.scene='shop';renderShop();}
 }
 function renderShop(){
   if(!G)return;
@@ -1714,15 +1786,10 @@ function renderShop(){
 }
 function buyItem(it){
   if(!G)return;
-  if(G.pl.coins<it.price){showMsg('Not enough gold!');return;}
+  if(G.pl.coins<it.price){showMsg('Ouro insuficiente!');return;}
   G.pl.coins-=it.price;it.fn();
   if(!it.stack)G.pl.purchased.add(it.id);
   showMsg('✅ '+it.name);updateHUD();renderShop();
-  
-  // Notify online for special purchases
-  if(it.price >= 100) {
-    addSystemMessage(`🛒 ${G.pl.name} comprou ${it.name}!`);
-  }
 }
 
 // ── RANK UI ───────────────────────────────────────────
@@ -1734,7 +1801,7 @@ function toggleRank(){
 async function renderRank(){
   const rows=await loadRank();
   const list=document.getElementById('rklist');list.innerHTML='';
-  if(!rows.length){list.innerHTML='<div style="font-size:6px;color:#406080;padding:16px;text-align:center">No scores yet!</div>';return;}
+  if(!rows.length){list.innerHTML='<div style="font-size:6px;color:#406080;padding:16px;text-align:center">Sem pontuações ainda!</div>';return;}
   rows.forEach((r,i)=>{
     const me=G&&r.name===G.pl.name;
     const d=document.createElement('div');d.className='rr'+(me?' me':'');
@@ -1749,15 +1816,8 @@ async function renderRank(){
 function loop(ts){
   const dt=Math.min((ts-lastT)/1000,.05);lastT=ts;
   if(G&&G.scene==='battle')update(dt);
-  else if(G&&G.scene==='worldmap')updateWorldMap(dt);
-  render();
-  if(G&&G.scene==='battle')drawMinimap();
-  
-  // Update online player tags in render
-  if(G) {
-    renderPlayerTags();
-  }
-  
+  if(G&&G.scene==='overworld')updateOverworld(dt);
+  render();drawMinimap();
   RAF=requestAnimationFrame(loop);
 }
 
@@ -1797,12 +1857,6 @@ function render(){
   const si=G&&G.stageIdx!==null?G.stageIdx:0;
   const st=STAGES[Math.min(si,19)];
   const t=G?G.bgA:Date.now()/1000;
-
-  // ── WORLD MAP SCENE ──────────────────────────────────
-  if(G&&G.scene==='worldmap'){
-    renderWorldMap(t);
-    return;
-  }
 
   ctx.save();
   if(G&&G.shakeT>0){
@@ -1936,8 +1990,8 @@ function render(){
     ctx.fillStyle='rgba(10,5,1,.72)';ctx.fillRect(3,300,136,26);
     ctx.strokeStyle='rgba(180,130,50,.5)';ctx.lineWidth=1;ctx.strokeRect(3,300,136,26);
     ctx.font='5px "Press Start 2P"';ctx.textAlign='left';
-    ctx.fillStyle='rgba(240,190,70,.85)';ctx.fillText(`WAVE ${G.wave}/${G.maxWave}`,8,312);
-    ctx.fillStyle='rgba(80,200,255,.75)';ctx.fillText(`⚔ ${wlive} enemies`,8,322);
+    ctx.fillStyle='rgba(240,190,70,.85)';ctx.fillText(`ONDA ${G.wave}/${G.maxWave}`,8,312);
+    ctx.fillStyle='rgba(80,200,255,.75)';ctx.fillText(`⚔ ${wlive} inimigos`,8,322);
 
     // ── VIGNETTE OVERLAY ──
     const vg=ctx.createRadialGradient(CW/2,CH/2,CW*.25,CW/2,CH/2,CW*.75);
@@ -1958,6 +2012,9 @@ function render(){
     // ── CRT SCANLINES ──
     drawScanlines();
 
+  } else if(G&&G.scene==='overworld'){
+    drawOverworld();
+    drawScanlines();
   } else {
     ctx.globalAlpha=.14;drawBG(st);
     const hg2=ctx.createLinearGradient(0,220,0,275);
@@ -2694,6 +2751,11 @@ function drawPlayer(p){
   const ba=-Math.sin(walk)*2.5;       // shield arm counter-swing
   const breathe=Math.sin(p.anim*.8)*1;
 
+  // Get skin palette
+  const sk=getSkinColors(p.skin);
+  const C_ARMOR=sk.armor, C_TRIM=sk.trim, C_CLOAK=sk.cloak;
+  const C_PLUME=sk.plume, C_SHIELD=sk.shield, C_BLADE=sk.blade;
+
   ctx.save();
   ctx.translate(~~p.x,~~(p.y+bob));
   ctx.scale(p.facing,1);
@@ -2706,187 +2768,119 @@ function drawPlayer(p){
   ctx.beginPath();ctx.ellipse(0,32,16,4.5,0,0,Math.PI*2);ctx.fill();
 
   // ── LEGS ─────────────────────────────────────────────
-  // Right leg (back)
-  const rl=['#2d6020','#4a9830','#6ab848','#425070','#5a6888','#8090a8','#2a3040','#3a4555'];
-  ctx.fillStyle=rl[0];ctx.fillRect(2,15+rs,9,11);   // tabard
-  ctx.fillStyle=rl[3];ctx.fillRect(2,22+rs,10,8);   // greave
-  ctx.fillStyle=rl[5];ctx.fillRect(2,22+rs,10,3);   // greave highlight
-  ctx.fillStyle=rl[6];ctx.fillRect(1,30+rs,12,5);   // boot
-  ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(3,30+rs,5,2); // boot shine
-
-  // Left leg (front)
-  ctx.fillStyle=rl[1];ctx.fillRect(-11,15+ls,9,11); // tabard
-  ctx.fillStyle=rl[4];ctx.fillRect(-11,22+ls,10,8); // greave
-  ctx.fillStyle=rl[5];ctx.fillRect(-11,22+ls,10,3); // greave highlight
-  ctx.fillStyle=rl[6];ctx.fillRect(-12,30+ls,12,5); // boot
-  ctx.fillStyle='rgba(255,255,255,.12)';ctx.fillRect(-10,30+ls,5,2); // boot shine
-
-  // Knee guards
-  ctx.fillStyle='#c8a030';
-  ctx.fillRect(-12,21+ls,11,3);ctx.fillRect(1,21+rs,11,3);
+  const pf=(x,y,w,h,c)=>{ctx.fillStyle=c;ctx.fillRect(x,y,w,h);};
+  pf(2,15+rs,9,11,C_CLOAK);
+  pf(2,22+rs,10,8,shade(C_ARMOR,.9));
+  pf(2,22+rs,10,3,shade(C_ARMOR,1.4));
+  pf(1,30+rs,12,5,shade(C_ARMOR,.6));
+  pf('rgba(255,255,255,.12)'.slice(0,0),30+rs,5,2,'rgba(255,255,255,.12)');
+  pf(-11,15+ls,9,11,shade(C_CLOAK,1.2));
+  pf(-11,22+ls,10,8,shade(C_ARMOR,1.0));
+  pf(-11,22+ls,10,3,shade(C_ARMOR,1.5));
+  pf(-12,30+ls,12,5,shade(C_ARMOR,.65));
+  pf(-12,21+ls,11,3,C_TRIM);pf(1,21+rs,11,3,C_TRIM);
 
   // ── TORSO ─────────────────────────────────────────────
-  // Tabard base (green)
-  ctx.fillStyle='#3a8830';ctx.fillRect(-11,1+breathe,22,16);
-  // Chest plate layers
-  ctx.fillStyle='#5a6878';ctx.fillRect(-10,0+breathe,20,15);    // dark bg
-  ctx.fillStyle='#8898a8';ctx.fillRect(-9,0+breathe,18,13);     // mid
-  ctx.fillStyle='#b0c0d0';ctx.fillRect(-8,0+breathe,16,5);      // highlight
-  ctx.fillStyle='#6a7a8a';ctx.fillRect(-9,9+breathe,18,4);      // shadow band
-  // Chest engraving lines
+  pf(-11,1+breathe,22,16,C_CLOAK);
+  pf(-10,0+breathe,20,15,shade(C_ARMOR,.8));
+  pf(-9,0+breathe,18,13,C_ARMOR);
+  pf(-8,0+breathe,16,5,shade(C_ARMOR,1.4));
+  pf(-9,9+breathe,18,4,shade(C_ARMOR,.7));
   ctx.fillStyle='rgba(0,0,0,.2)';
-  ctx.fillRect(-3,0+breathe,1,13);ctx.fillRect(2,0+breathe,1,13); // center line
-  // Green cross emblem
-  ctx.fillStyle='#50c040';
-  ctx.fillRect(-1,1+breathe,2,11); // vertical
-  ctx.fillRect(-4,5+breathe,8,2);  // horizontal
-  ctx.fillStyle='#70e060';
-  ctx.fillRect(-1,1+breathe,1,5);  // cross highlight
+  ctx.fillRect(-3,0+breathe,1,13);ctx.fillRect(2,0+breathe,1,13);
+  // Trim cross emblem
+  pf(-1,1+breathe,2,11,C_TRIM);pf(-4,5+breathe,8,2,C_TRIM);
+  ctx.fillStyle=shade(C_TRIM,1.4);ctx.fillRect(-1,1+breathe,1,5);
   // Belt
-  ctx.fillStyle='#7a4a18';ctx.fillRect(-10,14+breathe,20,4);
-  ctx.fillStyle='#9a6028';ctx.fillRect(-10,14+breathe,20,2);    // belt highlight
+  pf(-10,14+breathe,20,4,shade(C_CLOAK,.5));
+  pf(-10,14+breathe,20,2,shade(C_CLOAK,.7));
   // Buckle
-  ctx.fillStyle='#f0c840';ctx.fillRect(-3,14+breathe,6,4);
-  ctx.fillStyle='#ffe070';ctx.fillRect(-2,14+breathe,4,2);
-  ctx.fillStyle='#2a1a00';ctx.fillRect(-1,15+breathe,2,2);      // buckle hole
-  // Pauldrons (shoulder armor)
-  ctx.fillStyle='#5a6878';ctx.fillRect(-14,-2+breathe,5,8);   // L pauldron
-  ctx.fillStyle='#8898a8';ctx.fillRect(-14,-2+breathe,4,4);
-  ctx.fillStyle='#5a6878';ctx.fillRect(9,-2+breathe,5,8);     // R pauldron
-  ctx.fillStyle='#8898a8';ctx.fillRect(9,-2+breathe,4,4);
-  // Pauldron rivets
-  ctx.fillStyle='#c8a030';
-  ctx.fillRect(-13,0+breathe,2,2);ctx.fillRect(-11,0+breathe,2,2); // L rivets
-  ctx.fillRect(9,0+breathe,2,2);ctx.fillRect(11,0+breathe,2,2);    // R rivets
+  pf(-3,14+breathe,6,4,C_TRIM);pf(-2,14+breathe,4,2,shade(C_TRIM,1.3));
+  ctx.fillStyle='rgba(0,0,0,.5)';ctx.fillRect(-1,15+breathe,2,2);
+  // Pauldrons
+  pf(-14,-2+breathe,5,8,shade(C_ARMOR,.8));pf(-14,-2+breathe,4,4,C_ARMOR);
+  pf(9,-2+breathe,5,8,shade(C_ARMOR,.8));pf(9,-2+breathe,4,4,C_ARMOR);
+  ctx.fillStyle=C_TRIM;
+  ctx.fillRect(-13,0+breathe,2,2);ctx.fillRect(-11,0+breathe,2,2);
+  ctx.fillRect(9,0+breathe,2,2);ctx.fillRect(11,0+breathe,2,2);
 
   // ── SHIELD ARM (left side) ────────────────────────────
-  // Upper arm
-  ctx.fillStyle='#6878a0';ctx.fillRect(-17,0+ba,6,12);
-  ctx.fillStyle='#8898b8';ctx.fillRect(-17,0+ba,5,5);
-  // Vambrace
-  ctx.fillStyle='#5a6880';ctx.fillRect(-18,11+ba,7,8);
-  ctx.fillStyle='#7888a0';ctx.fillRect(-18,11+ba,7,3);
+  pf(-17,0+ba,6,12,shade(C_ARMOR,.85));pf(-17,0+ba,5,5,C_ARMOR);
+  pf(-18,11+ba,7,8,shade(C_ARMOR,.75));pf(-18,11+ba,7,3,shade(C_ARMOR,1.1));
 
   // ── SHIELD ────────────────────────────────────────────
   const sy=ba;
-  // Shield shadow
   ctx.fillStyle='rgba(0,0,0,.25)';ctx.fillRect(-31,-7+sy,22,26);
-  // Shield body
-  ctx.fillStyle='#0e3490';ctx.fillRect(-30,-8+sy,20,26);
-  // Shield top half highlight
-  ctx.fillStyle='#1850c0';ctx.fillRect(-29,-7+sy,18,10);
-  // Shield bottom half shadow
-  ctx.fillStyle='#0a2068';ctx.fillRect(-29,4+sy,18,13);
-  // Shield curved bottom
-  ctx.fillStyle='#0e3490';
+  pf(-30,-8+sy,20,26,shade(C_SHIELD,.8));
+  pf(-29,-7+sy,18,10,shade(C_SHIELD,1.3));
+  pf(-29,4+sy,18,13,shade(C_SHIELD,.7));
+  ctx.fillStyle=shade(C_SHIELD,.8);
   [[1,14],[0,15],[0,16]].forEach(([ox,oy])=>ctx.fillRect(-29+ox,oy+sy+1,18-ox*2,2));
-  // Gold cross
-  ctx.fillStyle='#d8b020';
-  ctx.fillRect(-21,-9+sy,4,28);  // vertical bar
-  ctx.fillRect(-30,-1+sy,22,4);  // horizontal bar
-  ctx.fillStyle='#f0d040';
-  ctx.fillRect(-21,-9+sy,2,14);  // cross highlight V
-  ctx.fillRect(-30,-1+sy,11,2);  // cross highlight H
-  // Green quarters
-  ctx.fillStyle='#2a8838';
-  ctx.fillRect(-29,-7+sy,8,9);   // top-left
-  ctx.fillRect(-29,4+sy,8,9);    // bottom-left
-  ctx.fillStyle='#38aa48';
-  ctx.fillRect(-28,-6+sy,4,4);   // TL highlight
-  ctx.fillRect(-28,5+sy,4,4);    // BL highlight
+  // Shield cross
+  pf(-21,-9+sy,4,28,C_TRIM);pf(-30,-1+sy,22,4,C_TRIM);
+  pf(-21,-9+sy,2,14,shade(C_TRIM,1.3));pf(-30,-1+sy,11,2,shade(C_TRIM,1.3));
+  // Shield quarters (cloak color)
+  pf(-29,-7+sy,8,9,shade(C_CLOAK,1.1));pf(-29,4+sy,8,9,shade(C_CLOAK,1.1));
+  pf(-28,-6+sy,4,4,shade(C_CLOAK,1.4));pf(-28,5+sy,4,4,shade(C_CLOAK,1.4));
   // Center gem
-  ctx.fillStyle='#e8e840';ctx.fillRect(-23,0+sy,6,5);
-  ctx.fillStyle='#fff880';ctx.fillRect(-22,0+sy,3,2);
-  ctx.fillStyle='#c09010';ctx.fillRect(-23,3+sy,6,2);
-  // Rim
-  ctx.strokeStyle='#c8a020';ctx.lineWidth=1.5;
-  ctx.strokeRect(-30,-8+sy,20,26);
-  // Boss shield glow
+  pf(-23,0+sy,6,5,C_TRIM);pf(-22,0+sy,3,2,shade(C_TRIM,1.4));pf(-23,3+sy,6,2,shade(C_TRIM,.7));
+  ctx.strokeStyle=C_TRIM;ctx.lineWidth=1.5;ctx.strokeRect(-30,-8+sy,20,26);
   if(p.level>8)glow(ctx,-20,-2+sy,18,`rgba(80,160,255,.12)`);
 
   // ── SWORD ARM (right side) ────────────────────────────
-  ctx.fillStyle='#6878a0';ctx.fillRect(11,0+sa*.6,6,12);
-  ctx.fillStyle='#8898b8';ctx.fillRect(11,0+sa*.6,5,5);
-  ctx.fillStyle='#5a6880';ctx.fillRect(10,11+sa*.6,7,8);
-  ctx.fillStyle='#7888a0';ctx.fillRect(10,11+sa*.6,7,3);
+  pf(11,0+sa*.6,6,12,shade(C_ARMOR,.85));pf(11,0+sa*.6,5,5,C_ARMOR);
+  pf(10,11+sa*.6,7,8,shade(C_ARMOR,.75));pf(10,11+sa*.6,7,3,shade(C_ARMOR,1.1));
 
   // ── SWORD ─────────────────────────────────────────────
   const sw2=sa*.6;
-  // Grip
   ctx.fillStyle='#6a4018';ctx.fillRect(14,-2+sw2,5,7);
   ctx.fillStyle='#8a5a20';ctx.fillRect(14,-2+sw2,3,3);
-  // Grip wrap (leather)
   ctx.fillStyle='rgba(40,20,5,.55)';
   for(let i=0;i<3;i++)ctx.fillRect(13,-1+sw2+i*2,7,1);
   // Crossguard
-  ctx.fillStyle='#9a6818';ctx.fillRect(10,-5+sw2,14,5);
-  ctx.fillStyle='#d0920a';ctx.fillRect(10,-5+sw2,14,2);
-  ctx.fillStyle='rgba(255,200,60,.3)';ctx.fillRect(10,-5+sw2,14,1);
+  pf(10,-5+sw2,14,5,shade(C_TRIM,.8));pf(10,-5+sw2,14,2,C_TRIM);
   // Pommel
-  ctx.fillStyle='#c8a020';ctx.fillRect(14,5+sw2,5,4);
-  ctx.fillStyle='#e8c040';ctx.fillRect(15,5+sw2,3,2);
+  pf(14,5+sw2,5,4,shade(C_TRIM,.9));pf(15,5+sw2,3,2,shade(C_TRIM,1.2));
   // Blade
-  ctx.fillStyle='#c0ccd8';ctx.fillRect(14,-26+sw2,5,22);
-  ctx.fillStyle='#e0eaf2';ctx.fillRect(14,-26+sw2,2,16);  // blade shine
-  ctx.fillStyle='rgba(0,0,0,.15)';ctx.fillRect(17,-26+sw2,2,22); // blade shadow
-  // Blade tip
-  ctx.fillStyle='#a0b0c0';ctx.fillRect(14,-26+sw2,5,3);
-  ctx.fillStyle='#d8e4ec';ctx.fillRect(15,-27+sw2,3,2);
-  // Blade glow (magic)
+  pf(14,-26+sw2,5,22,C_BLADE);pf(14,-26+sw2,2,16,shade(C_BLADE,1.3));
+  ctx.fillStyle='rgba(0,0,0,.15)';ctx.fillRect(17,-26+sw2,2,22);
+  pf(14,-26+sw2,5,3,shade(C_BLADE,.8));pf(15,-27+sw2,3,2,shade(C_BLADE,1.2));
   if(p.level>5)glow(ctx,16,-14+sw2,10,`rgba(180,220,255,${.08+Math.sin(p.anim*3)*.05})`);
 
   // ── HEAD ─────────────────────────────────────────────
-  // Neck
   ctx.fillStyle='#c8a878';ctx.fillRect(-4,-5,8,6);
   ctx.fillStyle='rgba(0,0,0,.2)';ctx.fillRect(-4,-5,8,2);
-
-  // Helmet
-  ctx.fillStyle='#5a6878';ctx.fillRect(-10,-22,20,19);   // outer
-  ctx.fillStyle='#7888a0';ctx.fillRect(-9,-22,18,16);    // mid
-  ctx.fillStyle='#b2c2d2';ctx.fillRect(-8,-22,16,6);     // top highlight
-  ctx.fillStyle='#4a5870';ctx.fillRect(-9,-8,18,5);      // bottom shadow
-
-
-  
-  // Helmet ridge (crest line)
-  ctx.fillStyle='#9aacbc';ctx.fillRect(-1,-23,2,24);
-  ctx.fillStyle='#ccdde8';ctx.fillRect(-1,-23,1,12);
+  // Helmet with skin colors
+  pf(-10,-22,20,19,shade(C_ARMOR,.75));pf(-9,-22,18,16,C_ARMOR);
+  pf(-8,-22,16,6,shade(C_ARMOR,1.4));pf(-9,-8,18,5,shade(C_ARMOR,.7));
+  ctx.fillStyle=shade(C_ARMOR,1.2);ctx.fillRect(-1,-23,2,24);
+  ctx.fillStyle=shade(C_ARMOR,1.5);ctx.fillRect(-1,-23,1,12);
   // Cheek guards
-  ctx.fillStyle='#5a6878';ctx.fillRect(-10,-14,4,10);
-  ctx.fillStyle='#7888a0';ctx.fillRect(-10,-14,3,6);
-  ctx.fillStyle='#5a6878';ctx.fillRect(6,-14,4,10);
-  ctx.fillStyle='#7888a0';ctx.fillRect(6,-14,3,6);
-  // Visor slot
+  pf(-10,-14,4,10,shade(C_ARMOR,.8));pf(-10,-14,3,6,C_ARMOR);
+  pf(6,-14,4,10,shade(C_ARMOR,.8));pf(6,-14,3,6,C_ARMOR);
+  // Visor
   ctx.fillStyle='#1c2838';ctx.fillRect(-6,-17,12,8);
   ctx.fillStyle='#152030';ctx.fillRect(-5,-16,10,6);
-  // Eye glows (cyan)
-  ctx.fillStyle='#30c8e8';
-  ctx.fillRect(-5,-15,4,3);ctx.fillRect(1,-15,4,3);
-  ctx.fillStyle='rgba(80,220,255,.45)';
-  ctx.fillRect(-5,-15,4,1);ctx.fillRect(1,-15,4,1);
+  // Eye glows (from trim color)
+  ctx.fillStyle=shade(C_TRIM,1.1);ctx.fillRect(-5,-15,4,3);ctx.fillRect(1,-15,4,3);
+  ctx.fillStyle=shade(C_TRIM,1.3)+'88';ctx.fillRect(-5,-15,4,1);ctx.fillRect(1,-15,4,1);
   glow(ctx,0,-13,8,`rgba(40,200,240,.25)`);
-  // Helm bolts
-  ctx.fillStyle='#c8a030';
+  // Bolts + nose guard
+  ctx.fillStyle=C_TRIM;
   ctx.fillRect(-9,-11,2,2);ctx.fillRect(7,-11,2,2);
   ctx.fillRect(-9,-17,2,2);ctx.fillRect(7,-17,2,2);
-  // Nose guard
-  ctx.fillStyle='#4a5870';ctx.fillRect(-1,-15,2,7);
-  ctx.fillStyle='#8898a8';ctx.fillRect(-1,-15,1,3);
+  pf(-1,-15,2,7,shade(C_ARMOR,.75));ctx.fillStyle=C_ARMOR;ctx.fillRect(-1,-15,1,3);
 
   // ── PLUME ─────────────────────────────────────────────
-  ctx.fillStyle='#c8a030';ctx.fillRect(-2,-24,4,4); // plume base
+  pf(-2,-24,4,4,shade(C_TRIM,.8));
   for(let i=0;i<11;i++){
     const ph=Math.sin(p.anim*3.5+i*.32)*3.5;
-    const pw=Math.max(1,3.8-i*.28);
-    const pAlpha=1-i*.05;
-    const pc=i<4?'#48c040':i<7?'#38a830':'#28882a';
+    const pc=i<4?shade(C_PLUME,.8):i<7?C_PLUME:shade(C_PLUME,1.3);
     ctx.fillStyle=pc;
-    ctx.fillRect(-1+i*.2,~~(-26-i*2.2+ph),~~pw,8+~~(i*.4));
-    // Plume highlight
-    if(i<6){ctx.fillStyle='rgba(120,255,80,.4)';ctx.fillRect(-1+i*.2,~~(-26-i*2.2+ph),1,4);}
+    ctx.fillRect(-1+i*.2,~~(-26-i*2.2+ph),~~Math.max(1,3.8-i*.28),8+~~(i*.4));
+    if(i<6){ctx.fillStyle=shade(C_PLUME,1.5)+'66';ctx.fillRect(-1+i*.2,~~(-26-i*2.2+ph),1,4);}
   }
-  // Plume tip glow
-  glow(ctx,2,-48,10,`rgba(80,220,60,.2)`);
+  glow(ctx,2,-48,10,`rgba(${h2r(C_PLUME)},.2)`);
 
   ctx.restore();
 
@@ -2894,15 +2888,12 @@ function drawPlayer(p){
   ctx.save();ctx.translate(~~p.x,~~(p.y+bob));
   ctx.font='5px "Press Start 2P"';ctx.textAlign='center';
   const nw=ctx.measureText(p.name).width+12;
-  // Tag background with wooden frame
   ctx.fillStyle='rgba(28,12,2,.92)';ctx.fillRect(-nw/2,-52,nw,14);
   ctx.strokeStyle='#c8902a';ctx.lineWidth=2;ctx.strokeRect(-nw/2,-52,nw,14);
-  // Name
-  ctx.fillStyle='#000';ctx.fillText(p.name,1,-41);   // shadow
+  ctx.fillStyle='#000';ctx.fillText(p.name,1,-41);
   ctx.fillStyle='#ffe080';
   ctx.shadowColor='#ffa020';ctx.shadowBlur=4;
   ctx.fillText(p.name,0,-42);ctx.shadowBlur=0;
-  // Level
   ctx.font='4px "Press Start 2P"';
   ctx.fillStyle='#70c8ff';ctx.fillText('LV'+p.level,0,-56);
   ctx.restore();
@@ -3486,6 +3477,475 @@ function drawSprite(sp,c,t,boss){
   }
 }
 
+// ══════════════════════════════════════════════════════
+// ── OVERWORLD MAP SYSTEM ──────────────────────────────
+// ══════════════════════════════════════════════════════
+const OW_W=700,OW_H=420;
+// Scale stage mx/my to overworld canvas coords
+function owX(mx){return 44+mx*1.28;}
+function owY(my){return 18+my*1.34;}
+
+// NPC definitions (one per stage + 1 merchant)
+const OW_MERCHANT={id:'merchant',x:350,y:200,icon:'👴',name:'Aldric',title:'O Mercador',
+  dialog:"Ho ho! Procurando mercadorias?\nVisite minha loja, viajante!"};
+const OW_GUARD_LINES=[
+  "Planícies de Brasa! Entrar?",
+  "Cuidado com os abismos de lava!",
+  "As ruínas de cinzas estão aqui.",
+  "A Fornalha é muito perigosa!",
+  "Um bosque tranquilo te aguarda...",
+  "Cogumelos estranhos crescem aqui.",
+  "Espectros sombrios rondam a floresta.",
+  "O Dossel Sombrio é amaldiçoado!",
+  "A Costa Gelada é amargamente fria.",
+  "A Passagem do Blizzard furiosa!",
+  "Torres de gelo perfuram o céu.",
+  "O Trono Congelado te aguarda.",
+  "O pântano começa aqui.",
+  "Lagos de veneno à frente!",
+  "Profundezas pútridas além...",
+  "O Núcleo da Podridão desperta!",
+  "Nuvens de tempestade se formam.",
+  "As muralhas estão em tempestade!",
+  "O Pico Supremo paira à frente...",
+  "O ABISMO ETERNO. Volte atrás!"
+];
+const OW_GUARD_LOCKED=[
+  "Você não está pronto!",
+  "Complete a fase anterior primeiro!",
+  "Prove seu valor primeiro!",
+  "O caminho está bloqueado!",
+  "Volte, viajante fraco!",
+];
+
+function initOverworld(){
+  if(!G.ow){
+    const s0=STAGES[0];
+    G.ow={
+      px:owX(s0.mx)+50, py:owY(s0.my)+55,
+      facing:1, moving:false, anim:0,
+      dialog:null, nearNpc:null, nearDist:999,
+    };
+  }
+}
+
+function updateOverworld(dt){
+  if(!G||!G.ow)return;
+  const ow=G.ow;
+  if(ow.dialog)return; // no movement during dialog
+
+  const spd=115;
+  let dx=0,dy=0;
+  const K=G.keys;
+  if(K['a']||K['ArrowLeft']||K['dpad_left'])dx=-1;
+  if(K['d']||K['ArrowRight']||K['dpad_right'])dx=1;
+  if(K['w']||K['ArrowUp']||K['dpad_up'])dy=-1;
+  if(K['s']||K['ArrowDown']||K['dpad_down'])dy=1;
+  if(dx&&dy){const l=Math.SQRT2;dx/=l;dy/=l;}
+  if(dx!==0)ow.facing=dx>0?1:-1;
+  ow.moving=dx!==0||dy!==0;
+  if(ow.moving)ow.anim+=dt*5.5;
+  G.bgA+=dt;
+
+  ow.px=Math.max(16,Math.min(OW_W-16,ow.px+dx*spd*dt));
+  ow.py=Math.max(16,Math.min(OW_H-16,ow.py+dy*spd*dt));
+
+  // Find nearest NPC
+  let nearest=null,nearDist=9999;
+  for(const s of STAGES){
+    const sx=owX(s.mx),sy=owY(s.my);
+    const d=Math.hypot(ow.px-sx,ow.py-sy);
+    if(d<nearDist){nearDist=d;nearest={type:'stage',id:s.id,x:sx,y:sy};}
+  }
+  const md=Math.hypot(ow.px-OW_MERCHANT.x,ow.py-OW_MERCHANT.y);
+  if(md<nearDist){nearDist=md;nearest={type:'merchant',x:OW_MERCHANT.x,y:OW_MERCHANT.y};}
+  ow.nearNpc=nearDist<58?nearest:null;
+  ow.nearDist=nearDist;
+
+  // Update interact prompt position
+  const pr=document.getElementById('owprompt');
+  const canvas=document.getElementById('gc');
+  const cr=canvas.getBoundingClientRect();
+  const scX=cr.width/CW, scY=cr.height/CH;
+  if(ow.nearNpc&&!ow.dialog){
+    pr.style.display='block';
+    pr.style.left=(cr.left+ow.px*scX-30)+'px';
+    pr.style.top=(cr.top+(ow.py-36)*scY)+'px';
+  } else {
+    pr.style.display='none';
+  }
+}
+
+function owInteract(){
+  if(!G||!G.ow)return;
+  const ow=G.ow;
+  if(ow.dialog){return;} // already in dialog
+  if(!ow.nearNpc)return;
+
+  if(ow.nearNpc.type==='merchant'){
+    showOwDialog({
+      npc:OW_MERCHANT.icon, name:OW_MERCHANT.name+' · '+OW_MERCHANT.title,
+      text:OW_MERCHANT.dialog,
+      choices:[
+        {label:'SIM',cls:'yes',fn:()=>{owCloseDialog();toggleShop();}},
+        {label:'NÃO', cls:'no', fn:owCloseDialog},
+      ]
+    });
+  } else {
+    const s=STAGES[ow.nearNpc.id];
+    const open=isOpen(s);
+    const cleared=G.stagesCleared.includes(s.id);
+    const guardIcon=cleared?'✅':open?'⚔️':'🔒';
+    if(open||cleared){
+      const line=OW_GUARD_LINES[s.id]||'Entrar nesta fase?';
+      const sub=cleared?'[COMPLETA ✅]\nEntrar novamente por mais ouro?':'['+s.act+']\n'+line;
+      showOwDialog({
+        npc:guardIcon, name:'Guarda · '+s.name,
+        text:sub,
+        choices:[
+          {label:'SIM',cls:'yes',fn:()=>{owCloseDialog();enterStageFromOW(s.id);}},
+          {label:'NÃO', cls:'no', fn:owCloseDialog},
+        ]
+      });
+    } else {
+      const prevName=s.id>0?STAGES[s.id-1].name:'???';
+      const lockedLine=OW_GUARD_LOCKED[s.id%OW_GUARD_LOCKED.length];
+      showOwDialog({
+        npc:'🔒', name:'Guarda · '+s.name,
+        text:lockedLine+'\n\nFirst clear:\n"'+prevName+'"',
+        choices:[
+          {label:'OK', cls:'no', fn:owCloseDialog},
+        ]
+      });
+    }
+  }
+}
+
+function showOwDialog(cfg){
+  if(!G||!G.ow)return;
+  G.ow.dialog=cfg;
+  const dlg=document.getElementById('owdlg');
+  document.getElementById('dlgnpc').textContent=cfg.npc||'';
+  document.getElementById('dlgname').textContent=cfg.name||'';
+  document.getElementById('dlgtext').textContent=cfg.text||'';
+  const btns=document.getElementById('dlgbtns');
+  btns.innerHTML='';
+  for(const c of cfg.choices){
+    const b=document.createElement('button');
+    b.textContent=c.label;b.className=c.cls||'';
+    b.onclick=c.fn;
+    btns.appendChild(b);
+  }
+  dlg.style.display='flex';
+  // Position dialog above player
+  const canvas=document.getElementById('gc');
+  const cr=canvas.getBoundingClientRect();
+}
+
+function owCloseDialog(){
+  if(G&&G.ow)G.ow.dialog=null;
+  document.getElementById('owdlg').style.display='none';
+}
+
+function enterStageFromOW(id){
+  owCloseDialog();
+  beginStage(id);
+}
+
+// ── DRAW OVERWORLD ────────────────────────────────────
+function drawOverworld(){
+  if(!G||!G.ow)return;
+  const ow=G.ow;
+  const t=G.bgA;
+
+  // ── OVERWORLD BACKGROUND ──
+  // Base sky / ambient glow  
+  const bg=ctx.createLinearGradient(0,0,0,OW_H);
+  bg.addColorStop(0,'#0a1428');bg.addColorStop(.5,'#0e1c38');bg.addColorStop(1,'#0a1220');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,OW_W,OW_H);
+
+  // Stars (static)
+  for(let i=0;i<60;i++){
+    const sx=(i*73+19)%700,sy=(i*47+11)%200;
+    const sa=.2+Math.sin(t*1.8+i)*.18;
+    ctx.fillStyle=`rgba(220,210,255,${sa})`;
+    ctx.fillRect(sx,sy,i%5?1:2,i%5?1:2);
+  }
+
+  // ── BIOME ZONE BACKGROUNDS (act-colored ground bands) ──
+  const zones=[
+    // ACT I — Volcanic (top band, stages 0-4 at y≈80)
+    {x:0,y:58,w:OW_W,h:105,col1:'rgba(60,12,4,.7)',col2:'rgba(80,18,6,.5)'},
+    // ACT II — Forest (stages 5-7 at y≈185)
+    {x:0,y:163,w:OW_W,h:108,col1:'rgba(10,36,8,.7)',col2:'rgba(14,44,10,.5)'},
+    // ACT III — Ice (stages 8-11 at y≈185,291)
+    {x:0,y:163,w:300,h:215,col1:'rgba(8,22,48,.7)',col2:'rgba(12,30,64,.5)'},
+    // ACT IV — Swamp (stages 12-15 at y≈291,390)
+    {x:300,y:271,w:400,h:130,col1:'rgba(8,24,4,.7)',col2:'rgba(10,30,6,.5)'},
+    // ACT V — Sky (stages 16-18 at y≈390)
+    {x:0,y:271,w:300,h:130,col1:'rgba(20,10,50,.7)',col2:'rgba(28,14,68,.5)'},
+    // FINAL — Abyss (stage 19 at col0,row4)
+    {x:0,y:340,w:140,h:80,col1:'rgba(50,4,8,.8)',col2:'rgba(70,6,10,.6)'},
+  ];
+  zones.forEach(z=>{
+    const zg=ctx.createLinearGradient(z.x,z.y,z.x+z.w,z.y+z.h);
+    zg.addColorStop(0,z.col1);zg.addColorStop(1,z.col2);
+    ctx.fillStyle=zg;ctx.fillRect(z.x,z.y,z.w,z.h);
+  });
+
+  // ── GROUND TEXTURE (tile-like dots) ──
+  ctx.fillStyle='rgba(255,255,255,.018)';
+  for(let x=0;x<OW_W;x+=14)for(let y=60;y<OW_H;y+=14)
+    if(((x*5+y*7)%13)<2)ctx.fillRect(x,y,2,2);
+
+  // ── PATHS between connected stages ──
+  ctx.save();
+  for(const s of STAGES){
+    for(const nb of s.conn){
+      if(nb<=s.id)continue;
+      const s2=STAGES[nb];
+      const x1=owX(s.mx),y1=owY(s.my),x2=owX(s2.mx),y2=owY(s2.my);
+      const cl=G.stagesCleared.includes(s.id)&&G.stagesCleared.includes(nb);
+      const partial=G.stagesCleared.includes(s.id)||G.stagesCleared.includes(nb);
+      // Path shadow
+      ctx.strokeStyle='rgba(0,0,0,.3)';ctx.lineWidth=7;ctx.setLineDash([]);
+      ctx.beginPath();ctx.moveTo(x1+1,y1+1);ctx.lineTo(x2+1,y2+1);ctx.stroke();
+      // Path track
+      ctx.strokeStyle=cl?'rgba(180,140,40,.55)':partial?'rgba(120,90,20,.4)':'rgba(60,40,10,.35)';
+      ctx.lineWidth=5;ctx.setLineDash(cl?[]:[6,6]);
+      ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+      // Path highlight (cleared)
+      if(cl){
+        ctx.strokeStyle='rgba(255,200,60,.2)';ctx.lineWidth=2;ctx.setLineDash([]);
+        ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+      }
+    }
+  }
+  ctx.setLineDash([]);ctx.restore();
+
+  // ── MERCHANT NPC ──
+  drawOwNpc(OW_MERCHANT.x,OW_MERCHANT.y,'👴','Aldric','#ffd700',t,true);
+
+  // ── STAGE PORTALS + GUARD NPCs ──
+  for(const s of STAGES){
+    const sx=owX(s.mx),sy=owY(s.my);
+    const cl=G.stagesCleared.includes(s.id);
+    const op=isOpen(s);
+    const ac=G.stageIdx===s.id&&G.scene!=='overworld';
+    const actC={
+      'ACT I':'#ff6010','ACT II':'#30c050','ACT III':'#60c8ff',
+      'ACT IV':'#80d040','ACT V':'#c070ff','FINAL':'#ff2040'
+    }[s.act]||'#c8a030';
+
+    // Portal base glow
+    const glowR=cl?20:op?16:12;
+    const glowCol=cl?'rgba(40,220,80,.18)':op?`rgba(${h2r(actC)},.14)`:'rgba(50,30,80,.12)';
+    glow(ctx,sx,sy,glowR,glowCol);
+
+    // Portal circle
+    ctx.beginPath();ctx.arc(sx,sy,10,0,Math.PI*2);
+    ctx.fillStyle=cl?'#0c2010':op?'#0c0c02':'#080614';
+    ctx.fill();
+    ctx.strokeStyle=cl?'#40e060':op?actC:'#302040';
+    ctx.lineWidth=cl?2.5:op?2:1.5;ctx.stroke();
+
+    // Cleared stages sparkle
+    if(cl){
+      ctx.strokeStyle=`rgba(60,255,100,${.3+Math.sin(t*3+s.id)*.2})`;
+      ctx.lineWidth=1;
+      ctx.beginPath();ctx.arc(sx,sy,14+Math.sin(t*2.5+s.id)*2,0,Math.PI*2);ctx.stroke();
+    }
+    // Active pulse
+    if(op&&!cl){
+      ctx.strokeStyle=`rgba(${h2r(actC)},${.15+Math.sin(t*2.2+s.id)*.1})`;
+      ctx.lineWidth=1;
+      ctx.beginPath();ctx.arc(sx,sy,16+Math.sin(t*1.8+s.id)*2,0,Math.PI*2);ctx.stroke();
+    }
+
+    // Stage number
+    ctx.font='bold 5px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillText(s.id+1,sx+1,sy+1);
+    ctx.fillStyle=cl?'#80ff90':op?actC:'#4a3060';
+    ctx.fillText(s.id+1,sx,sy);
+
+    // Stage name label
+    ctx.font='3px "Press Start 2P"';ctx.textBaseline='top';
+    ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillText((s.name.length>9?s.name.slice(0,8)+'…':s.name),sx+1,sy+12);
+    ctx.fillStyle=cl?'#60e070':op?'#a08020':'#3a2050';
+    ctx.fillText((s.name.length>9?s.name.slice(0,8)+'…':s.name),sx,sy+11);
+
+    // Guard NPC (to left of portal)
+    const guardX=sx-22, guardY=sy+4;
+    const gIcon=cl?'✅':op?'⚔':'🔒';
+    const gCol=cl?'#40e060':op?actC:'#5a3080';
+    drawOwGuard(guardX,guardY,gIcon,gCol,t+s.id);
+  }
+
+  // ── PLAYER CHARACTER (top-down) ──
+  drawOwPlayer(ow.px,ow.py,ow.facing,ow.anim,t);
+
+  // ── NEAR NPC INDICATOR ──
+  if(ow.nearNpc&&!ow.dialog){
+    const nx=ow.nearNpc.x,ny=ow.nearNpc.y;
+    const pulse=.7+Math.sin(t*5)*.3;
+    ctx.strokeStyle=`rgba(255,220,60,${pulse})`;ctx.lineWidth=1.5;
+    ctx.setLineDash([3,3]);
+    ctx.beginPath();ctx.arc(nx,ny,18+Math.sin(t*4)*2,0,Math.PI*2);ctx.stroke();
+    ctx.setLineDash([]);
+    // Arrow above NPC
+    ctx.fillStyle=`rgba(255,220,60,${pulse})`;
+    ctx.beginPath();ctx.moveTo(nx,ny-24);ctx.lineTo(nx-5,ny-18);ctx.lineTo(nx+5,ny-18);ctx.fill();
+  }
+
+  // ── HUD MINI (overworld) ──
+  drawOwHud(t);
+
+  // ── LEGEND PANEL ──
+  ctx.fillStyle='rgba(10,4,1,.82)';ctx.fillRect(3,3,100,50);
+  ctx.strokeStyle='rgba(180,130,40,.5)';ctx.lineWidth=1;ctx.strokeRect(3,3,100,50);
+  ctx.font='3px "Press Start 2P"';ctx.textAlign='left';ctx.textBaseline='top';
+  ctx.fillStyle='rgba(200,160,60,.8)';ctx.fillText('MAPA MUNDO',6,6);
+  ctx.fillStyle='rgba(150,150,150,.7)';ctx.fillText('WASD/Direcional: mover',6,15);
+  ctx.fillText('Z/Espaço: interagir',6,23);
+  ctx.fillText('M: mapa mundial',6,31);
+  ctx.fillText(`Completas: ${G.stagesCleared.length}/20 fases`,6,42);
+}
+
+function drawOwPlayer(px,py,facing,anim,t){
+  const sk=getSkinColors(G&&G.pl?G.pl.skin:'knight');
+  ctx.save();ctx.translate(~~px,~~py);
+  ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(0,6,9,3,0,0,Math.PI*2);ctx.fill();
+  const bob=Math.sin(anim)*2;
+  // Body cloak
+  ctx.fillStyle=sk.cloak;ctx.fillRect(-7,-4+~~bob,14,12);
+  // Helmet
+  ctx.fillStyle=shade(sk.armor,.9);ctx.beginPath();ctx.arc(0,-4+~~bob,7,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=sk.armor;ctx.beginPath();ctx.arc(-2,-5+~~bob,5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='rgba(0,0,0,.5)';ctx.fillRect(-3,facing>0?-3:-7+~~bob,6,4);
+  // Plume
+  for(let i=0;i<4;i++){ctx.fillStyle=i%2?sk.plume:shade(sk.plume,1.3);ctx.fillRect(-1+i,-10+~~bob+~~(Math.sin(t*4+i*.4)*2),2,4);}
+  // Shield
+  const sx2=facing>0?-9:6;
+  ctx.fillStyle=sk.shield;ctx.fillRect(sx2,-3+~~bob,5,8);
+  ctx.fillStyle=shade(sk.shield,1.4);ctx.fillRect(sx2,-3+~~bob,3,4);
+  ctx.fillStyle=sk.trim;ctx.fillRect(sx2+1,-1+~~bob,3,1);ctx.fillRect(sx2+2,1+~~bob,1,3);
+  // Sword
+  const swordX=facing>0?8:-10;
+  ctx.fillStyle=sk.blade;ctx.fillRect(swordX,-2+~~bob,4,6);
+  ctx.fillStyle=shade(sk.blade,1.3);ctx.fillRect(swordX,~~bob,2,4);
+  ctx.fillStyle=sk.trim;ctx.fillRect(swordX-1,1+~~bob,6,2);
+  // Name tag
+  ctx.font='4px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='bottom';
+  ctx.fillStyle='rgba(0,0,0,.6)';ctx.fillText(G.pl.name,1,-14+~~bob);
+  ctx.fillStyle='#ffeea0';ctx.fillText(G.pl.name,0,-15+~~bob);
+  ctx.restore();
+}
+
+function drawOwGuard(x,y,icon,col,t){
+  ctx.save();ctx.translate(~~x,~~y);
+  const bob=Math.sin(t*2)*.8;
+  // Shadow
+  ctx.fillStyle='rgba(0,0,0,.25)';ctx.beginPath();ctx.ellipse(0,5,5,2,0,0,Math.PI*2);ctx.fill();
+  // Body
+  ctx.fillStyle=col+Math.floor(45+Math.abs(Math.sin(t*1.5))*20).toString(16).padStart(2,'0');
+  ctx.beginPath();ctx.arc(0,-2+~~bob,5,0,Math.PI*2);ctx.fill();
+  // Icon
+  ctx.font='7px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(icon,0,-1+~~bob);
+  ctx.restore();
+}
+
+function drawOwNpc(x,y,icon,name,col,t,bounce=false){
+  ctx.save();ctx.translate(~~x,~~y);
+  const bob=bounce?Math.sin(t*1.8)*3:0;
+  // Glow
+  glow(ctx,0,0,22,`rgba(255,200,60,${.1+Math.sin(t*2)*.07})`);
+  // Shadow
+  ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(0,10,9,3,0,0,Math.PI*2);ctx.fill();
+  // NPC body (larger than guards)
+  ctx.fillStyle='#8a4010';ctx.fillRect(-8,-6+~~bob,16,14);
+  ctx.fillStyle='#a85018';ctx.fillRect(-7,-6+~~bob,14,5);
+  // Head
+  ctx.fillStyle='#d4a070';ctx.beginPath();ctx.arc(0,-9+~~bob,7,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#b88050';ctx.fillRect(-7,-11+~~bob,14,3);// hat brim
+  ctx.fillStyle='#6a2c08';ctx.fillRect(-5,-16+~~bob,10,7);// hat
+  ctx.fillStyle='#ffd700';ctx.fillRect(-3,-17+~~bob,6,2);// hat band
+  // Icon
+  ctx.font='9px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(icon,0,-9+~~bob);
+  // Nametag
+  ctx.font='4px "Press Start 2P"';ctx.textBaseline='top';
+  ctx.fillStyle='rgba(0,0,0,.7)';ctx.fillText(name,1,12);
+  ctx.fillStyle=col;ctx.fillText(name,0,11);
+  // Exclamation if near player
+  if(G.ow&&Math.hypot(G.ow.px-x,G.ow.py-y)<58){
+    ctx.font='8px "Press Start 2P"';ctx.fillStyle=`rgba(255,230,40,${.7+Math.sin(t*5)*.3})`;
+    ctx.fillText('!',0,-24+~~bob);
+  }
+  ctx.restore();
+}
+
+function drawOwHud(t){
+  const p=G.pl;
+  // Bottom status strip
+  ctx.fillStyle='rgba(10,4,1,.88)';ctx.fillRect(0,OW_H-30,OW_W,30);
+  ctx.strokeStyle='rgba(180,130,40,.5)';ctx.lineWidth=1;ctx.strokeRect(0,OW_H-30,OW_W,30);
+  // HP bar
+  ctx.font='4px "Press Start 2P"';ctx.fillStyle='rgba(255,160,60,.9)';
+  ctx.textAlign='left';ctx.textBaseline='middle';
+  ctx.fillText('HP',6,OW_H-18);
+  ctx.fillStyle='rgba(30,10,5,.8)';ctx.fillRect(22,OW_H-24,90,12);
+  const hg=ctx.createLinearGradient(22,OW_H-24,22,OW_H-12);
+  hg.addColorStop(0,'#ff7070');hg.addColorStop(1,'#aa2020');
+  ctx.fillStyle=hg;ctx.fillRect(22,OW_H-24,~~(90*p.hp/p.maxHp),12);
+  ctx.strokeStyle='rgba(180,60,20,.5)';ctx.lineWidth=1;ctx.strokeRect(22,OW_H-24,90,12);
+  ctx.fillStyle='rgba(255,200,100,.7)';ctx.fillText(`${p.hp}/${p.maxHp}`,26,OW_H-18);
+  // Gold
+  ctx.fillStyle='#ffd700';ctx.fillText(`🪙 ${p.coins}`,122,OW_H-18);
+  // Level
+  ctx.fillStyle='#a080ff';ctx.fillText(`LV ${p.level}`,210,OW_H-18);
+  // Stage count
+  ctx.fillStyle='#60e080';ctx.fillText(`✅ ${G.stagesCleared.length}/20`,290,OW_H-18);
+  // Potions/bombs
+  ctx.fillStyle='rgba(100,200,120,.8)';ctx.fillText(`🧪${p.pots}`,420,OW_H-18);
+  ctx.fillStyle='rgba(255,150,60,.8)';ctx.fillText(`💣${p.bombs}`,470,OW_H-18);
+  // Scene label top
+  ctx.textAlign='center';ctx.fillStyle='rgba(200,160,60,.55)';ctx.font='4px "Press Start 2P"';
+  ctx.fillText('⚔ PIXEL QUEST · MUNDO ⚔',OW_W/2,12);
+}
+
+// ── TUTORIAL SYSTEM ───────────────────────────────────
+const TUTORIAL_STEPS=[
+  {icon:'🌟',text:`Welcome, ${'{NAME}'}!\n\nVocê está no MAPA MUNDO.\nExplore e encontre fases para batalhar!`},
+  {icon:'🕹️',text:`CONTROLES:\n\nWASD ou Direcional para MOVER.\nCaminhe para explorar o mapa!`},
+  {icon:'💬',text:`INTERACTING WITH NPCs:\n\nWalk up to a character and\npress Z (or Space) to TALK to them.`},
+  {icon:'👴',text:`O MERCADOR (👴 Aldric)\nvende upgrades poderosos!\n\nEncontre-o no centro do mapa.`},
+  {icon:'⚔️',text:`GUARDAS DE FASE:\n\nCada fase tem um guarda (⚔️).\nFale com eles para ENTRAR na fase!`},
+  {icon:'🔒',text:`FASES BLOQUEADAS:\n\nFases com 🔒 estão bloqueadas.\nVocê precisa COMPLETAR a fase\nanterior para desbloquear!`},
+  {icon:'⚔️',text:`NA BATALHA:\n\n⚔ Z = Atacar      🧪 X = Poção\n💣 B = Bomba      WASD = Mover`},
+  {icon:'🏆',text:`Boa sorte na sua jornada!\n\nDerrote as 20 fases para\nsalvar o Reino das Brasas!\n\nTOQUE ou Z para COMEÇAR!`},
+];
+function tutStart(){
+  tutStep=0;tutShow();}
+function tutShow(){
+  const el=document.getElementById('tut');
+  if(tutStep<0||tutStep>=TUTORIAL_STEPS.length){
+    el.style.display='none';tutStep=-1;return;}
+  el.style.display='flex';
+  const step=TUTORIAL_STEPS[tutStep];
+  document.getElementById('tuticon').textContent=step.icon;
+  const nm=G?G.pl.name:'HERO';
+  document.getElementById('tuttext').textContent=step.text.replace('{NAME}',nm);
+  document.getElementById('tutstep').textContent=`${tutStep+1} / ${TUTORIAL_STEPS.length}`;
+  // Last step: change button text
+  const btn=document.querySelector('#tutbtns button');
+  if(btn)btn.textContent=tutStep===TUTORIAL_STEPS.length-1?'▶ JOGAR!':'PRÓXIMO ▶';
+}
+function tutNext(){
+  tutStep++;tutShow();}
+function tutSkip(){
+  tutStep=-1;tutShow();}
+
 // ── MINIMAP ───────────────────────────────────────────
 function drawMinimap(){
   if(!G||G.scene!=='battle')return;
@@ -4035,611 +4495,25 @@ function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 function dist(a,b){const dx=a.x-b.x,dy=a.y-b.y;return Math.sqrt(dx*dx+dy*dy);}
 function closest(){return G.enemies.filter(e=>e.alive).sort((a,b)=>dist(G.pl,a)-dist(G.pl,b))[0]||null;}
 
-// ══════════════════════════════════════════════════════
-// ── WORLD MAP SCENE ───────────────────────────────────
-// ══════════════════════════════════════════════════════
-
-// Biome background colors for world map zones
-const WM_BIOMES={
-  lava:{ground:'#3a1206',path:'#5a2010',accent:'#ff4400'},
-  forest:{ground:'#0e2a08',path:'#1c4a10',accent:'#40e030'},
-  ice:{ground:'#0e1e30',path:'#1e3a58',accent:'#70c8ff'},
-  swamp:{ground:'#0a1a06',path:'#162c0e',accent:'#80e040'},
-  sky:{ground:'#10082a',path:'#200e48',accent:'#c060ff'},
-  abyss:{ground:'#1a0406',path:'#2c0810',accent:'#ff1020'},
-};
-
-function getBiomeGroup(bg){
-  if(bg.startsWith('lava')||bg==='ruins'||bg==='forge')return 'lava';
-  if(bg.startsWith('forest')||bg==='mushroom'||bg==='darkforest')return 'forest';
-  if(bg.startsWith('ice')||bg==='blizzard'||bg==='glacier'||bg==='throne')return 'ice';
-  if(bg.startsWith('swamp'))return 'swamp';
-  if(bg.startsWith('sky'))return 'sky';
-  if(bg==='abyss')return 'abyss';
-  return 'forest';
-}
-
-function renderWorldMap(t){
-  // ── BACKGROUND ─────────────────────────────────────
-  // Parchment/night sky gradient
-  const mapBg=ctx.createLinearGradient(0,0,0,CH);
-  mapBg.addColorStop(0,'#060812');mapBg.addColorStop(.5,'#080a18');mapBg.addColorStop(1,'#060810');
-  ctx.fillStyle=mapBg;ctx.fillRect(0,0,CW,CH);
-
-  // ── BIOME ZONE BACKGROUND COLORS ──────────────────
-  const zoneW=CW/5, rows=4;
-  const rowH=CH*0.75/rows;
-  const rowBiomes=['lava','forest','ice','swamp','sky'];
-  for(let row=0;row<rows;row++){
-    const bkey=rowBiomes[Math.min(row,rowBiomes.length-1)];
-    const bc=WM_BIOMES[bkey];
-    // Full-width zone band
-    const zy=32+row*rowH;
-    const zg=ctx.createLinearGradient(0,zy,0,zy+rowH);
-    zg.addColorStop(0,bc.ground+'cc');
-    zg.addColorStop(1,bc.ground+'88');
-    ctx.fillStyle=zg;ctx.fillRect(0,zy,CW,rowH);
-    // Zone separator
-    ctx.fillStyle='rgba(200,160,80,.08)';ctx.fillRect(0,zy,CW,2);
-  }
-  // Abyss zone at bottom
-  const abg2=ctx.createLinearGradient(0,32+3.8*rowH,0,CH-10);
-  abg2.addColorStop(0,'#12030699');abg2.addColorStop(1,'#1a0408cc');
-  ctx.fillStyle=abg2;ctx.fillRect(0,32+3.8*rowH,CW,CH-32-3.8*rowH);
-
-  // Subtle grid overlay
-  ctx.strokeStyle='rgba(180,140,50,.07)';ctx.lineWidth=1;
-  for(let gx=0;gx<CW;gx+=28){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,CH);ctx.stroke();}
-  for(let gy=0;gy<CH;gy+=28){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(CW,gy);ctx.stroke();}
-
-  // ── ACT LABELS ──────────────────────────────────────
-  const actLabels=[
-    {y:33,text:'— ACT I · VOLCANIC WASTES —',col:'rgba(255,100,30,.25)'},
-    {y:33+rowH,text:'— ACT II · ANCIENT FOREST —',col:'rgba(60,200,40,.2)'},
-    {y:33+2*rowH,text:'— ACT III & IV · FROZEN & BOG —',col:'rgba(60,160,255,.2)'},
-    {y:33+3*rowH,text:'— ACT V · SKY REALM —',col:'rgba(160,80,255,.2)'},
-  ];
-  ctx.font='5px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='top';
-  actLabels.forEach(a=>{ctx.fillStyle=a.col;ctx.fillText(a.text,CW/2,a.y+4);});
-
-  // ── PATH CONNECTIONS ──────────────────────────────
-  for(const s of STAGES){
-    for(const nb of s.conn){
-      if(nb<=s.id)continue;
-      const s2=STAGES[nb];
-      const p1=wmStagePos(s.id), p2=wmStagePos(s2.id);
-      const cl=G&&G.stagesCleared.includes(s.id)&&G.stagesCleared.includes(s2.id);
-      const partial=G&&(G.stagesCleared.includes(s.id)||G.stagesCleared.includes(s2.id));
-      const bkey=getBiomeGroup(s.bg);
-      const accent=WM_BIOMES[bkey].accent;
-      // Path glow for cleared
-      if(cl){
-        ctx.save();ctx.globalAlpha=.12;
-        ctx.strokeStyle=accent;ctx.lineWidth=12;ctx.lineCap='round';
-        ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();
-        ctx.restore();
-      }
-      // Path stone/dirt road
-      ctx.strokeStyle=cl?WM_BIOMES[bkey].path:'rgba(60,40,15,.45)';
-      ctx.lineWidth=cl?5:3;ctx.lineCap='round';
-      ctx.setLineDash(cl?[]:[5,6]);
-      ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();
-      ctx.setLineDash([]);
-      // Bright centerline for cleared path
-      if(cl){
-        ctx.strokeStyle='rgba(200,160,60,.5)';ctx.lineWidth=1.5;
-        ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();
-      }
-    }
-  }
-
-  // ── STAGE PORTALS ──────────────────────────────────
-  for(const s of STAGES){
-    const pos=wmStagePos(s.id);
-    const cl=G&&G.stagesCleared.includes(s.id);
-    const op=isOpen(s);
-    const bkey=getBiomeGroup(s.bg);
-    const accent=WM_BIOMES[bkey].accent;
-    const isNear=G&&G.wm.nearStage===s.id;
-
-    // Draw portal gate
-    drawWMPortal(pos.x,pos.y,s,cl,op,isNear,accent,t);
-
-    // Stage label
-    ctx.textAlign='center';ctx.textBaseline='top';
-    const nm=G&&G.pl&&G.pl.compass?s.name:(!op&&!cl?'???':s.name);
-    ctx.font='4px "Press Start 2P"';
-    ctx.fillStyle='rgba(0,0,0,.7)';ctx.fillText(nm.slice(0,10),pos.x+1,pos.y+21);
-    ctx.fillStyle=cl?'#50d060':op?'#d0b040':'#406050';
-    ctx.fillText(nm.slice(0,10),pos.x,pos.y+20);
-  }
-
-  // ── MERCHANT NPC ──────────────────────────────────
-  const mp=wmMerchantPos();
-  const mNear=G&&G.wm.nearNPC==='merchant';
-  drawWMMerchant(mp.x,mp.y,mNear,t);
-
-  // ── PLAYER ────────────────────────────────────────
-  if(G){
-    drawWMPlayer(G.wm.x,G.wm.y,G.wm.facing,G.wm.anim,G.wm.moving,t);
-
-    // ── HOVER STAGE INFO ──────────────────────────
-    if(G.wm.nearStage!==null){
-      const s=STAGES[G.wm.nearStage];
-      const pos=wmStagePos(s.id);
-      const op=isOpen(s);
-      ctx.save();ctx.translate(pos.x,pos.y-46);
-      const tw=100,th=36;
-      ctx.fillStyle='rgba(10,5,1,.96)';ctx.fillRect(-tw/2,-th/2,tw,th);
-      ctx.strokeStyle='#c8902a';ctx.lineWidth=1.5;ctx.strokeRect(-tw/2,-th/2,tw,th);
-      ctx.font='5px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.fillStyle='#ffd060';ctx.fillText(`S${s.id+1}: ${s.name.slice(0,9)}`,0,-8);
-      ctx.font='4px "Press Start 2P"';
-      ctx.fillStyle=op?'#80ff80':'#ff8060';
-      ctx.fillText(op?'Z = ENTRAR':'BLOQUEADO',0,6);
-      ctx.fillStyle='#908060';
-      ctx.fillText(s.act,0,17);
-      ctx.restore();
-    }
-    if(G.wm.nearNPC==='merchant'){
-      const mp2=wmMerchantPos();
-      ctx.save();ctx.translate(mp2.x,mp2.y-58);
-      ctx.fillStyle='rgba(10,5,1,.96)';ctx.fillRect(-55,-14,110,28);
-      ctx.strokeStyle='#c8902a';ctx.lineWidth=1.5;ctx.strokeRect(-55,-14,110,28);
-      ctx.font='4px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='middle';
-      ctx.fillStyle='#ffd060';ctx.fillText('🏪 MERCADOR',0,-5);
-      ctx.fillStyle='#80ff80';ctx.fillText('Z = CONVERSAR',0,7);
-      ctx.restore();
-    }
-  }
-
-  // ── ONLINE PLAYERS ON WORLD MAP ───────────────────
-  if (onlinePlayers) {
-    onlinePlayers.forEach(p => {
-      if (p.scene === 'worldmap' && p.id !== myPlayerId) {
-        // Draw other players
-        drawOnlinePlayer(p.x, p.y, p.name, p.level, p.msg, t);
-      }
-    });
-  }
-
-  // ── SCANLINES & VIGNETTE ─────────────────────────
-  const vg=ctx.createRadialGradient(CW/2,CH/2,CW*.2,CW/2,CH/2,CW*.75);
-  vg.addColorStop(0,'transparent');vg.addColorStop(1,'rgba(0,0,0,.5)');
-  ctx.fillStyle=vg;ctx.fillRect(0,0,CW,CH);
-  drawScanlines();
-}
-
-// Draw other online players on world map
-function drawOnlinePlayer(x, y, name, level, msg, t) {
-  const bob = Math.sin(t * 2) * 2;
-  ctx.save();
-  ctx.translate(~~x, ~~(y + bob));
-  
-  // Shadow
-  ctx.fillStyle = 'rgba(0,0,0,.3)';
-  ctx.beginPath(); ctx.ellipse(0, 10, 8, 3, 0, 0, Math.PI * 2); ctx.fill();
-  
-  // Simple player sprite (ghostly/transparent to distinguish)
-  ctx.globalAlpha = 0.8;
-  
-  // Body
-  ctx.fillStyle = '#5a5a8a';
-  ctx.fillRect(-6, -2, 12, 14);
-  
-  // Head
-  ctx.fillStyle = '#6a6a9a';
-  ctx.beginPath(); ctx.arc(0, -6, 6, 0, Math.PI * 2); ctx.fill();
-  
-  // Eyes (glowing)
-  ctx.fillStyle = '#80ffff';
-  ctx.fillRect(-3, -8, 2, 2);
-  ctx.fillRect(1, -8, 2, 2);
-  
-  // Cape/effect
-  ctx.fillStyle = 'rgba(100,100,200,0.3)';
-  ctx.fillRect(-8, -2, 4, 14);
-  ctx.fillRect(4, -2, 4, 14);
-  
-  // Name tag
-  ctx.font = '3px "Press Start 2P"';
-  ctx.textAlign = 'center';
-  ctx.fillStyle = '#000';
-  ctx.fillText(name, 1, -18);
-  ctx.fillStyle = '#80a0ff';
-  ctx.fillText(name, 0, -19);
-  
-  // Level
-  ctx.font = '3px "Press Start 2P"';
-  ctx.fillStyle = '#ffd700';
-  ctx.fillText('LV' + level, 0, -28);
-  
-  // Message bubble if they have one
-  if (msg) {
-    ctx.fillStyle = 'rgba(10,5,2,.95)';
-    ctx.fillRect(-30, -42, 60, 12);
-    ctx.strokeStyle = '#c8902a';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(-30, -42, 60, 12);
-    ctx.font = '3px "Press Start 2P"';
-    ctx.fillStyle = '#ffd060';
-    ctx.fillText('"' + msg.slice(0, 10) + '"', 0, -34);
-  }
-  
-  ctx.restore();
-}
-
-function drawWMPortal(x,y,s,cleared,open,isNear,accent,t){
-  // Shadow
-  ctx.fillStyle='rgba(0,0,0,.4)';ctx.beginPath();ctx.ellipse(x,y+18,18,5,0,0,Math.PI*2);ctx.fill();
-
-  const a=Math.sin(t*2.5+s.id)*.3;
-  const pr=14; // portal radius
-
-  if(!open&&!cleared){
-    // Locked portal - grey/purple
-    glow(ctx,x,y,22,'rgba(80,40,120,.15)');
-    ctx.fillStyle='#1a1030';ctx.beginPath();ctx.arc(x,y,pr,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle='rgba(80,60,120,.7)';ctx.lineWidth=2;ctx.stroke();
-    // Lock icon
-    ctx.font='12px serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText('🔒',x,y);
-    // Guard NPC drawn separately
-    drawWMGuard(x-20,y+14,s,t);
-  } else if(cleared){
-    // Cleared portal - bright green/gold
-    glow(ctx,x,y,28+a*6,'rgba(40,200,60,.25)');
-    const pg=ctx.createRadialGradient(x,y,0,x,y,pr);
-    pg.addColorStop(0,'#80ff80');pg.addColorStop(.5,accent+'bb');pg.addColorStop(1,'transparent');
-    ctx.fillStyle=pg;ctx.beginPath();ctx.arc(x,y,pr,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle='#40d050';ctx.lineWidth=2;ctx.stroke();
-    // Spinning outer ring
-    ctx.save();ctx.translate(x,y);ctx.rotate(t*.8+s.id);
-    ctx.strokeStyle='rgba(100,255,120,.4)';ctx.lineWidth=1.5;ctx.setLineDash([4,6]);
-    ctx.beginPath();ctx.arc(0,0,pr+5,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-    ctx.restore();
-    ctx.font='10px serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText('✅',x,y);
-  } else {
-    // Open/unlocked portal - glowing accent color
-    const oa=.25+a*.2;
-    glow(ctx,x,y,24+~~(a*8),accent.replace('#',`rgba(`).replace(/(..)(..)(..)$/,(_,r,g,b)=>`${parseInt(r,16)},${parseInt(g,16)},${parseInt(b,16)},${oa})`));
-    const op2=ctx.createRadialGradient(x,y,0,x,y,pr);
-    op2.addColorStop(0,'rgba(255,255,255,.8)');
-    op2.addColorStop(.3,accent+'ee');
-    op2.addColorStop(1,accent+'44');
-    ctx.fillStyle=op2;ctx.beginPath();ctx.arc(x,y,pr,0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle=accent;ctx.lineWidth=2.5;ctx.stroke();
-    // Pulsing ring
-    ctx.save();ctx.translate(x,y);ctx.rotate(-t*.6);
-    ctx.strokeStyle=`${accent}66`;ctx.lineWidth=1.5;ctx.setLineDash([3,5]);
-    ctx.beginPath();ctx.arc(0,0,pr+4+~~(a*3),0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);
-    ctx.restore();
-    ctx.font='5px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillStyle='#fff';ctx.shadowColor='#000';ctx.shadowBlur=3;
-    ctx.fillText(s.id+1,x,y);ctx.shadowBlur=0;
-  }
-  // Highlight ring when near
-  if(isNear){
-    ctx.save();ctx.translate(x,y);ctx.rotate(t*1.5);
-    ctx.strokeStyle=`rgba(255,230,80,${.5+a*.3})`;ctx.lineWidth=2;
-    ctx.setLineDash([4,3]);ctx.beginPath();ctx.arc(0,0,pr+8,0,Math.PI*2);ctx.stroke();
-    ctx.setLineDash([]);ctx.restore();
-  }
-}
-
-function drawWMGuard(x,y,s,t){
-  const bob=Math.sin(t*1.8+s.id)*.8;
-  ctx.save();ctx.translate(x,y+~~bob);
-  // Shadow
-  ctx.fillStyle='rgba(0,0,0,.3)';ctx.beginPath();ctx.ellipse(0,11,7,2,0,0,Math.PI*2);ctx.fill();
-  // Body (simple guard sprite - top-down-ish)
-  ctx.fillStyle='#5a3010';ctx.fillRect(-5,0,10,10); // tabard
-  ctx.fillStyle='#8898a8';ctx.fillRect(-4,-1,8,10); // armor
-  ctx.fillStyle='#b0c0d0';ctx.fillRect(-4,-1,8,4); // chest shine
-  // Head
-  ctx.fillStyle='#8898a8';ctx.fillRect(-4,-8,8,8); // helmet
-  ctx.fillStyle='#b0c0d0';ctx.fillRect(-4,-8,8,3); // top shine
-  ctx.fillStyle='#3a4858';ctx.fillRect(-3,-5,6,4); // visor
-  ctx.fillStyle='#40d0f0';ctx.fillRect(-2,-4,2,2);ctx.fillRect(1,-4,2,2); // eye slits
-  // Spear
-  ctx.fillStyle='#8a6020';ctx.fillRect(6,-12,3,22); // shaft
-  ctx.fillStyle='#c0d8e8';ctx.fillRect(5,-16,5,6); // tip
-  ctx.fillStyle='#e0f0ff';ctx.fillRect(6,-16,2,4); // tip shine
-  ctx.restore();
-}
-
-function drawWMMerchant(x,y,isNear,t){
-  const bob=Math.sin(t*1.4)*1.5;
-  ctx.save();ctx.translate(x,y+~~bob);
-
-  // Shop building behind merchant
-  ctx.fillStyle='#5a3010';ctx.fillRect(-26,-24,52,36); // walls
-  ctx.fillStyle='#7a4418';ctx.fillRect(-26,-24,52,12); // wall top
-  ctx.fillStyle='#3a1c06';ctx.fillRect(-14,-4,28,16); // door
-  ctx.fillStyle='#c8a030';ctx.fillRect(-28,-26,56,5); // banner top
-  ctx.fillStyle='#e0b840';ctx.fillRect(-28,-26,56,2); // banner shine
-  ctx.font='5px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='middle';
-  ctx.fillStyle='#2a1004';ctx.fillText('SHOP',0,-23);
-  // Merchant sign
-  ctx.fillStyle='#d0a030';ctx.fillRect(-32,-38,64,14);ctx.fillStyle='#f0c040';ctx.fillRect(-32,-38,64,4);
-  ctx.fillStyle='#3a1c00';ctx.font='4px "Press Start 2P"';ctx.fillText('🏪 MERCADOR',0,-31);
-
-  // Merchant sprite (facing forward)
-  // Robe
-  ctx.fillStyle='#6030a0';ctx.fillRect(-8,4,16,18);
-  ctx.fillStyle='#8050c0';ctx.fillRect(-7,4,14,8); // robe highlight
-  // Arms
-  ctx.fillStyle='#5028a0';ctx.fillRect(-14,4,7,10);ctx.fillRect(7,4,7,10);
-  // Hands with coins animation
-  const ha=Math.sin(t*2)*.5;
-  ctx.fillStyle='#d4a060';ctx.fillRect(-16,10+~~(ha*2),5,5);ctx.fillRect(11,10-~~(ha*2),5,5);
-  // Head
-  ctx.fillStyle='#d4a060';ctx.fillRect(-7,-7,14,12); // face
-  ctx.fillStyle='#c49050';ctx.fillRect(-7,-7,14,4); // face shadow
-  // Big merchant hat
-  ctx.fillStyle='#2010a0';ctx.fillRect(-10,-18,20,12); // hat
-  ctx.fillStyle='#3018d0';ctx.fillRect(-10,-18,20,4); // hat highlight
-  ctx.fillRect(-12,-10,24,3); // hat brim
-  ctx.fillStyle='#f0c040';ctx.fillRect(-10,-8,20,2); // hat band
-  // Eyes + smile
-  ctx.fillStyle='#1a0e00';ctx.fillRect(-4,-4,3,3);ctx.fillRect(1,-4,3,3);
-  ctx.fillStyle='#d4a060';
-  for(let mx2=-3;mx2<=3;mx2+=2)ctx.fillRect(mx2,-1,1,2); // smile
-
-  // Floating coin sparkle near merchant
-  for(let i=0;i<3;i++){
-    const ca=.4+Math.sin(t*3+i*2.1)*.4;
-    const cx2=x-22+i*22, cy2=y-40+~~(Math.sin(t*2+i)*.6)*8;
-    ctx.fillStyle=`rgba(255,210,30,${ca})`;
-    ctx.font='8px serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText('🪙',cx2,cy2+~~bob);
-  }
-
-  // Near highlight
-  if(isNear){
-    ctx.save();ctx.translate(0,-10);
-    ctx.strokeStyle=`rgba(255,230,80,${.5+Math.sin(t*2)*.3})`;ctx.lineWidth=2;
-    ctx.setLineDash([3,4]);ctx.beginPath();ctx.arc(0,0,32,0,Math.PI*2);ctx.stroke();
-    ctx.setLineDash([]);ctx.restore();
-    ctx.fillStyle=`rgba(255,200,60,${.1+Math.sin(t*3)*.08})`;
-    ctx.beginPath();ctx.arc(0,-10,32,0,Math.PI*2);ctx.fill();
-  }
-  ctx.restore();
-}
-
-function drawWMPlayer(x,y,facing,anim,moving,t){
-  const bob=moving?Math.sin(anim*8)*1.5:Math.sin(t*.8)*1;
-  ctx.save();ctx.translate(~~x,~~(y+bob));
-
-  // Ground shadow
-  ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(0,12,10,3,0,0,Math.PI*2);ctx.fill();
-
-  // Direction offsets for facing
-  const facX=facing==='right'?1:facing==='left'?-1:0;
-  const facY=facing==='down'?1:facing==='up'?-1:0;
-
-  // Walking leg animation
-  const legSwing=moving?Math.sin(anim*8)*5:0;
-
-  // Body (top-down knight, slightly angled)
-  ctx.fillStyle='#5a6878';ctx.fillRect(-7,-3,14,14); // armor body
-  ctx.fillStyle='#8898a8';ctx.fillRect(-6,-3,12,7); // chest top
-  ctx.fillStyle='#b0c0d0';ctx.fillRect(-6,-3,12,3); // chest shine
-  // Shield (left side bump)
-  ctx.fillStyle='#1848a0';ctx.fillRect(-11,-1,6,10);
-  ctx.fillStyle='#2868d0';ctx.fillRect(-11,-1,6,4);
-  ctx.fillStyle='#d8b820';ctx.fillRect(-11,3,6,1);
-  // Sword (right side, pointing in facing direction)
-  ctx.fillStyle='#c0ccd8';ctx.fillRect(8,-8+facY*4,3,12-Math.abs(facY)*4);
-  ctx.fillStyle='#c8932a';ctx.fillRect(6,-4+facY*4,8,2);
-  // Head (top view - circle)
-  ctx.fillStyle='#7888a0';ctx.beginPath();ctx.arc(facX*2,facY*2-3,6.5,0,Math.PI*2);ctx.fill();
-  ctx.fillStyle='#b0c0d0';ctx.beginPath();ctx.arc(facX*2-1,facY*2-4,4,0,Math.PI*2);ctx.fill();
-  // Visor/eyes
-  ctx.fillStyle='#40d0f0';ctx.fillRect(facX*2-2,facY*2-2,2,2);ctx.fillRect(facX*2+1,facY*2-2,2,2);
-  // Plume (top-down - colored dots above head)
-  for(let i=0;i<4;i++){
-    const pa=.8-i*.15,pc=i<2?'#50c040':'#28882a';
-    ctx.fillStyle=pc;ctx.globalAlpha=pa;
-    ctx.fillRect(facX*2-1+i*.5,facY*2-9-i*2,2,3);
-  }
-  ctx.globalAlpha=1;
-
-  // Player name tag
-  ctx.font='4px "Press Start 2P"';ctx.textAlign='center';ctx.textBaseline='top';
-  const nm=G&&G.pl?G.pl.name:'?';
-  const nw=ctx.measureText(nm).width+8;
-  ctx.fillStyle='rgba(10,4,1,.9)';ctx.fillRect(-nw/2,-22,nw,11);
-  ctx.strokeStyle='#c8902a';ctx.lineWidth=1;ctx.strokeRect(-nw/2,-22,nw,11);
-  ctx.fillStyle='#ffe080';ctx.shadowColor='#000';ctx.shadowBlur=2;
-  ctx.fillText(nm,-0.5,-12);ctx.shadowBlur=0;
-  ctx.restore();
-}
-
-// ── WORLD MAP UPDATE ──────────────────────────────────
-function updateWorldMap(dt){
-  if(!G||G.scene!=='worldmap')return;
-  G.bgA+=dt;
-  const wm=G.wm;
-
-  // Movement from keys or dpad
-  let dx=0,dy=0;
-  if(G.keys['ArrowLeft']||G.keys['a']||G.keys['A']||DKEYS['dk-l'])dx=-1;
-  if(G.keys['ArrowRight']||G.keys['d']||G.keys['D']||DKEYS['dk-r'])dx=1;
-  if(G.keys['ArrowUp']||G.keys['w']||G.keys['W']||DKEYS['dk-u'])dy=-1;
-  if(G.keys['ArrowDown']||G.keys['s']||G.keys['S']||DKEYS['dk-d'])dy=1;
-
-  // Diagonal normalize
-  if(dx&&dy){dx*=.707;dy*=.707;}
-
-  const spd=105;
-  wm.moving=dx!==0||dy!==0;
-  if(wm.moving){
-    if(dx>0)wm.facing='right';
-    else if(dx<0)wm.facing='left';
-    else if(dy>0)wm.facing='down';
-    else if(dy<0)wm.facing='up';
-    wm.x=clamp(wm.x+dx*spd*dt,20,CW-20);
-    wm.y=clamp(wm.y+dy*spd*dt,28,CH-28);
-    wm.anim+=dt;
-  }
-
-  // Proximity checks
-  const proxStage=30, proxNPC=38;
-  wm.nearStage=null; wm.nearNPC=null;
-  for(const s of STAGES){
-    const p=wmStagePos(s.id);
-    if(dist({x:wm.x,y:wm.y},p)<proxStage){wm.nearStage=s.id;break;}
-  }
-  const mp=wmMerchantPos();
-  if(dist({x:wm.x,y:wm.y},mp)<proxNPC)wm.nearNPC='merchant';
-
-  // Update WM HUD
-  updateWMHUD();
-}
-
-function updateWMHUD(){
-  if(!G||!G.pl)return;
-  const e=id=>document.getElementById(id);
-  const wn=e('wm-name');if(wn)wn.textContent=G.pl.name;
-  const wl=e('wm-lv');if(wl)wl.textContent=G.pl.level;
-  const wg=e('wm-gold');if(wg)wg.textContent=G.pl.coins;
-  const wh=e('wm-hp');if(wh)wh.textContent=G.pl.hp+'/'+G.pl.maxHp;
-}
-
-// ── WM INTERACT ───────────────────────────────────────
-function wmInteract(){
-  if(!G||G.scene!=='worldmap')return;
-  const wm=G.wm;
-
-  // Close existing dialog first
-  if(document.getElementById('npcbox').style.display==='flex'){closeWMDialog();return;}
-
-  // Merchant interaction
-  if(wm.nearNPC==='merchant'){
-    showWMDialog(
-      '🏪 ELARA, A MERCADORA',
-      '🧙',
-      'Saudações, aventureiro!\nEncontrou tesouros nas masmorras?\nPosso oferecer itens valiosos\npara sua jornada!',
-      [
-        {label:'SIM, ENTRAR',cls:'yes',fn:()=>{closeWMDialog();toggleShop();}},
-        {label:'NÃO, OBRIGADO',cls:'no',fn:closeWMDialog},
-      ]
-    );
-    // Tutorial: discovered merchant
-    if(G.tut&&!G.tut.done&&G.tut.step===2){hideTutorial();G.tut.step=3;showTutorial(3);}
-    return;
-  }
-
-  // Stage portal interaction
-  if(wm.nearStage!==null){
-    const s=STAGES[wm.nearStage];
-    if(isOpen(s)){
-      // Enter stage - close worldmap, go to battle
-      closeWMDialog();hideTutorial();
-      G.scene='battle';
-      document.getElementById('wmhud').style.display='none';
-      document.getElementById('hud').style.display='flex';
-      document.getElementById('mm').style.display='block';
-      beginStage(s.id);
-    } else {
-      // Locked - guard dialog
-      const needed=wm.nearStage>0?STAGES[wm.nearStage-1]:null;
-      showWMDialog(
-        '⚔ GUARDA REAL',
-        '🛡',
-        `Passagem proibida, aventureiro!\nEsta fase está bloqueada.` +
-        (needed?`\n\nComplete primeiro:\n"${needed.name}"`:'\n\nNão há caminho por aqui!'),
-        [{label:'OK, ENTENDIDO',cls:'',fn:closeWMDialog}]
-      );
-    }
-  }
-}
-
-function showWMDialog(name,face,text,opts){
-  const box=document.getElementById('npcbox');
-  document.getElementById('npc-name').textContent=name;
-  document.getElementById('npc-face').textContent=face;
-  document.getElementById('npc-text').textContent=text;
-  const ob=document.getElementById('npc-opts');ob.innerHTML='';
-  opts.forEach(o=>{
-    const b=document.createElement('button');
-    b.className='npc-btn'+(o.cls?' '+o.cls:'');
-    b.textContent=o.label;b.onclick=o.fn;
-    ob.appendChild(b);
-  });
-  box.style.display='flex';
-}
-function closeWMDialog(){document.getElementById('npcbox').style.display='none';}
-
-// ══════════════════════════════════════════════════════
-// ── TUTORIAL SYSTEM ───────────────────────────────────
-// ══════════════════════════════════════════════════════
-const TUTORIAL_STEPS=[
-  {
-    title:'🗺 BEM-VINDO, HERÓI!',
-    text:'Você está no MAPA DO MUNDO.\n\n' +
-         '📌 WASD ou D-Pad = Mover personagem\n' +
-         '📌 Z ou Enter = Interagir / Entrar em fase\n\n' +
-         'Aproxime-se dos portais brilhantes\npara entrar nas fases!',
-  },
-  {
-    title:'⚔ COMBATE - DICAS',
-    text:'Você está em batalha!\n\n' +
-         '⚔  Z = ATACAR inimigos\n' +
-         '🧪  X = Usar POÇÃO (cura HP)\n' +
-         '💣  B = Jogar BOMBA (dano em área)\n' +
-         '🏃  WASD = Mover e esquivar!\n\n' +
-         'Derrote todos os inimigos para limpar a fase!',
-  },
-  {
-    title:'🗺 DICA DO MAPA',
-    text:'Você completou sua primeira fase! 🎉\n\n' +
-         '↩ M = Retornar ao Mapa do Mundo\n\n' +
-         'No mapa, procure a MERCADORA Elara\n(ícone 🏪) para comprar equipamentos!',
-  },
-  {
-    title:'🏪 LOJA DESBLOQUEADA!',
-    text:'Ótimo! Você encontrou a Mercadora!\n\n' +
-         'Use suas 🪙 moedas para comprar:\n' +
-         '• Poções e Bombas\n' +
-         '• Espadas e Armaduras\n' +
-         '• Itens mágicos especiais\n\n' +
-         'Boa sorte em sua jornada, herói! ⚔',
-  },
-];
-
-function showTutorial(step){
-  if(!G||!G.tut||G.tut.done)return;
-  if(step<0||step>=TUTORIAL_STEPS.length)return;
-  G.tut.step=step;
-  const ts=TUTORIAL_STEPS[step];
-  document.getElementById('tut-title').textContent=ts.title;
-  document.getElementById('tut-text').textContent=ts.text;
-  document.getElementById('tutbox').style.display='flex';
-}
-function hideTutorial(){document.getElementById('tutbox').style.display='none';}
-function advanceTutorial(){
-  if(!G||!G.tut)return;
-  const next=G.tut.step+1;
-  hideTutorial();
-  if(next>=TUTORIAL_STEPS.length){G.tut.done=true;showMsg('✅ Tutorial completo! Boa sorte!');}
-  else if(G.tut.step<1){showTutorial(next);}
-  // Otherwise tutorial advances automatically via game events
-}
-function skipTutorial(){
-  if(!G||!G.tut)return;
-  G.tut.done=true;hideTutorial();showMsg('Tutorial ignorado. Boa sorte!');
-}
-
 // ── INPUT ─────────────────────────────────────────────
 document.addEventListener('keydown',e=>{
-  if(!G)return;G.keys[e.key]=true;
-  if(G.scene==='worldmap'){
-    if(e.key==='z'||e.key==='Z'||e.key==='Enter'){e.preventDefault();wmInteract();}
+  if(!G){
+    // Login screen enter key
+    if(e.key==='Enter'){
+      const loginVisible=document.getElementById('form-login').style.display!=='none';
+      if(loginVisible)doLogin();else doRegister();
+    }
+    return;
+  }
+  G.keys[e.key]=true;
+  // Tutorial advance
+  if(tutStep>=0){if(e.key==='z'||e.key==='Z'||e.key===' ')tutNext();return;}
+  if(G.scene==='overworld'){
+    if(e.key==='z'||e.key==='Z'||e.key===' '){e.preventDefault();owInteract();}
     if(e.key==='m'||e.key==='M'){e.preventDefault();toggleMap();}
-    if(e.key==='Escape'){closeWMDialog();}
+    if(e.key==='e'||e.key==='E'){e.preventDefault();toggleShop();}
+    if(e.key==='s'&&!e.shiftKey){e.preventDefault();toggleSkinShop();}
+    if(e.key==='r'||e.key==='R'){e.preventDefault();toggleRank();}
     return;
   }
   if(e.key==='z'||e.key==='Z'){e.preventDefault();plAtk();}
@@ -4649,36 +4523,8 @@ document.addEventListener('keydown',e=>{
   if(e.key==='m'||e.key==='M'){e.preventDefault();toggleMap();}
   if(e.key==='r'||e.key==='R'){e.preventDefault();toggleRank();}
   if(e.key==='Tab'){e.preventDefault();nextStage();}
-  
-  // Chat with Enter key
-  if (e.key === 'Enter' && document.activeElement !== document.getElementById('chat-input')) {
-    e.preventDefault();
-    document.getElementById('chat-input').focus();
-  }
 });
 document.addEventListener('keyup',e=>{if(G)delete G.keys[e.key];});
-document.getElementById('ni').addEventListener('keydown',e=>{if(e.code==='Enter')startGame();});
-
-// Chat send with Enter in input
-document.getElementById('chat-input').addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    sendChatMessage();
-  }
-});
-
-// ── WORLDMAP CANVAS TAP (mobile) ─────────────────────
-document.getElementById('gc').addEventListener('click',e=>{
-  if(!G||G.scene!=='worldmap')return;
-  const r=e.target.getBoundingClientRect();
-  const tx=(e.clientX-r.left)*(CW/r.width);
-  const ty=(e.clientY-r.top)*(CH/r.height);
-  // Move wm player toward tap
-  const dx=tx-G.wm.x, dy=ty-G.wm.y;
-  const dl=Math.sqrt(dx*dx+dy*dy);
-  if(dl>8){G.wm.x=tx;G.wm.y=ty;}
-  setTimeout(wmInteract,100);
-});
 
 // ── TITLE STARS ───────────────────────────────────────
 (function(){
@@ -4690,11 +4536,6 @@ document.getElementById('gc').addEventListener('click',e=>{
     c.appendChild(s);
   }
 })();
-
-// Cleanup on page unload
-window.addEventListener('beforeunload', () => {
-  shutdownOnlineSystem();
-});
 
 // ── BOOT ──────────────────────────────────────────────
 layout();
@@ -4815,3 +4656,4 @@ setupDpad();
 </script>
 </body>
 </html>
+<!-- final version by ale-dev -->
