@@ -2808,16 +2808,31 @@ function adminBroadcast(){
 // ══════════════════════════════════════════════════════
 const _ST={
   async get(k){
-    try{if(window.storage){const r=await window.storage.get(k,true);return r?r.value:null;}}catch(e){}
-    return localStorage.getItem('_pq5_'+k);
+    try{
+      if(window.storage){
+        const r=await window.storage.get(k,true);
+        if(r&&r.value!=null)return r.value;
+      }
+    }catch(e){}
+    // fallback localStorage
+    try{return localStorage.getItem('_pq5st_'+k);}catch(e){}
+    return null;
   },
   async set(k,v){
-    try{if(window.storage){await window.storage.set(k,v,true);return;}}catch(e){}
-    try{localStorage.setItem('_pq5_'+k,v);}catch(e){}
+    let ok=false;
+    try{
+      if(window.storage){
+        const r=await window.storage.set(k,v,true);
+        if(r!=null)ok=true;
+      }
+    }catch(e){}
+    // sempre salvar localStorage também como espelho
+    try{localStorage.setItem('_pq5st_'+k,v);}catch(e){}
+    return ok;
   },
   async delete(k){
-    try{if(window.storage){await window.storage.delete(k,true);}}catch(e){}
-    try{localStorage.removeItem('_pq5_'+k);}catch(e){}
+    try{if(window.storage)await window.storage.delete(k,true);}catch(e){}
+    try{localStorage.removeItem('_pq5st_'+k);}catch(e){}
   }
 };
 
@@ -2863,21 +2878,67 @@ function _onNovasMsgs(novas){
 // ══════════════════════════════════════════════════════
 // ── BROADCAST GLOBAL — aparece e SOME em todos ────────
 // ══════════════════════════════════════════════════════
-const BROADCAST_KEY='pq5-global-broadcast-v2';
-let broadcastTimeout=null;
-let lastBroadcastTs=0;
+// ══════════════════════════════════════════════════════
+// ── BROADCAST GLOBAL — aparece para TODOS instantaneamente
+// ══════════════════════════════════════════════════════
+const BROADCAST_KEY='pq5-bc-v3';   // nova key para evitar lixo antigo
+let _bcLastTs=0;
+let _bcPollRunning=false;
 
-// Admin manda mensagem → salva no storage compartilhado → todos recebem
 async function adminBroadcastMsg(txt, isAdmin=true){
+  if(!txt||!txt.trim())return;
   const ts=Date.now();
-  lastBroadcastTs=ts; // ← FIX: marcar como visto para não reexibir no próprio polling
-  const payload={txt, isAdmin, from:G&&G.pl?G.pl.name:'ADMIN', ts};
+  _bcLastTs=ts; // admin não revê a própria mensagem
+  const payload={txt:txt.trim(), isAdmin, from:(G&&G.pl?G.pl.name:'ADMIN'), ts};
   mostrarBroadcastLocal(payload);
   if(_bc)_bc.postMessage({type:'broadcast',...payload});
-  await _ST.set(BROADCAST_KEY, JSON.stringify(payload));
+  // Escrever no storage compartilhado global
+  try{
+    await window.storage.set(BROADCAST_KEY, JSON.stringify(payload), true);
+  }catch(e){
+    // fallback localStorage
+    try{localStorage.setItem('_bc_'+BROADCAST_KEY, JSON.stringify(payload));}catch(e2){}
+    console.warn('[BROADCAST] window.storage indisponível, usando localStorage');
+  }
 }
 
-// Exibe o banner e configura o timer de sumir
+async function checkGlobalBroadcast(){
+  if(_bcPollRunning)return;
+  _bcPollRunning=true;
+  try{
+    let raw=null;
+    // Tenta shared storage (global entre todos os jogadores)
+    try{
+      const r=await window.storage.get(BROADCAST_KEY, true);
+      if(r&&r.value)raw=r.value;
+    }catch(e){}
+    // Fallback: localStorage espelho (mesmo browser)
+    if(!raw){
+      try{raw=localStorage.getItem('_bc_'+BROADCAST_KEY);}catch(e){}
+    }
+    if(!raw){_bcPollRunning=false;return;}
+    let data;
+    try{data=JSON.parse(raw);}catch(e){_bcPollRunning=false;return;}
+    if(!data||!data.ts){_bcPollRunning=false;return;}
+    if(data.ts>_bcLastTs){
+      _bcLastTs=data.ts;
+      mostrarBroadcastLocal(data);
+    }
+  }catch(e){}
+  _bcPollRunning=false;
+}
+
+// Inicia polling assim que o storage estiver disponível
+(async function iniciarBroadcastPoll(){
+  // Espera window.storage ficar disponível (até 5s)
+  for(let i=0;i<10;i++){
+    if(typeof window!=='undefined'&&window.storage)break;
+    await new Promise(r=>setTimeout(r,500));
+  }
+  checkGlobalBroadcast();
+  setInterval(checkGlobalBroadcast, 2000); // poll a cada 2s
+})();
+
 function mostrarBroadcastLocal(payload){
   const {txt, isAdmin, from}=payload;
   const overlay=document.getElementById('broadcast-overlay');
@@ -2941,21 +3002,6 @@ function mostrarBroadcastLocal(payload){
   }, duration);
 }
 
-// Polling: verifica se chegou broadcast novo de outro jogador
-async function checkGlobalBroadcast(){
-  try{
-    const raw=await _ST.get(BROADCAST_KEY);
-    if(!raw) return;
-    const data=JSON.parse(raw);
-    const myName=G&&G.pl?G.pl.name:'';
-    // Só exibe se: é novo (timestamp maior) E não foi eu quem mandou
-    if(data.ts > lastBroadcastTs && data.from !== myName){
-      lastBroadcastTs = data.ts;
-      mostrarBroadcastLocal(data);
-    }
-  }catch(e){}
-}
-
 // ══════════════════════════════════════════════════════
 // ── CHAT GLOBAL — funciona entre todos os jogadores ───
 // ══════════════════════════════════════════════════════
@@ -3008,14 +3054,22 @@ function scrollChatToBottom(){
 
 async function carregarHistoricoChat(){
   try{
-    const raw=await _ST.get(CHAT_KEY);
-    if(!raw) return [];
-    return JSON.parse(raw);
-  }catch{ return []; }
+    const r=await window.storage.get(CHAT_KEY, true);
+    if(r&&r.value)return JSON.parse(r.value);
+  }catch(e){}
+  // fallback localStorage
+  try{
+    const ls=localStorage.getItem('_chat_'+CHAT_KEY);
+    if(ls)return JSON.parse(ls);
+  }catch(e){}
+  return [];
 }
 
 async function salvarHistoricoChat(msgs){
-  await _ST.set(CHAT_KEY, JSON.stringify(msgs));
+  const str=JSON.stringify(msgs);
+  try{await window.storage.set(CHAT_KEY, str, true);}catch(e){
+    try{localStorage.setItem('_chat_'+CHAT_KEY, str);}catch(e2){}
+  }
 }
 
 function renderMensagensChat(msgs, novasTss=[]){
@@ -3177,9 +3231,9 @@ function iniciarSistemasOnline(){
   if(fab) fab.style.display='flex';
   iniciarHeartbeat();
   iniciarChatPoll();
-  setInterval(checkGlobalBroadcast, 4000);   // broadcasts do admin
-  setInterval(pollGiftInbox, 8000);           // gifts do admin
-  setInterval(sincronizarProgressoGlobal, 30000); // sync coins/skins de outros dispositivos
+  // checkGlobalBroadcast já roda desde o carregamento da página (independente de login)
+  setInterval(pollGiftInbox, 8000);
+  setInterval(sincronizarProgressoGlobal, 30000);
   pollGiftInbox();
   enviarMensagemSistema(`${G.pl.name} entrou no Pixel Quest!`);
 }
